@@ -1,0 +1,307 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1100" width="100%" height="100%" id="tree-mindmap-svg">
+  <defs>
+    <!-- Sky & Earth Gradients -->
+    <linearGradient id="treeSkyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0c1e34"/>
+      <stop offset="40%" stop-color="#0f2b48"/>
+      <stop offset="75%" stop-color="#143e3b"/>
+      <stop offset="100%" stop-color="#1c2d1b"/>
+    </linearGradient>
+
+    <linearGradient id="trunkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5c381e"/>
+      <stop offset="50%" stop-color="#854d24"/>
+      <stop offset="100%" stop-color="#4a2c13"/>
+    </linearGradient>
+
+    <linearGradient id="leafCanopyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#15803d" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <!-- Branch Glow -->
+    <filter id="treeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+
+    <style>
+      .tree-branch { transition: all 0.3s ease; cursor: pointer; }
+      .tree-branch:hover { filter: brightness(1.12); }
+      .wood-sign { rx: 10px; ry: 10px; filter: url(#treeGlow); }
+      .branch-curve { fill: none; stroke-linecap: round; }
+      .tree-txt-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif; font-weight: 800; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; user-select: none; }
+      .tree-txt-node { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif; font-size: 13px; font-weight: 600; fill: #f8fafc; text-anchor: middle; dominant-baseline: middle; user-select: none; }
+    </style>
+  </defs>
+
+  <!-- Sky Canvas Background -->
+  <rect width="1200" height="1100" fill="url(#treeSkyGrad)" rx="16"/>
+
+  <!-- Celestial Elements: Sun & Starry Night (課文：陽光變甜蜜、黑夜星空變堅強) -->
+  <!-- Golden Sun (Top-Right) -->
+  <g transform="translate(1040, 100)">
+    <circle cx="0" cy="0" r="45" fill="#fef08a" opacity="0.15"/>
+    <circle cx="0" cy="0" r="32" fill="#fbbf24" stroke="#f59e0b" stroke-width="2.5"/>
+    <!-- Sun Rays -->
+    <path d="M 0 -48 L 0 -40 M 0 40 L 0 48 M -48 0 L -40 0 M 40 0 L 48 0 M -34 -34 L -28 -28 M 28 28 L 34 34 M -34 34 L -28 28 M 28 -28 L 34 -34" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+    <text x="0" y="5" font-size="11" font-weight="800" fill="#78350f" text-anchor="middle">陽光甜蜜</text>
+  </g>
+
+  <!-- Starry Crescent Moon (Top-Left) -->
+  <g transform="translate(150, 100)">
+    <circle cx="0" cy="0" r="45" fill="#38bdf8" opacity="0.1"/>
+    <path d="M -15 -25 A 30 30 0 1 0 15 25 A 38 38 0 0 1 -15 -25 Z" fill="#e0f2fe" stroke="#38bdf8" stroke-width="2"/>
+    <circle cx="28" cy="-18" r="2.5" fill="#fff"/>
+    <circle cx="36" cy="10" r="2" fill="#fff"/>
+    <circle cx="-32" cy="15" r="2" fill="#fff"/>
+    <text x="2" y="38" font-size="11" font-weight="800" fill="#bae6fd" text-anchor="middle">黑夜堅強</text>
+  </g>
+
+  <!-- Lush Canopy Silhouette Blobs (Background Leaves) -->
+  <circle cx="350" cy="380" r="230" fill="url(#leafCanopyGrad)"/>
+  <circle cx="850" cy="380" r="230" fill="url(#leafCanopyGrad)"/>
+  <circle cx="600" cy="260" r="210" fill="url(#leafCanopyGrad)"/>
+
+  <!-- ======================================================== -->
+  <!-- ROOTS & EARTH (泥土扎根：課文「從泥土裡生成」)             -->
+  <!-- ======================================================== -->
+  <g id="tree-roots-group" class="tree-branch">
+    <!-- Fertile Earth Mound -->
+    <path d="M 150 1080 Q 600 950 1050 1080 L 1050 1100 L 150 1100 Z" fill="#291a10"/>
+    <path d="M 250 1060 Q 600 970 950 1060" stroke="#452715" stroke-width="4" fill="none"/>
+
+    <!-- Taproots burrowing deep -->
+    <path d="M 580 920 C 560 970, 520 1010, 480 1050" stroke="#78350f" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <path d="M 620 920 C 640 970, 680 1010, 720 1050" stroke="#78350f" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <path d="M 600 930 C 600 980, 590 1030, 600 1070" stroke="#5c381e" stroke-width="10" stroke-linecap="round" fill="none"/>
+
+    <!-- Root Signboard: 泥土與種子萌芽 -->
+    <rect class="wood-sign" x="490" y="995" width="220" height="50" fill="#3e2312" stroke="#a16207" stroke-width="2"/>
+    <text class="tree-txt-title" x="600" y="1020" font-size="14">🌱 從泥土裡生成 · 扎根大地</text>
+    <text class="tree-txt-node" x="600" y="1036" font-size="11" fill="#fef08a">汲取純淨滋養 ➔ 孕育天然甜味</text>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- MAIN TREE TRUNK (壯碩主幹：最好的味覺禮物)                -->
+  <!-- ======================================================== -->
+  <!-- Trunk Wood Body -->
+  <path d="M 540 920 C 550 780, 520 620, 500 520 L 700 520 C 680 620, 650 780, 660 920 Z" fill="url(#trunkGrad)"/>
+  <!-- Bark ridges -->
+  <path d="M 580 880 C 590 760, 575 660, 560 560" stroke="#3b1f0b" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M 620 880 C 610 760, 625 660, 640 560" stroke="#3b1f0b" stroke-width="3" fill="none" opacity="0.6"/>
+
+  <!-- ======================================================== -->
+  <!-- BOUGH 1: 右側主枝 (金鑽鳳梨果枝 · 琥珀枝幹)                 -->
+  <!-- ======================================================== -->
+  <g id="tree-branch-pineapple" class="tree-branch" data-quadrant="pineapple">
+    <!-- Big Bough reaching to Top-Right -->
+    <path class="branch-curve" d="M 670 540 C 740 520, 800 420, 870 380" stroke="#854d24" stroke-width="22"/>
+    <path class="branch-curve" d="M 870 380 C 920 350, 960 260, 1000 230" stroke="#854d24" stroke-width="12"/>
+    <path class="branch-curve" d="M 870 380 C 930 400, 970 450, 1010 470" stroke="#854d24" stroke-width="11"/>
+
+    <!-- Green leaves sprouting along branch -->
+    <path d="M 760 480 Q 770 450 795 465 Q 775 490 760 480 Z" fill="#22c55e"/>
+    <path d="M 830 400 Q 855 375 870 395 Q 845 415 830 400 Z" fill="#22c55e"/>
+    <path d="M 930 320 Q 955 295 970 315 Q 945 335 930 320 Z" fill="#4ade80"/>
+
+    <!-- Pineapple Main Signboard (Hanging on branch) -->
+    <g transform="translate(800, 320)">
+      <!-- Hanging ropes -->
+      <line x1="25" y1="-25" x2="25" y2="0" stroke="#ca8a04" stroke-width="2"/>
+      <line x1="135" y1="-25" x2="135" y2="0" stroke="#ca8a04" stroke-width="2"/>
+      <rect class="wood-sign" x="0" y="0" width="160" height="52" fill="#78350f" stroke="#f59e0b" stroke-width="2.5"/>
+      <text class="tree-txt-title" x="80" y="26" font-size="16">🍍 手作鳳梨果枝</text>
+      <text class="tree-txt-node" x="80" y="42" font-size="10.5" fill="#fde68a">金鑽香甜 · 現打原味</text>
+    </g>
+
+    <!-- Sub Node 1: 材料葉片 (x: 1000, y: 190) -->
+    <g transform="translate(980, 170)">
+      <rect class="wood-sign" x="0" y="0" width="115" height="38" fill="#14532d" stroke="#22c55e" stroke-width="1.8"/>
+      <text class="tree-txt-title" x="57" y="19" font-size="13">準備材料</text>
+      <!-- Leaf fruit tags -->
+      <rect class="wood-sign" x="125" y="-15" width="85" height="26" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+      <text class="tree-txt-node" x="167" y="-2" font-size="11.5">有機金鑽鳳梨</text>
+      <rect class="wood-sign" x="125" y="20" width="75" height="26" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+      <text class="tree-txt-node" x="162" y="33" font-size="11.5">開水調和</text>
+    </g>
+
+    <!-- Sub Node 2: 製作工序 (x: 1010, y: 310) -->
+    <g transform="translate(990, 290)">
+      <rect class="wood-sign" x="0" y="0" width="115" height="38" fill="#14532d" stroke="#22c55e" stroke-width="1.8"/>
+      <text class="tree-txt-title" x="57" y="19" font-size="13">製作工序</text>
+      <!-- Step fruits -->
+      <rect class="wood-sign" x="125" y="-30" width="85" height="25" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+      <text class="tree-txt-node" x="167" y="-17" font-size="11">1.削皮去頭尾</text>
+      <rect class="wood-sign" x="125" y="0" width="85" height="25" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+      <text class="tree-txt-node" x="167" y="13" font-size="11">2.除去鳳梨心</text>
+      <rect class="wood-sign" x="125" y="30" width="85" height="25" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+      <text class="tree-txt-node" x="167" y="43" font-size="11">3.進玻璃缸打汁</text>
+    </g>
+
+    <!-- Sub Node 3: 成品收穫 (x: 1000, y: 440) -->
+    <g transform="translate(980, 420)">
+      <rect class="wood-sign" x="0" y="0" width="115" height="38" fill="#b45309" stroke="#fbbf24" stroke-width="2"/>
+      <text class="tree-txt-title" x="57" y="19" font-size="13">熟成果汁</text>
+      <rect class="wood-sign" x="125" y="-10" width="85" height="26" fill="#1e293b" stroke="#fbbf24" stroke-width="1"/>
+      <text class="tree-txt-node" x="167" y="3" font-size="11.5">淺黃色果汁</text>
+      <rect class="wood-sign" x="125" y="24" width="85" height="26" fill="#78350f" stroke="#fbbf24" stroke-width="1.5"/>
+      <text class="tree-txt-node" x="167" y="37" font-size="11.5" fill="#fef08a">✨雪白泡沫</text>
+    </g>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- BOUGH 2: 左側主枝 (童年芭樂果枝 · 青翠生機)                 -->
+  <!-- ======================================================== -->
+  <g id="tree-branch-guava" class="tree-branch" data-quadrant="guava">
+    <!-- Big Bough reaching to Top-Left -->
+    <path class="branch-curve" d="M 530 540 C 460 520, 400 420, 330 380" stroke="#854d24" stroke-width="22"/>
+    <path class="branch-curve" d="M 330 380 C 280 350, 240 260, 200 230" stroke="#854d24" stroke-width="12"/>
+    <path class="branch-curve" d="M 330 380 C 270 400, 230 450, 190 470" stroke="#854d24" stroke-width="11"/>
+
+    <!-- Leaves along branch -->
+    <path d="M 440 480 Q 430 450 405 465 Q 425 490 440 480 Z" fill="#22c55e"/>
+    <path d="M 370 400 Q 345 375 330 395 Q 355 415 370 400 Z" fill="#22c55e"/>
+    <path d="M 270 320 Q 245 295 230 315 Q 255 335 270 320 Z" fill="#4ade80"/>
+
+    <!-- Guava Main Signboard -->
+    <g transform="translate(240, 320)">
+      <line x1="25" y1="-25" x2="25" y2="0" stroke="#16a34a" stroke-width="2"/>
+      <line x1="135" y1="-25" x2="135" y2="0" stroke="#16a34a" stroke-width="2"/>
+      <rect class="wood-sign" x="0" y="0" width="160" height="52" fill="#064e3b" stroke="#10b981" stroke-width="2.5"/>
+      <text class="tree-txt-title" x="80" y="26" font-size="16">🍈 童年芭樂果枝</text>
+      <text class="tree-txt-node" x="80" y="42" font-size="10.5" fill="#a7f3d0">家庭記憶 · 芬芳濃郁</text>
+    </g>
+
+    <!-- Sub Node 1: 契機 (x: 100, y: 190) -->
+    <g transform="translate(100, 170)">
+      <rect class="wood-sign" x="0" y="0" width="105" height="38" fill="#14532d" stroke="#22c55e" stroke-width="1.8"/>
+      <text class="tree-txt-title" x="52" y="19" font-size="13">美好契機</text>
+      <rect class="wood-sign" x="-110" y="5" width="100" height="28" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+      <text class="tree-txt-node" x="-60" y="19" font-size="11">爸爸抽獎果汁機</text>
+    </g>
+
+    <!-- Sub Node 2: 過程 (x: 90, y: 310) -->
+    <g transform="translate(90, 290)">
+      <rect class="wood-sign" x="0" y="0" width="105" height="38" fill="#14532d" stroke="#22c55e" stroke-width="1.8"/>
+      <text class="tree-txt-title" x="52" y="19" font-size="13">親手處理</text>
+      <rect class="wood-sign" x="-115" y="-20" width="105" height="25" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+      <text class="tree-txt-node" x="-62" y="-7" font-size="11">市場黃綠軟芭樂</text>
+      <rect class="wood-sign" x="-115" y="10" width="105" height="25" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+      <text class="tree-txt-node" x="-62" y="23" font-size="11">洗淨切塊倒入容器</text>
+    </g>
+
+    <!-- Sub Node 3: 特色 (x: 100, y: 440) -->
+    <g transform="translate(100, 420)">
+      <rect class="wood-sign" x="0" y="0" width="105" height="38" fill="#065f46" stroke="#34d399" stroke-width="2"/>
+      <text class="tree-txt-title" x="52" y="19" font-size="13">香氣特色</text>
+      <rect class="wood-sign" x="-110" y="-10" width="100" height="26" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
+      <text class="tree-txt-node" x="-60" y="3" font-size="11.5" fill="#a7f3d0">🎵芭樂香氣濃郁</text>
+      <rect class="wood-sign" x="-110" y="24" width="100" height="26" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+      <text class="tree-txt-node" x="-60" y="37" font-size="11.5">轉眼成果汁</text>
+    </g>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- BOUGH 3: 向上伸展果實枝 (李子果醬繁茂枝 · 紫紅碩果)          -->
+  <!-- ======================================================== -->
+  <g id="tree-branch-plum" class="tree-branch" data-quadrant="plum">
+    <!-- Middle-Top Fork splitting from trunk -->
+    <path class="branch-curve" d="M 570 520 C 530 440, 450 360, 430 240" stroke="#854d24" stroke-width="16"/>
+    <path class="branch-curve" d="M 430 240 C 400 180, 340 140, 280 120" stroke="#854d24" stroke-width="10"/>
+
+    <!-- Plum Branch Signboard -->
+    <g transform="translate(340, 160)">
+      <rect class="wood-sign" x="0" y="0" width="165" height="52" fill="#881337" stroke="#f43f5e" stroke-width="2.5"/>
+      <text class="tree-txt-title" x="82" y="26" font-size="16">🍒 熬煮李子果醬</text>
+      <text class="tree-txt-node" x="82" y="42" font-size="10.5" fill="#fecdd3">耐心熬煮 · 建立自信</text>
+    </g>
+
+    <!-- Sub Branches hanging down -->
+    <!-- 特性 -->
+    <g transform="translate(160, 80)">
+      <rect class="wood-sign" x="0" y="0" width="105" height="34" fill="#9f1239" stroke="#fb7185" stroke-width="1.5"/>
+      <text class="tree-txt-title" x="52" y="17" font-size="12">李子特性</text>
+      <rect class="wood-sign" x="115" y="-12" width="95" height="24" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+      <text class="tree-txt-node" x="162" y="0" font-size="10.5">外觀暗紅美麗</text>
+      <rect class="wood-sign" x="115" y="18" width="95" height="24" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+      <text class="tree-txt-node" x="162" y="30" font-size="10.5">口感酸得皺眉</text>
+    </g>
+
+    <!-- 熬煮與自信 (最亮眼的金色果實) -->
+    <g transform="translate(220, 230)">
+      <rect class="wood-sign" x="0" y="0" width="115" height="40" fill="#be123c" stroke="#f43f5e" stroke-width="2"/>
+      <text class="tree-txt-title" x="57" y="20" font-size="13">熬煮與互動</text>
+      
+      <rect class="wood-sign" x="-120" y="-15" width="110" height="26" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+      <text class="tree-txt-node" x="-65" y="-2" font-size="11">大鍋開火加黃砂糖</text>
+      
+      <rect class="wood-sign" x="-135" y="20" width="125" height="32" fill="#881337" stroke="#fbbf24" stroke-width="2"/>
+      <text class="tree-txt-node" x="-72" y="36" font-size="11.5" font-weight="800" fill="#fef08a">⭐ 小湯匙試吃自信</text>
+    </g>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- BOUGH 4: 樹冠向上與右伸展枝 (生命教育哲思枝 · 藍天綠葉)       -->
+  <!-- ======================================================== -->
+  <g id="tree-branch-nature" class="tree-branch" data-quadrant="education">
+    <!-- Middle-Top Right Fork splitting from trunk -->
+    <path class="branch-curve" d="M 630 520 C 670 440, 750 360, 770 240" stroke="#854d24" stroke-width="16"/>
+    <path class="branch-curve" d="M 770 240 C 800 180, 860 140, 920 120" stroke="#854d24" stroke-width="10"/>
+
+    <!-- Nature Branch Signboard -->
+    <g transform="translate(700, 160)">
+      <rect class="wood-sign" x="0" y="0" width="175" height="52" fill="#0369a1" stroke="#38bdf8" stroke-width="2.5"/>
+      <text class="tree-txt-title" x="87" y="26" font-size="16">🌿 生命生成與教育初衷</text>
+      <text class="tree-txt-node" x="87" y="42" font-size="10.5" fill="#bae6fd">拒絕化學 · 體會真味</text>
+    </g>
+
+    <!-- Sub Branches: 植物生成四階段 (x: 880, y: 80) -->
+    <g transform="translate(860, 80)">
+      <rect class="wood-sign" x="0" y="0" width="130" height="34" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+      <text class="tree-txt-title" x="65" y="17" font-size="12">想像植物生成</text>
+
+      <rect class="wood-sign" x="-110" y="-12" width="100" height="24" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+      <text class="tree-txt-node" x="-60" y="0" font-size="10.5">🌱 泥土生成花果</text>
+      <rect class="wood-sign" x="-110" y="18" width="100" height="24" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+      <text class="tree-txt-node" x="-60" y="30" font-size="10.5">☀️ 陽光甜夜空強</text>
+    </g>
+
+    <!-- 生活反思與真味 -->
+    <g transform="translate(860, 230)">
+      <rect class="wood-sign" x="0" y="0" width="120" height="40" fill="#0c4a6e" stroke="#0284c7" stroke-width="1.8"/>
+      <text class="tree-txt-title" x="60" y="20" font-size="13">反思與真味</text>
+
+      <rect class="wood-sign" x="130" y="-12" width="110" height="26" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+      <text class="tree-txt-node" x="185" y="1" font-size="11">擔憂茶飲化學麻痺</text>
+      <rect class="wood-sign" x="130" y="22" width="110" height="26" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+      <text class="tree-txt-node" x="185" y="35" font-size="11">品嘗食物真正味道</text>
+    </g>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- TOP OF TREE CROWN: 樹頂最頂端的金色大果實 (動手做禮物)        -->
+  <!-- ======================================================== -->
+  <g id="tree-top-gift" transform="translate(480, 50)" style="cursor: pointer;">
+    <!-- Radiant Halo -->
+    <circle cx="120" cy="40" r="75" fill="#f59e0b" opacity="0.2"/>
+    <circle cx="120" cy="40" r="55" fill="#fbbf24" opacity="0.3"/>
+    
+    <!-- Golden Gift Wooden Chest -->
+    <rect class="wood-sign" x="10" y="10" width="220" height="60" rx="16" ry="16" fill="#b45309" stroke="#fef08a" stroke-width="3"/>
+    <text class="tree-txt-title" x="120" y="35" font-size="17" fill="#ffffff">🎁 動手做是最好的禮物</text>
+    <text class="tree-txt-node" x="120" y="55" font-size="11.5" font-weight="700" fill="#fde68a">愛心灌溉 · 歷久彌新的成長記憶</text>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- CENTER TREE TRUNK MEDALLION: 《最好的味覺禮物》核心徽章      -->
+  <!-- ======================================================== -->
+  <g id="tree-center-node" transform="translate(460, 520)" style="cursor: pointer;">
+    <!-- Tree Trunk Center Medallion (Wood Slice) -->
+    <ellipse cx="140" cy="50" rx="140" ry="50" fill="#451a03" stroke="#d97706" stroke-width="3.5" filter="url(#treeGlow)"/>
+    <ellipse cx="140" cy="50" rx="125" ry="42" fill="#78350f" stroke="#ca8a04" stroke-width="1.5" stroke-dasharray="8,4"/>
+
+    <!-- Carved Text -->
+    <text x="140" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="22" font-weight="900" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">最好的味覺禮物</text>
+    <text x="140" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="12" font-weight="700" fill="#fde68a" text-anchor="middle" dominant-baseline="middle">🌿 自然生命樹意象心智圖</text>
+  </g>
+</svg>
