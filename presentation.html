@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第5課《最好的味覺禮物》心智圖簡報與缺點剖析</title>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-surface: #1e293b;
+      --bg-panel: rgba(30, 41, 59, 0.92);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --success: #10b981;
+      --border-color: rgba(148, 163, 184, 0.2);
+      --panel-width: 440px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header Bar */
+    header {
+      height: 54px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+      z-index: 50;
+      flex-shrink: 0;
+    }
+
+    .header-title-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .header-badge {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+    }
+
+    .header-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.42rem 0.85rem;
+      border-radius: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: rgba(30, 41, 59, 0.75);
+      color: var(--text-main);
+      transition: all 0.15s ease;
+      outline: none;
+    }
+
+    .btn:hover {
+      background: rgba(51, 65, 85, 0.9);
+      border-color: rgba(148, 163, 184, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: #0284c7;
+      color: white;
+      border-color: #38bdf8;
+    }
+
+    .btn-primary:hover {
+      background: #0369a1;
+    }
+
+    .btn-accent {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-accent:hover {
+      background: rgba(56, 189, 248, 0.25);
+    }
+
+    .btn-icon-only {
+      padding: 0.42rem;
+      border-radius: 0.5rem;
+    }
+
+    .btn.active {
+      background: #0284c7;
+      color: white;
+      border-color: #38bdf8;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+    }
+
+    /* Main Stage Layout */
+    .stage {
+      flex: 1;
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: calc(100vh - 54px);
+    }
+
+    /* Image Presentation Area */
+    .viewport {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #172554 0%, #090d16 100%);
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .viewport.split-mode {
+      flex: 0 0 50%;
+      border-right: 2px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .benchmark-viewport {
+      flex: 0 0 50%;
+      position: relative;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #0f172a 0%, #050810 100%);
+      overflow: hidden;
+    }
+
+    .benchmark-viewport.active {
+      display: flex;
+    }
+
+    .image-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      position: relative;
+      cursor: grab;
+    }
+
+    .image-container:active {
+      cursor: grabbing;
+    }
+
+    .slide-image {
+      max-width: 95%;
+      max-height: 95%;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+      transform-origin: center center;
+    }
+
+    .badge-benchmark {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(16, 185, 129, 0.9);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    .badge-student {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(56, 189, 248, 0.9);
+      color: #042f2e;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    /* Floating Navigation Arrows */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 58px;
+      height: 72px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #fff;
+      font-size: 1.75rem;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+      z-index: 30;
+      opacity: 0.45;
+    }
+
+    .nav-arrow:hover {
+      opacity: 1;
+      background: rgba(2, 132, 199, 0.85);
+      border-color: #38bdf8;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .nav-arrow.prev {
+      left: 1.25rem;
+    }
+
+    .nav-arrow.next {
+      right: 1.25rem;
+    }
+
+    /* Side Defect / Critique Panel */
+    .critique-panel {
+      width: var(--panel-width);
+      height: 100%;
+      background: var(--bg-panel);
+      backdrop-filter: blur(16px);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 40;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), margin-right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -8px 0 28px rgba(0, 0, 0, 0.4);
+      user-select: text;
+    }
+
+    .critique-panel.collapsed {
+      margin-right: calc(-1 * var(--panel-width));
+      box-shadow: none;
+    }
+
+    .panel-header {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 23, 42, 0.5);
+    }
+
+    .panel-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .panel-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .panel-content::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .panel-content::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.3);
+      border-radius: 4px;
+    }
+
+    /* Card styles in panel */
+    .critique-card {
+      background: rgba(15, 23, 42, 0.55);
+      border-radius: 0.65rem;
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .critique-card.danger {
+      border-left: 4px solid var(--danger);
+      background: rgba(239, 68, 68, 0.05);
+    }
+
+    .critique-card.warning {
+      border-left: 4px solid var(--warning);
+      background: rgba(245, 158, 11, 0.05);
+    }
+
+    .critique-card.success {
+      border-left: 4px solid var(--success);
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .critique-card.teacher-note {
+      border-left: 4px solid #f43f5e;
+      background: rgba(244, 63, 94, 0.08);
+      border-color: rgba(244, 63, 94, 0.3);
+    }
+
+    .card-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card-title.danger { color: #f87171; }
+    .card-title.warning { color: #fbbf24; }
+    .card-title.success { color: #34d399; }
+    .card-title.teacher { color: #fb7185; }
+
+    .card-body {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #cbd5e1;
+    }
+
+    .card-body ul {
+      margin-left: 1.2rem;
+      margin-top: 0.35rem;
+    }
+
+    .card-body li {
+      margin-bottom: 0.35rem;
+    }
+
+    .card-body strong {
+      color: #fff;
+    }
+
+    /* Floating Toolbar at Bottom Center */
+    .floating-toolbar {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: 9999px;
+      padding: 0.45rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+      z-index: 35;
+    }
+
+    .counter-display {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      padding: 0 0.5rem;
+      white-space: nowrap;
+      min-width: 90px;
+      text-align: center;
+    }
+
+    .divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border-color);
+    }
+
+    /* Thumbnail Drawer */
+    .thumb-drawer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid var(--border-color);
+      padding: 0.85rem 1.25rem;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 45;
+    }
+
+    .thumb-drawer.active {
+      transform: translateY(0);
+    }
+
+    .thumb-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+    }
+
+    .thumb-drawer-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .thumb-strip {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .thumb-strip::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .thumb-strip::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.4);
+      border-radius: 3px;
+    }
+
+    .thumb-item {
+      flex: 0 0 110px;
+      height: 75px;
+      border-radius: 6px;
+      border: 2px solid rgba(148, 163, 184, 0.2);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+      background: #0f172a;
+    }
+
+    .thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb-item:hover {
+      border-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .thumb-item.active {
+      border-color: #38bdf8;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.6);
+      transform: scale(1.06);
+    }
+
+    .thumb-number {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+
+    /* Modal for Full Overview or Benchmark */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 2rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 1rem;
+      max-width: 900px;
+      width: 100%;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #cbd5e1;
+    }
+
+    .modal-body h3 {
+      color: #38bdf8;
+      margin: 1.2rem 0 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    .modal-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .modal-body ul {
+      margin-left: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .modal-body li {
+      margin-bottom: 0.35rem;
+    }
+
+    .benchmark-img-modal {
+      width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+      background: #090d16;
+    }
+
+    /* Keyboard Shortcuts Overlay */
+    .shortcut-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      padding: 0.1rem 0.4rem;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      top: 4.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: rgba(2, 132, 199, 0.95);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: all 0.25s ease;
+      pointer-events: none;
+      z-index: 200;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="header-title-box">
+      <span class="header-badge">國語五上 第5課</span>
+      <h1 class="header-title">《最好的味覺禮物》心智圖全班作業巡覽與深度評析</h1>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-accent" id="btn-toggle-split" title="同時並排顯示學生心智圖與 NotebookLM 標準心智圖 (快捷鍵: S)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v14a2 2 0 002 2h4m6-18h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M12 3v18"></path></svg>
+        <span>並排標準圖 (S)</span>
+      </button>
+
+      <button class="btn" id="btn-benchmark-modal" title="放大查看 NotebookLM 完整心智圖">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+        <span>標準圖總覽</span>
+      </button>
+
+      <button class="btn" id="btn-class-summary" title="查看全班心智圖共通缺失診斷報告">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        <span>全班診斷總結</span>
+      </button>
+
+      <button class="btn btn-primary" id="btn-toggle-panel" title="開啟/關閉 缺點剖析面板 (快捷鍵: D)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+        <span>缺點剖析 (D)</span>
+      </button>
+
+      <button class="btn btn-icon-only" id="btn-fullscreen" title="切換全螢幕模式 (快捷鍵: F 或 F11)">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Stage -->
+  <div class="stage">
+    
+    <!-- Viewport 1: Student Slides -->
+    <div class="viewport" id="student-viewport">
+      <div class="badge-student" id="slide-badge">第 1 / 19 張 · 學生作品</div>
+
+      <!-- Large Floating Arrows -->
+      <button class="nav-arrow prev" id="arrow-prev" title="上一張 (方向鍵左 / PageUp)">‹</button>
+      <button class="nav-arrow next" id="arrow-next" title="下一張 (方向鍵右 / PageDown / 空白鍵)">›</button>
+
+      <div class="image-container" id="img-container">
+        <img class="slide-image" id="current-slide-img" src="IMG_20261013_160125.jpg" alt="學生心智圖">
+      </div>
+    </div>
+
+    <!-- Viewport 2: Benchmark Split View -->
+    <div class="benchmark-viewport" id="benchmark-viewport">
+      <div class="badge-benchmark">標準心智圖（NotebookLM）</div>
+      <div class="image-container">
+        <img class="slide-image" src="NotebookLM Mind Map (2).png" alt="NotebookLM 標準心智圖">
+      </div>
+    </div>
+
+    <!-- Floating Bottom Controls -->
+    <div class="floating-toolbar">
+      <button class="btn btn-icon-only" id="toolbar-prev" title="上一張 (方向鍵左)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"></path></svg>
+      </button>
+
+      <span class="counter-display" id="slide-counter">第 1 / 19 張</span>
+
+      <button class="btn btn-icon-only" id="toolbar-next" title="下一張 (方向鍵右 / 空白鍵)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
+      </button>
+
+      <div class="divider"></div>
+
+      <button class="btn btn-icon-only" id="btn-rotate" title="順時針旋轉 90° (快捷鍵: R)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+      </button>
+
+      <button class="btn btn-icon-only" id="btn-zoom-in" title="放大檢視 (快捷鍵: +)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path></svg>
+      </button>
+
+      <button class="btn btn-icon-only" id="btn-zoom-reset" title="還原大小 (快捷鍵: 0)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+      </button>
+
+      <div class="divider"></div>
+
+      <button class="btn btn-icon-only" id="btn-toggle-thumbs" title="展開縮圖列表 (快捷鍵: T)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Right Side Critique Panel -->
+    <aside class="critique-panel" id="critique-panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <svg width="18" height="18" fill="none" stroke="#38bdf8" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+          <span id="critique-panel-title">本張心智圖缺點與改進分析</span>
+        </div>
+        <button class="btn btn-icon-only" id="btn-close-panel" title="收合面板">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <div class="panel-content" id="panel-content">
+        <!-- Injected via JS dynamically -->
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Bottom Thumbnail Drawer -->
+  <div class="thumb-drawer" id="thumb-drawer">
+    <div class="thumb-drawer-header">
+      <span class="thumb-drawer-title">投影片快速切換（全 19 張）</span>
+      <button class="btn btn-icon-only" id="btn-close-thumbs">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div class="thumb-strip" id="thumb-strip">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
+  <!-- Benchmark Mind Map Modal -->
+  <div class="modal-overlay" id="modal-benchmark">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title">📌 NotebookLM 完整標準心智圖解析架構</h2>
+        <button class="btn btn-icon-only" id="btn-close-benchmark-modal">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img class="benchmark-img-modal" src="NotebookLM Mind Map (2).png" alt="標準心智圖">
+        <h3>四大核心主支脈絡標準：</h3>
+        <ul>
+          <li><strong>一、手作鳳梨汁</strong>：
+            <ul>
+              <li>準備材料：有機金鑽鳳梨、開水</li>
+              <li>製作步驟：切掉鳳梨頭與削皮 ➔ 除去鳳梨心並切塊 ➔ 裝進玻璃缸備用 ➔ 倒入果汁機攪打</li>
+              <li>成品特徵：淺黃色果汁、上方覆蓋雪白泡沫</li>
+            </ul>
+          </li>
+          <li><strong>二、童年芭樂汁記憶</strong>：
+            <ul>
+              <li>契機：爸爸抽獎帶回果汁機</li>
+              <li>製作過程：市場買回黃綠色軟芭樂 ➔ 洗淨切成小塊狀 ➔ 整盤投入玻璃容器</li>
+              <li>成品特色：芭樂香氣濃郁、轉瞬間成為好喝果汁</li>
+            </ul>
+          </li>
+          <li><strong>三、熬煮李子果醬</strong>：
+            <ul>
+              <li>李子特性：外觀暗紅美麗、口感酸得讓人皺眉、大人遊說對皮膚好</li>
+              <li>熬煮流程：搬出最大鍋子開火 ➔ 切開李子取果核 ➔ 加入一包黃砂糖熬煮</li>
+              <li>熬煮互動：果肉融化混合焦糖 ➔ 小湯匙舀出嘗味道 ➔ <strong>建立小小味覺自信</strong> ➔ 熄火冷卻後裝瓶</li>
+            </ul>
+          </li>
+          <li><strong>四、手作初衷與教育意義</strong>：
+            <ul>
+              <li>擔憂現象：隨處可見的茶飲店、化學氣味與色素麻痺味覺</li>
+              <li>引導想像植物生成：從泥土裡生成 ➔ 開花之後結果 ➔ 陽光照射變甜蜜 ➔ 黑夜星空變堅強</li>
+              <li>核心價值：嘗一嘗食物真正的味道、自己家裡熬的果醬最好吃、自己動手做是最好的味覺禮物</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Class Summary Modal -->
+  <div class="modal-overlay" id="modal-summary">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title">📊 全班 19 份心智圖作業診斷報告與共通缺失</h2>
+        <button class="btn btn-icon-only" id="btn-close-summary-modal">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>🚨 共通缺失 1：關鍵詞提煉不足，整句甚至整段抄錄</h3>
+        <p>多位學生（如第3、7、10、17張）直接將課文長句塞在節點上，違反心智圖「關鍵字（1~4字）」的基本原則，導致畫面擁擠，失去網絡快速提取記憶的功能。老師甚至直接在第3張批註「<strong>字再精簡</strong>」。</p>
+
+        <h3>🚨 共通缺失 2：結構層級扁平，缺乏二級、三級次節點展開</h3>
+        <p>超過 60% 的學生只有一層放射線，主幹末端直接連一個方框寫一句話，未將「材料、步驟、感官特質、情感意義」有層次地逐層展開。</p>
+
+        <h3>🚨 共通缺失 3：心智圖形式被誤用為流程圖、作文大綱或表格</h3>
+        <p>例如第8張被寫成「國語語文結構與修辭分析筆記」；第12、13張被寫成「起因、經過、結果」的故事敘事大綱；第16張更是直接寫成條列式段落筆記（完全沒有心智圖結構）。</p>
+
+        <h3>🚨 共通缺失 4：深層意涵與哲思意象幾乎全數缺漏</h3>
+        <p>絕大多數學生僅著重在「製作果汁/果醬」，但課文後半段最動人的「<strong>閉眼想像植物從泥土生成、在陽光下甜蜜、黑夜中堅強</strong>」之教育理念，以及「<strong>建立孩子味覺自信</strong>」，在學生作品中幾乎全數遺漏！</p>
+
+        <h3>🚨 共通缺失 5：受限於格線作業簿的條框思維</h3>
+        <p>學生在國語作業簿橫線或直行格子上作畫，常受限於既有格線，形成由上而下的列隊式書寫，壓抑了放射狀思考的自由度。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">提示訊息</div>
+
+  <script>
+    // 19 Student Slides Full Dataset with Detailed Critique & Improvement Analysis
+    const slidesData = [
+      {
+        id: 1,
+        filename: "IMG_20261013_160125.jpg",
+        title: "學生心智圖 1",
+        defaultRotation: 0,
+        teacherNote: "老師在各步驟旁均打勾標記「good!」",
+        overview: "分為鳳梨汁、芭樂汁、李子果醬以及左下角分支。各主幹以 1、2、3... 條列製作步驟。",
+        defects: [
+          "<strong>主幹分類缺少核心上位概念名</strong>：左下角分支直接寫句子「怕孩子被化學麻痺...」，未提煉上位類別名稱（例如「手作初衷」或「教育意義」）。",
+          "<strong>心智圖退化為步驟食譜清單</strong>：鳳梨汁與李子果醬以「1.切掉頭尾 2.削皮 3.去芯...」數字編號列舉，偏向線性流程圖，非心智圖放射網絡。",
+          "<strong>混入主觀生活經驗</strong>：芭樂汁分支寫「有甘草的味道」，此為學生自身吃芭樂的經驗聯想，非課文原文內容。",
+          "<strong>遺漏親子互動與哲思意境</strong>：漏掉李子果醬試吃帶來「味覺自信」；完全略過引導孩子想像植物「泥土、陽光、黑夜」生長歷程的核心哲思。"
+        ],
+        formatIssues: "過度依賴稿紙橫線條列，步驟過度拆解成1至7點，文字密度高。",
+        suggestions: "將 1~7 的編號步驟整合成二級關鍵詞（如「刀工處理」、「小火熬煮」），並補上左下角的主題名「手作初衷」。"
+      },
+      {
+        id: 2,
+        filename: "IMG_20261013_160133.jpg",
+        title: "學生心智圖 2 (同作重拍)",
+        defaultRotation: 0,
+        teacherNote: "與第1張為同份作業不同角度之拍照檔",
+        overview: "作業內容與第1張相同，但拍照角度略向左側傾斜。",
+        defects: [
+          "<strong>拍攝畫面瑕疵</strong>：左上方拍攝時手指（大拇指）入鏡遮擋了邊框，且畫面略顯歪斜，影響投影片視覺純淨度。",
+          "<strong>內容缺點同第1張</strong>：食譜化條列、左下分支缺少類別名、芭樂汁誤植甘草味、遺漏味覺自信與植物生長哲理。"
+        ],
+        formatIssues: "拍攝裁切不全，邊角有陰影與指頭遮擋。",
+        suggestions: "投影片展示應挑選第1張乾淨版本；若要保留本張，可裁切掉左上角手指。"
+      },
+      {
+        id: 3,
+        filename: "IMG_20261013_160212.jpg",
+        title: "學生心智圖 3",
+        defaultRotation: 0,
+        teacherNote: "老師以紅筆嚴格批註：「字再精簡」",
+        overview: "中心畫成葉片造型，以「昔」（芭樂汁、李子果醬）與「今」（鳳梨汁、手作初衷）兩大面向對照。",
+        defects: [
+          "<strong>句子冗長，未提煉關鍵字（印證老師評語）</strong>：節點上充斥完整句子（如「問要吃李子嗎？躲遠遠的，看到做李子果醬，卻主動過來」），完全違反心智圖原則。",
+          "<strong>缺乏層次階梯（無次級分支）</strong>：每個主分支只掛一條線並寫一段話，缺乏二級、三級層層向外展開的結構。",
+          "<strong>感官與食材細節嚴重缺失</strong>：鳳梨汁只寫標題，完全沒有材料、步驟與雪白泡沫等特徵；缺少芭樂香氣與李子酸溜的描寫。",
+          "<strong>缺少大自然植物生長引導</strong>：雖然提及擔憂化學色素，但缺少引導孩子想像陽光雨露滋養果實的深層意義。"
+        ],
+        formatIssues: "整段文字直接排在線上，字距緊密，閱讀負擔大。",
+        suggestions: "遵循老師批註「字再精簡」，將句子改寫為2~4字關鍵詞，並由關鍵詞往下分支出食材、口感與情感。"
+      },
+      {
+        id: 4,
+        filename: "IMG_20261013_160247.jpg",
+        title: "學生心智圖 4",
+        defaultRotation: 0,
+        teacherNote: "老師以紅筆重重批註：「太混了」",
+        overview: "僅有 4 個大方框，內容寥寥數語，並在下方貼了一張健康食品標章貼紙。",
+        defects: [
+          "<strong>內容極度貧乏，嚴重敷衍（印證老師評語）</strong>：整張作業僅寫了三句話，課文豐富情節全數略過，無怪乎老師給予「太混了」的評價。",
+          "<strong>毫無心智圖架構</strong>：僅隨意畫框，無放射脈絡、無層級關係，根本不符合心智圖基本要求。",
+          "<strong>錯別字問題</strong>：中心標題寫成「口未覺」（「味」寫錯字）。",
+          "<strong>以貼紙充數</strong>：用一張健康食品貼紙佔據畫面，未將知識轉化為理解。"
+        ],
+        formatIssues: "版面空洞，四個方塊佔據版面，毫無結構美感。",
+        suggestions: "必須打掉重練，重新閱讀課文，依照「鳳梨汁、芭樂汁、李子果醬、手作初衷」四大主幹重新構思繪製。"
+      },
+      {
+        id: 5,
+        filename: "IMG_20261013_160517.jpg",
+        title: "學生心智圖 5",
+        defaultRotation: 0,
+        teacherNote: "老師以紅筆批註：「有些重點沒寫」",
+        overview: "頂部置中標題，下方以 1、2、3 縱向展開大綱。",
+        defects: [
+          "<strong>結構為縱向段落大綱，而非心智圖</strong>：以 1、2、3 編號縱向排列，屬傳統段落大綱，缺乏心智圖的網絡聯想特點。",
+          "<strong>核心重點大量遺漏（印證老師評語）</strong>：鳳梨汁完全沒提材料與製作；童年回憶分支下只有孤零零的李子果醬與芭樂汁，漏掉果汁機契機、去核熬煮等。",
+          "<strong>缺少手搖飲擔憂與大自然生長意象</strong>：完全略過現代手搖飲化學色素的反思，以及陽光黑夜滋養果實的核心意涵。"
+        ],
+        formatIssues: "純垂直由上往下排版，無放射狀展開。",
+        suggestions: "將縱向編號改為放射狀分支，並在各分支補齊材料、步驟、感官描摹與思考意義。"
+      },
+      {
+        id: 6,
+        filename: "IMG_20261013_160630.jpg",
+        title: "學生心智圖 6",
+        defaultRotation: 0,
+        teacherNote: "老師以紅筆批註：「沒有找出重點」",
+        overview: "中心橢圓，分支僅分為「現在」、「以前」、「現在」、「以前」四個主幹，外接四個矩形框。",
+        defects: [
+          "<strong>主幹分類重複且邏輯紊亂</strong>：重複出現兩次「現在」與兩次「以前」，分類維度混淆不清。",
+          "<strong>概括過於籠統、浮於表面（印證老師評語）</strong>：僅寫「作者想起媽媽做的芭樂汁」等泛泛之語，沒有提取任何食材、步驟、氣味與情感重點。",
+          "<strong>層次極度扁平</strong>：每個分支僅連接一個文字框，完全沒有第二層次級分支。"
+        ],
+        formatIssues: "四個對稱方塊如簡報板塊，但內部資訊量極低。",
+        suggestions: "應將主幹整併為「手作鳳梨汁（今）」、「童年芭樂汁（昔）」、「熬李子醬（昔）」、「教育意義（今）」，並延伸下層關鍵字。"
+      },
+      {
+        id: 7,
+        filename: "IMG_20261013_160653.jpg",
+        title: "學生心智圖 7",
+        defaultRotation: 0,
+        teacherNote: "老師打勾認可部分重點",
+        overview: "左右分成「現在」與「以前」，字跡較粗，線條跨格。",
+        defects: [
+          "<strong>排版雜亂、字體忽大忽小</strong>：字距不均勻且跨越線條，視覺動線混亂。",
+          "<strong>長句抄寫代替關鍵詞提煉</strong>：直接把句子塞進方框（如「媽媽做了紅肉李果醬，她很相信作者的味覺，每次都讓她嚐味道」）。",
+          "<strong>遺漏關鍵脈絡</strong>：鳳梨汁遺漏有機金鑽鳳梨材料與處理法；芭樂汁缺少外觀口感描寫；遺漏植物生長的自然教育引導。"
+        ],
+        formatIssues: "線條走向不順，框線與文字重疊摩擦。",
+        suggestions: "提煉核心動詞與名詞，如「紅肉李」、「試吃」、「建立自信」，並將雜亂的框線改為清晰的分支線條。"
+      },
+      {
+        id: 8,
+        filename: "IMG_20261013_160715.jpg",
+        title: "學生心智圖 8",
+        defaultRotation: 0,
+        teacherNote: "寫得非常認真工整，但方向偏向閱讀測驗考卷分析",
+        overview: "跨頁筆記形式，分成「課文概覽（文體、作者）」、「文章主旨」、「課文解析」、「結構分析」。",
+        defects: [
+          "<strong>形式錯位：誤將心智圖寫成「語文結構分析筆記」</strong>：雖然內容極為認真豐富，但這屬於傳統國語閱讀分析（文體、作者、寫作手法），非心智圖。",
+          "<strong>缺乏心智圖的放射狀視覺體驗</strong>：形式呆板，本質是填空表格與條列筆記，版面密集擁擠。",
+          "<strong>缺失具體感官情境細節</strong>：過度偏重抽象的寫作理論分析，完全缺少鳳梨汁、芭樂汁、李子果醬的生動製作細節與味覺記憶。"
+        ],
+        formatIssues: "充滿長篇敘述與國語科標籤，失去圖像化與直觀聯想特性。",
+        suggestions: "保留優秀的邏輯歸納能力，但需將生硬的「文體/寫作特色」轉化為課文故事情境的發散聯想圖。"
+      },
+      {
+        id: 9,
+        filename: "IMG_20261013_160813.jpg",
+        title: "學生心智圖 9",
+        defaultRotation: 0,
+        teacherNote: "左下角有家長簽名 (10/12)",
+        overview: "中心為「最好的味覺禮物」，上下左右分為「今」（果汁當點心、最天然果汁）與「過」（芭樂汁、李子果醬）。",
+        defects: [
+          "<strong>節點極度精簡稀疏</strong>：全圖僅有4個終端節點，未充分梳理課文豐富內涵。",
+          "<strong>課文事實記錯</strong>：李子果醬寫「作者小時和朋友做果醬」，課文原文是「媽媽」與「鄰居」合買熬煮，並非和朋友。",
+          "<strong>欠缺具體操作與感官特質</strong>：未提及食材選擇、果汁機攪打、熬糖冷卻與泡沫特徵。",
+          "<strong>漏失深層哲理</strong>：未呈現植物生成想像與味覺教育意涵。"
+        ],
+        formatIssues: "十字分支過於單薄，版面大量留白未被善用。",
+        suggestions: "修正事實錯誤（朋友改為媽媽/鄰居），並在「今」與「過」之下繼續分出食材、過程、成品與感悟等子分支。"
+      },
+      {
+        id: 10,
+        filename: "IMG_20261013_160827.jpg",
+        title: "學生心智圖 10",
+        defaultRotation: 0,
+        teacherNote: "跨頁大篇幅創作，採用新聞寫作六何法",
+        overview: "跨頁版面，按六何法（何時、為何、誰、哪、怎麼、自己動手做的果汁/果醬）組織。",
+        defects: [
+          "<strong>六何法（5W1H）硬套導致脈絡割裂</strong>：將完整的故事強行拆解成「何時/誰/哪/怎麼」，造成「哪：家裡」、「誰：作者和朋友/媽媽」等缺乏實質資訊價值的破碎節點。",
+          "<strong>跨頁線條交錯凌亂</strong>：分支線跨越大半個版面，連線互相交叉，視覺動線極差。",
+          "<strong>文字密度過高、未提煉關鍵字</strong>：各分支塞入長串敘述。",
+          "<strong>缺少大自然哲理與味覺昇華</strong>：偏重事實陳述，未提取文章核心的情感價值與教育省思。"
+        ],
+        formatIssues: "線條如蜘蛛網般互相穿越，版面難以快速閱讀。",
+        suggestions: "心智圖適合以「主題情境」展開，而非硬套六何法；連線應保持放射狀且避免交叉。"
+      },
+      {
+        id: 11,
+        filename: "IMG_20261013_160842.jpg",
+        title: "學生心智圖 11",
+        defaultRotation: 0,
+        teacherNote: "跨頁大字體氣泡圖",
+        overview: "跨頁大圓圈氣泡，標註「L5」，分為昔（童年回憶）、今（目的、果汁、結果）。",
+        defects: [
+          "<strong>氣泡過大而內容極其空洞</strong>：跨頁只畫了四個巨大氣泡，版面利用率極低。",
+          "<strong>分類層級錯亂</strong>：「動手做果汁」、「目的」、「結果」皆屬現今鳳梨汁主題，卻被平鋪為一級分支。",
+          "<strong>課文核心內容嚴重缺漏</strong>：童年回憶直接遺漏了「李子果醬」！鳳梨汁也無任何材料與步驟描寫。",
+          "<strong>缺少自然意象</strong>：遺漏了手搖茶飲省思與植物生長意象。"
+        ],
+        formatIssues: "氣泡巨大但文字稀少，缺乏二級展開。",
+        suggestions: "縮小氣泡面積，補回被遺忘的李子果醬分支，並將鳳梨汁的「目的/過程/結果」整合為同一主幹下的次層級。"
+      },
+      {
+        id: 12,
+        filename: "IMG_20261013_160852.jpg",
+        title: "學生心智圖 12",
+        defaultRotation: 90, // Need 90deg CW rotation
+        teacherNote: "直行本橫向書寫，呈現側向拍下",
+        overview: "以「1 起因/經過（芭樂汁）」、「2 起因/經過（李子果醬）」、「結果」三段展開。",
+        defects: [
+          "<strong>照片方向側向顛倒</strong>：照片逆時針歪斜90度，必須順時針旋轉校正方能閱讀（系統已預先為您校正）。",
+          "<strong>形式為故事要素結構而非心智圖</strong>：依作文「起因、經過、結果」框架書寫，失去放射發散思考的靈活性。",
+          "<strong>現代鳳梨汁場景全失</strong>：課文起首最重要的現今作者與朋友打鳳梨汁情節完全沒寫！",
+          "<strong>結構扁平</strong>：缺乏分支展開與感官細節描繪。"
+        ],
+        formatIssues: "受直行本格式限制，呈現縱向條列。",
+        suggestions: "補入「手作鳳梨汁」分支；將起因經過結果轉化為心智圖的二級關鍵字。"
+      },
+      {
+        id: 13,
+        filename: "IMG_20261013_160904.jpg",
+        title: "學生心智圖 13",
+        defaultRotation: 90, // Need 90deg CW rotation
+        teacherNote: "標記「五、最好的味覺禮物」",
+        overview: "以「開始(現在) -> 回想①(過去) -> 回想②(過去) -> 總結」線性排列。",
+        defects: [
+          "<strong>照片方向側向顛倒</strong>：需順時針旋轉90度校正（系統已預先為您校正）。",
+          "<strong>本質為時間線性流程圖</strong>：用方框串聯「開始→回想①→回想②→總結」，是段落大綱流程圖，非網絡心智圖。",
+          "<strong>內容極度單薄</strong>：僅寫「芭樂:媽媽買的」、「李子:媽媽買的」，無任何烹調步驟、味覺體驗或感官細節。",
+          "<strong>缺少哲理昇華</strong>：總結僅一句「食物真正的味道就是最好的味覺禮物」，缺乏對大自然孕育滋味的深刻體會。"
+        ],
+        formatIssues: "時間箭頭由上往下指，非放射狀結構。",
+        suggestions: "打破線性箭頭限制，轉為以中心向外放射的結構，並大幅充實細節內容。"
+      },
+      {
+        id: 14,
+        filename: "IMG_20261013_160926.jpg",
+        title: "學生心智圖 14",
+        defaultRotation: 0,
+        teacherNote: "字跡秀麗，但有錯別字",
+        overview: "四象限矩形，含做果汁/下午茶、回憶/李子果醬/芭樂汁、做果汁目的、建立自信。",
+        defects: [
+          "<strong>出現多處錯別字</strong>：「作著和朋友作的」（兩處「作」皆為錯字，應為「作者」與「做的」）。",
+          "<strong>主幹分類維度不對稱</strong>：「讓他建立自信」與「做果汁的目的」同屬理念感受，卻被並列為獨立大分支。",
+          "<strong>操作步驟過於精簡</strong>：僅「把酸李子熬成李子果醬」、「把不好看的芭樂放進果汁機」，缺乏具體手法（削皮、去核、加糖、熬煮）。",
+          "<strong>未展現植物生長的教育引導</strong>：缺少自然生成之詩意哲理。"
+        ],
+        formatIssues: "四個區域分界不清，文字未提煉成關鍵字。",
+        suggestions: "訂正錯別字；將「建立自信」歸入李子果醬的互動感受之下；充實各分支製作步驟。"
+      },
+      {
+        id: 15,
+        filename: "IMG_20261013_160954.jpg",
+        title: "學生心智圖 15",
+        defaultRotation: 0,
+        teacherNote: "嘗試進行分類歸納，但維度混雜",
+        overview: "直向垂直排列，三個大圓圈：「重要的事」、「人物的移動/行動」、「味覺故事」。",
+        defects: [
+          "<strong>自創分類維度邏輯混亂</strong>：「重要的事」、「人物的行動」、「味覺故事」彼此界限模糊、高度重疊。",
+          "<strong>重要情節遺漏</strong>：課文核心的童年芭樂汁回憶與爸爸抽獎果汁機的情節完全遺漏。",
+          "<strong>內容空洞抽象</strong>：圈內僅以抽象短句交代（如「1.做果醬 2.媽媽做果醬等...」），無實質資訊含量。",
+          "<strong>缺乏放射狀結構</strong>：垂直三個大圈排列，喪失心智圖網絡聯想特點。"
+        ],
+        formatIssues: "分類名稱過於空泛，無法發揮索引功能。",
+        suggestions: "揚棄不合適的自創分類，回歸文本情境脈絡分類；補回芭樂汁情節；由抽象歸納轉向具體關鍵字。"
+      },
+      {
+        id: 16,
+        filename: "IMG_20261013_161020.jpg",
+        title: "學生心智圖 16",
+        defaultRotation: 0,
+        teacherNote: "標註「L5心智圖」，但形式完全脫軌",
+        overview: "直行本由右向左書寫，條列 (一) 至 (六) 六個長句。",
+        defects: [
+          "<strong>名為心智圖，實為純條列式作文摘要</strong>：完全沒有心智圖結構！無中心主題圓圈、無分支連線、無層級關係，只是傳統直式筆記。",
+          "<strong>語義重複囉嗦</strong>：六點中有三點結尾都反覆寫「喚起童年回憶」、「重拾童年回憶」，詞彙貧乏。",
+          "<strong>具體細節全數缺漏</strong>：完全沒寫水果名稱特質（除了第一句寫鳳梨切塊）、沒寫製作流程與味覺自信。"
+        ],
+        formatIssues: "純直書文字列，完全沒有圖示或放射結構。",
+        suggestions: "必須徹底重塑心智圖觀念，建立中心節點並畫出樹狀分支，嚴格避免純文字直式條列。"
+      },
+      {
+        id: 17,
+        filename: "IMG_20261013_161040.jpg",
+        title: "學生心智圖 17",
+        defaultRotation: 0,
+        teacherNote: "中心放射狀分支，涵蓋面向完整",
+        overview: "中心放射 (一) 至 (六) 六個分支長句框。",
+        defects: [
+          "<strong>以完整敘述句代替關鍵詞</strong>：每一條線末端都是完整段落長句，未進行心智圖核心的「關鍵詞萃取」。",
+          "<strong>缺乏深層二級展開</strong>：僅有一級放射，每根主幹直接連到底，缺少食材、步驟、感官的細緻拆解。",
+          "<strong>第五分支字數過密擁擠</strong>：第五點包含五六行文字，未經凝練，破壞心智圖一目了然的視覺效果。"
+        ],
+        formatIssues: "框內文字過多，遠看難以快速抓取重心。",
+        suggestions: "將長句拆解提煉成階層關鍵詞，例如將第五點拆為「擔憂現象（茶飲店/化學麻痺）」與「生長想像（開花結果/美好果實）」。"
+      },
+      {
+        id: 18,
+        filename: "IMG_20261013_161057.jpg",
+        title: "學生心智圖 18",
+        defaultRotation: 0,
+        teacherNote: "直式筆記簿放射構圖",
+        overview: "分為「動手做果汁的情形」、「童年回憶」、「動手做果汁的目的和結果」。",
+        defects: [
+          "<strong>冗詞贅字極多</strong>：頻繁出現「主角的媽媽用主角爸爸抽獎抽到的果汁機...」、「主角媽媽讓主角嚐果醬的味道...」，語言極其冗贅。",
+          "<strong>鳳梨汁細節全失</strong>：第一分支僅寫「主角和朋友一起做果汁」，竟連做的是什麼水果（鳳梨）都遺漏！",
+          "<strong>感官與步驟描寫缺失</strong>：漏掉去心削皮、泡沫覆蓋、李子酸味、熬煮過程等細節。",
+          "<strong>哲思未深化</strong>：缺少作者帶領孩子想像植物在大自然中生長的詩意啟發。"
+        ],
+        formatIssues: "以第三人稱「主角」寫法顯得生硬且佔用字數。",
+        suggestions: "精簡主語（刪除反覆出現的主角/媽媽），補齊鳳梨汁名稱與製作細節，提煉出乾淨的關鍵詞分支。"
+      },
+      {
+        id: 19,
+        filename: "IMG_20261013_161113.jpg",
+        title: "學生心智圖 19",
+        defaultRotation: 0,
+        teacherNote: "跨頁雙開構圖，結構平衡",
+        overview: "跨頁構圖，中心放射出 ① 至 ⑥，標示「現代」與「童年」。",
+        defects: [
+          "<strong>版面時序混雜跳躍</strong>：①是現代、②③④是童年、⑤⑥又跳回現代，左右兩側邏輯穿插，未能整合歸類。",
+          "<strong>缺乏次級展開層次</strong>：六個分支依然只是單一長句掛在線上，缺少二級具體關鍵詞（如鳳梨處理法、李子熬煮流程等）。",
+          "<strong>缺漏自然哲思意境</strong>：⑤僅提及怕手搖飲不健康，完全漏掉課文中帶領孩子閉眼想像植物「泥土、開花結果、陽光、黑夜」的生命意涵。"
+        ],
+        formatIssues: "左右版面邏輯跳躍，缺乏視覺順時針或區塊整合感。",
+        suggestions: "整合現代與童年兩大時間軸，或按主題重組四大板塊，並將敘事句分解為層級分明的關鍵詞樹狀圖。"
+      }
+    ];
+
+    // State
+    let currentIndex = 0;
+    let currentRotation = 0;
+    let currentZoom = 1;
+    let isSplitMode = false;
+    let isPanelOpen = true;
+
+    // DOM Elements
+    const slideImg = document.getElementById("current-slide-img");
+    const slideBadge = document.getElementById("slide-badge");
+    const slideCounter = document.getElementById("slide-counter");
+    const critiquePanelTitle = document.getElementById("critique-panel-title");
+    const panelContent = document.getElementById("panel-content");
+    const critiquePanel = document.getElementById("critique-panel");
+    const studentViewport = document.getElementById("student-viewport");
+    const benchmarkViewport = document.getElementById("benchmark-viewport");
+    const thumbDrawer = document.getElementById("thumb-drawer");
+    const thumbStrip = document.getElementById("thumb-strip");
+    const toast = document.getElementById("toast");
+
+    // Show Toast
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    // Render Slide by Index
+    function renderSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= slidesData.length) index = slidesData.length - 1;
+      currentIndex = index;
+
+      const slide = slidesData[currentIndex];
+
+      // Update Image
+      slideImg.src = slide.filename;
+      currentRotation = slide.defaultRotation || 0;
+      currentZoom = 1;
+      applyImageTransform();
+
+      // Update Badges & Counter
+      slideBadge.textContent = `第 ${slide.id} / ${slidesData.length} 張 · ${slide.title}`;
+      slideCounter.textContent = `第 ${slide.id} / ${slidesData.length} 張`;
+      critiquePanelTitle.textContent = `第 ${slide.id} 張 · 呈現缺點剖析`;
+
+      // Update Panel Content
+      let defectsHtml = slide.defects.map(d => `<li>${d}</li>`).join("");
+
+      panelContent.innerHTML = `
+        <div class="critique-card">
+          <div class="card-title">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            作品概況
+          </div>
+          <div class="card-body">
+            <strong>檔案名稱：</strong>${slide.filename}<br>
+            <strong>結構摘要：</strong>${slide.overview}
+          </div>
+        </div>
+
+        ${slide.teacherNote ? `
+        <div class="critique-card teacher-note">
+          <div class="card-title teacher">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+            老師現場紅筆評語
+          </div>
+          <div class="card-body">
+            ${slide.teacherNote}
+          </div>
+        </div>` : ''}
+
+        <div class="critique-card danger">
+          <div class="card-title danger">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            與標準心智圖對照之主要缺點
+          </div>
+          <div class="card-body">
+            <ul>${defectsHtml}</ul>
+          </div>
+        </div>
+
+        <div class="critique-card warning">
+          <div class="card-title warning">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"></path></svg>
+            排版與心智圖繪製形式缺失
+          </div>
+          <div class="card-body">
+            ${slide.formatIssues}
+          </div>
+        </div>
+
+        <div class="critique-card success">
+          <div class="card-title success">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            具體改進指導建議
+          </div>
+          <div class="card-body">
+            ${slide.suggestions}
+          </div>
+        </div>
+      `;
+
+      // Update Active Thumbnail
+      document.querySelectorAll(".thumb-item").forEach((thumb, i) => {
+        if (i === currentIndex) {
+          thumb.classList.add("active");
+          thumb.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        } else {
+          thumb.classList.remove("active");
+        }
+      });
+    }
+
+    function applyImageTransform() {
+      slideImg.style.transform = `rotate(${currentRotation}deg) scale(${currentZoom})`;
+    }
+
+    // Navigation Actions
+    function nextSlide() {
+      if (currentIndex < slidesData.length - 1) {
+        renderSlide(currentIndex + 1);
+      } else {
+        showToast("已到達最後一張投影片");
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        renderSlide(currentIndex - 1);
+      } else {
+        showToast("已是第一張投影片");
+      }
+    }
+
+    function rotateImage() {
+      currentRotation = (currentRotation + 90) % 360;
+      applyImageTransform();
+      showToast(`旋轉至 ${currentRotation}°`);
+    }
+
+    function zoomIn() {
+      currentZoom = Math.min(currentZoom + 0.25, 2.5);
+      applyImageTransform();
+    }
+
+    function zoomReset() {
+      currentZoom = 1;
+      currentRotation = slidesData[currentIndex].defaultRotation || 0;
+      applyImageTransform();
+      showToast("縮放與旋轉已還原");
+    }
+
+    // Toggle Split Mode
+    function toggleSplitMode() {
+      isSplitMode = !isSplitMode;
+      const btn = document.getElementById("btn-toggle-split");
+      if (isSplitMode) {
+        studentViewport.classList.add("split-mode");
+        benchmarkViewport.classList.add("active");
+        btn.classList.add("active");
+        showToast("已開啟並排標準圖對照模式");
+      } else {
+        studentViewport.classList.remove("split-mode");
+        benchmarkViewport.classList.remove("active");
+        btn.classList.remove("active");
+        showToast("已關閉並排模式");
+      }
+    }
+
+    // Toggle Critique Panel
+    function toggleCritiquePanel() {
+      isPanelOpen = !isPanelOpen;
+      const btn = document.getElementById("btn-toggle-panel");
+      if (isPanelOpen) {
+        critiquePanel.classList.remove("collapsed");
+        btn.classList.add("active");
+      } else {
+        critiquePanel.classList.add("collapsed");
+        btn.classList.remove("active");
+      }
+    }
+
+    // Toggle Thumbnail Drawer
+    function toggleThumbDrawer() {
+      thumbDrawer.classList.toggle("active");
+    }
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          showToast("無法進入全螢幕模式: " + err.message);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Build Thumbnail Strip
+    function initThumbnails() {
+      thumbStrip.innerHTML = "";
+      slidesData.forEach((slide, idx) => {
+        const item = document.createElement("div");
+        item.className = `thumb-item ${idx === 0 ? "active" : ""}`;
+        item.title = `第 ${slide.id} 張 · ${slide.filename}`;
+        item.innerHTML = `
+          <img src="${slide.filename}" alt="${slide.title}">
+          <span class="thumb-number">${slide.id}</span>
+        `;
+        item.addEventListener("click", () => {
+          renderSlide(idx);
+          thumbDrawer.classList.remove("active");
+        });
+        thumbStrip.appendChild(item);
+      });
+    }
+
+    // Event Listeners
+    document.getElementById("arrow-next").addEventListener("click", nextSlide);
+    document.getElementById("arrow-prev").addEventListener("click", prevSlide);
+    document.getElementById("toolbar-next").addEventListener("click", nextSlide);
+    document.getElementById("toolbar-prev").addEventListener("click", prevSlide);
+    document.getElementById("btn-rotate").addEventListener("click", rotateImage);
+    document.getElementById("btn-zoom-in").addEventListener("click", zoomIn);
+    document.getElementById("btn-zoom-reset").addEventListener("click", zoomReset);
+    document.getElementById("btn-toggle-split").addEventListener("click", toggleSplitMode);
+    document.getElementById("btn-toggle-panel").addEventListener("click", toggleCritiquePanel);
+    document.getElementById("btn-close-panel").addEventListener("click", toggleCritiquePanel);
+    document.getElementById("btn-toggle-thumbs").addEventListener("click", toggleThumbDrawer);
+    document.getElementById("btn-close-thumbs").addEventListener("click", () => thumbDrawer.classList.remove("active"));
+    document.getElementById("btn-fullscreen").addEventListener("click", toggleFullscreen);
+
+    // Modals
+    const benchmarkModal = document.getElementById("modal-benchmark");
+    const summaryModal = document.getElementById("modal-summary");
+
+    document.getElementById("btn-benchmark-modal").addEventListener("click", () => {
+      benchmarkModal.classList.add("active");
+    });
+    document.getElementById("btn-close-benchmark-modal").addEventListener("click", () => {
+      benchmarkModal.classList.remove("active");
+    });
+
+    document.getElementById("btn-class-summary").addEventListener("click", () => {
+      summaryModal.classList.add("active");
+    });
+    document.getElementById("btn-close-summary-modal").addEventListener("click", () => {
+      summaryModal.classList.remove("active");
+    });
+
+    benchmarkModal.addEventListener("click", (e) => {
+      if (e.target === benchmarkModal) benchmarkModal.classList.remove("active");
+    });
+    summaryModal.addEventListener("click", (e) => {
+      if (e.target === summaryModal) summaryModal.classList.remove("active");
+    });
+
+    // Keyboard Shortcuts
+    window.addEventListener("keydown", (e) => {
+      // Ignore when typing inside inputs
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+
+      switch(e.key) {
+        case "ArrowRight":
+        case "PageDown":
+          nextSlide();
+          break;
+        case "ArrowLeft":
+        case "PageUp":
+          prevSlide();
+          break;
+        case " ":
+          e.preventDefault();
+          if (e.shiftKey) prevSlide(); else nextSlide();
+          break;
+        case "Home":
+          renderSlide(0);
+          break;
+        case "End":
+          renderSlide(slidesData.length - 1);
+          break;
+        case "s":
+        case "S":
+          toggleSplitMode();
+          break;
+        case "d":
+        case "D":
+          toggleCritiquePanel();
+          break;
+        case "r":
+        case "R":
+          rotateImage();
+          break;
+        case "t":
+        case "T":
+          toggleThumbDrawer();
+          break;
+        case "f":
+        case "F":
+          toggleFullscreen();
+          break;
+        case "0":
+          zoomReset();
+          break;
+        case "+":
+        case "=":
+          zoomIn();
+          break;
+        case "Escape":
+          benchmarkModal.classList.remove("active");
+          summaryModal.classList.remove("active");
+          thumbDrawer.classList.remove("active");
+          break;
+      }
+    });
+
+    // Touch Swipe Gesture Support
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    studentViewport.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    studentViewport.addEventListener("touchend", (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const touchEndY = e.changedTouches[0].screenY;
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+
+      // Ensure horizontal swipe
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+        if (diffX < 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    // Initialize
+    initThumbnails();
+    renderSlide(0);
+  </script>
+</body>
+</html>
