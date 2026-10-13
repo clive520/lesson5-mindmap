@@ -1,489 +1,570 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1100" width="100%" height="100%" id="illustrated-mindmap-svg">
   <defs>
-    <!-- Background Gradient -->
-    <radialGradient id="illuBgGlow" cx="50%" cy="50%" r="55%">
-      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.6"/>
-      <stop offset="70%" stop-color="#0f172a" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#090d16" stop-opacity="1"/>
+    <!-- Background Gradients -->
+    <radialGradient id="illuCenterGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Theme Gradients -->
-    <linearGradient id="illuGradCenter" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ec4899"/>
-      <stop offset="50%" stop-color="#8b5cf6"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
+    <!-- Quadrant Glow Gradients -->
+    <linearGradient id="illu-grad-center" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
     </linearGradient>
 
-    <linearGradient id="illuGradPineapple" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#d97706"/>
+    <linearGradient id="illu-grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#b45309"/>
     </linearGradient>
 
-    <linearGradient id="illuGradGuava" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#10b981"/>
-      <stop offset="100%" stop-color="#059669"/>
+    <linearGradient id="illu-grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
     </linearGradient>
 
-    <linearGradient id="illuGradPlum" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f43f5e"/>
+    <linearGradient id="illu-grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e11d48"/>
       <stop offset="100%" stop-color="#be123c"/>
     </linearGradient>
 
-    <linearGradient id="illuGradNature" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0ea5e9"/>
-      <stop offset="100%" stop-color="#0284c7"/>
+    <linearGradient id="illu-grad-sky" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
     </linearGradient>
 
-    <!-- Card Filters -->
-    <filter id="illuShadow" x="-10%" y="-10%" width="125%" height="125%">
-      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#000000" flood-opacity="0.45"/>
-    </filter>
+    <!-- Illustration specific gradients -->
+    <linearGradient id="potGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#991b1b"/>
+      <stop offset="50%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="60%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pineappleSkin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="blenderGlass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(186, 230, 253, 0.45)"/>
+      <stop offset="50%" stop-color="rgba(254, 240, 138, 0.65)"/>
+      <stop offset="100%" stop-color="rgba(186, 230, 253, 0.3)"/>
+    </linearGradient>
 
-    <filter id="illuGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    <!-- Drop Shadows -->
+    <filter id="illu-shadow-card" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <filter id="illu-shadow-center" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#6366f1" flood-opacity="0.55"/>
+    </filter>
+    <filter id="illu-art-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
     </filter>
 
     <style>
-      .illu-group { transition: all 0.35s ease; cursor: pointer; }
-      .illu-group:hover { filter: brightness(1.08) drop-shadow(0 0 12px rgba(255,255,255,0.25)); }
-      .illu-path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-      .card-box { rx: 12px; ry: 12px; filter: url(#illuShadow); }
-      .txt-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif; font-weight: 800; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; user-select: none; }
-      .txt-node { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif; font-size: 13.5px; font-weight: 600; fill: #f8fafc; text-anchor: middle; dominant-baseline: middle; user-select: none; }
-      .txt-badge { font-size: 11.5px; font-weight: 700; fill: #cbd5e1; }
-      .hand-note { font-family: "Caveat", "Comic Sans MS", "PingFang TC", cursive, sans-serif; font-size: 12px; fill: #fde047; }
+      .quadrant-group { transition: opacity 0.4s ease, transform 0.4s ease; cursor: pointer; }
+      .quadrant-group:hover { filter: brightness(1.08); }
+      .branch-line { fill: none; stroke-linecap: round; transition: stroke-width 0.3s; }
+      .node-card { rx: 8px; ry: 8px; filter: url(#illu-shadow-card); }
+      .node-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif; font-size: 13px; font-weight: 500; fill: #f8fafc; text-anchor: middle; dominant-baseline: middle; user-select: none; }
+      .main-text { font-size: 16px; font-weight: 700; fill: #ffffff; }
+      .sub-text { font-size: 14px; font-weight: 600; fill: #ffffff; }
+      .leaf-text { font-size: 12.5px; font-weight: 500; fill: #e2e8f0; }
+      .art-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif; font-size: 11px; font-weight: 700; fill: #cbd5e1; text-anchor: middle; }
     </style>
   </defs>
 
-  <!-- Background Layer -->
-  <rect width="1200" height="1100" fill="#0b0f19" rx="16"/>
-  <rect width="1200" height="1100" fill="url(#illuBgGlow)" rx="16"/>
+  <!-- Canvas Background -->
+  <rect width="1200" height="1100" fill="#0f172a" rx="16"/>
+  <circle cx="600" cy="550" r="480" fill="url(#illuCenterGlow)"/>
 
-  <!-- Organic Dotted Background Grid Texture -->
-  <g opacity="0.12">
-    <circle cx="200" cy="150" r="2" fill="#fff"/><circle cx="400" cy="150" r="2" fill="#fff"/><circle cx="600" cy="150" r="2" fill="#fff"/><circle cx="800" cy="150" r="2" fill="#fff"/><circle cx="1000" cy="150" r="2" fill="#fff"/>
-    <circle cx="200" cy="350" r="2" fill="#fff"/><circle cx="400" cy="350" r="2" fill="#fff"/><circle cx="800" cy="350" r="2" fill="#fff"/><circle cx="1000" cy="350" r="2" fill="#fff"/>
-    <circle cx="200" cy="750" r="2" fill="#fff"/><circle cx="400" cy="750" r="2" fill="#fff"/><circle cx="800" cy="750" r="2" fill="#fff"/><circle cx="1000" cy="750" r="2" fill="#fff"/>
-    <circle cx="200" cy="950" r="2" fill="#fff"/><circle cx="400" cy="950" r="2" fill="#fff"/><circle cx="600" cy="950" r="2" fill="#fff"/><circle cx="800" cy="950" r="2" fill="#fff"/><circle cx="1000" cy="950" r="2" fill="#fff"/>
-  </g>
-
-  <!-- Quadrant Subtle Backdrop Haloes -->
-  <circle cx="950" cy="300" r="240" fill="#f59e0b" opacity="0.06"/>
-  <circle cx="250" cy="300" r="240" fill="#10b981" opacity="0.06"/>
-  <circle cx="250" cy="800" r="240" fill="#f43f5e" opacity="0.06"/>
-  <circle cx="950" cy="800" r="240" fill="#0ea5e9" opacity="0.06"/>
+  <!-- Subtle Quadrant Divider Guides -->
+  <line x1="600" y1="40" x2="600" y2="1060" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,6" opacity="0.35"/>
+  <line x1="40" y1="550" x2="1160" y2="550" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,6" opacity="0.35"/>
 
   <!-- ======================================================== -->
-  <!-- QUADRANT 1: 右上 (TOP-RIGHT) - 手作鳳梨汁 (琥珀插畫篇)     -->
+  <!-- QUADRANT 1: 右上 (TOP-RIGHT) - 手作鳳梨汁 (含主題精緻插畫)   -->
   <!-- ======================================================== -->
-  <g class="illu-group" id="illu-pineapple-group" data-quadrant="pineapple">
-    <!-- Main Ribbon Trunk from Center (690, 510) to (830, 310) -->
-    <path class="illu-path" d="M 680 515 C 750 515, 780 340, 830 310" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
-    <!-- Organic vine leaf flourishes -->
-    <path d="M 740 440 Q 755 425 765 440 Q 750 455 740 440" fill="#f59e0b" opacity="0.7"/>
+  <g class="quadrant-group" id="group-pineapple" data-quadrant="pineapple">
+    <!-- Main Branch Connector: Center (710, 520) -> (800, 320) -->
+    <path class="branch-line" d="M 710 520 C 760 520, 770 350, 800 320" stroke="#f59e0b" stroke-width="3.5"/>
 
-    <!-- Sub Branches -->
-    <path class="illu-path" d="M 940 310 C 970 310, 970 160, 1000 160" stroke="#fbbf24" stroke-width="3.5"/>
-    <path class="illu-path" d="M 940 310 C 975 310, 975 300, 1000 300" stroke="#fbbf24" stroke-width="3.5"/>
-    <path class="illu-path" d="M 940 310 C 970 310, 970 450, 1000 450" stroke="#fbbf24" stroke-width="3.5"/>
+    <!-- Sub Branch Connectors -->
+    <path class="branch-line" d="M 890 320 C 920 320, 930 160, 960 160" stroke="#fbbf24" stroke-width="2.5"/>
+    <path class="branch-line" d="M 890 320 C 925 320, 935 300, 960 300" stroke="#fbbf24" stroke-width="2.5"/>
+    <path class="branch-line" d="M 890 320 C 925 320, 935 440, 960 440" stroke="#fbbf24" stroke-width="2.5"/>
 
-    <!-- Leaf Node Connectors -->
-    <path class="illu-path" d="M 1080 160 C 1100 160, 1105 130, 1120 130" stroke="#fde68a" stroke-width="2"/>
-    <path class="illu-path" d="M 1080 160 C 1100 160, 1105 185, 1120 185" stroke="#fde68a" stroke-width="2"/>
-    
-    <path class="illu-path" d="M 1085 300 C 1100 300, 1105 235, 1120 235" stroke="#fde68a" stroke-width="2"/>
-    <path class="illu-path" d="M 1085 300 C 1100 300, 1105 280, 1120 280" stroke="#fde68a" stroke-width="2"/>
-    <path class="illu-path" d="M 1085 300 C 1100 300, 1105 325, 1120 325" stroke="#fde68a" stroke-width="2"/>
-    <path class="illu-path" d="M 1085 300 C 1100 300, 1105 370, 1120 370" stroke="#fde68a" stroke-width="2"/>
+    <!-- Leaves Connectors -->
+    <path class="branch-line" d="M 1025 160 C 1055 160, 1065 135, 1090 135" stroke="#fde68a" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 160 C 1055 160, 1065 185, 1090 185" stroke="#fde68a" stroke-width="1.8"/>
 
-    <path class="illu-path" d="M 1085 450 C 1100 450, 1105 425, 1120 425" stroke="#fde68a" stroke-width="2"/>
-    <path class="illu-path" d="M 1085 450 C 1100 450, 1105 475, 1120 475" stroke="#fde68a" stroke-width="2"/>
+    <path class="branch-line" d="M 1025 300 C 1055 300, 1065 235, 1090 235" stroke="#fde68a" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 300 C 1055 300, 1065 275, 1090 275" stroke="#fde68a" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 300 C 1055 300, 1065 325, 1090 325" stroke="#fde68a" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 300 C 1055 300, 1065 365, 1090 365" stroke="#fde68a" stroke-width="1.8"/>
 
-    <!-- ILLUSTRATION 1: 金鑽鳳梨手繪插圖 (x:770, y:180) -->
-    <g transform="translate(765, 170)">
-      <!-- Pineapple Crown Leaves -->
-      <path d="M 35 25 C 20 5, 28 -5, 33 8 C 38 -12, 45 -8, 40 10 C 50 -10, 55 2, 43 25 Z" fill="#22c55e" stroke="#15803d" stroke-width="1.5"/>
-      <!-- Pineapple Body -->
-      <ellipse cx="38" cy="48" rx="22" ry="28" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
-      <!-- Crosshatch skin texture -->
-      <path d="M 22 36 L 54 60 M 20 52 L 48 72 M 54 36 L 22 60 M 52 50 L 26 72" stroke="#b45309" stroke-width="1.4" opacity="0.6"/>
-      <!-- Small cut slice -->
-      <path d="M 58 60 A 15 15 0 0 1 78 72 L 68 76 Z" fill="#fef08a" stroke="#d97706" stroke-width="1.2"/>
-    </g>
+    <path class="branch-line" d="M 1025 440 C 1055 440, 1065 415, 1090 415" stroke="#fde68a" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 440 C 1055 440, 1065 465, 1090 465" stroke="#fde68a" stroke-width="1.8"/>
 
-    <!-- ILLUSTRATION 2: 果汁機與雪白奶泡高腳杯 (x:930, y:50) -->
-    <g transform="translate(900, 60)">
-      <!-- Blender base -->
-      <path d="M 12 75 L 38 75 L 34 90 L 16 90 Z" fill="#475569" stroke="#334155" stroke-width="1.5"/>
-      <circle cx="25" cy="82" r="3.5" fill="#f59e0b"/>
-      <!-- Blender jug -->
-      <path d="M 14 38 L 36 38 L 33 74 L 17 74 Z" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="1.5"/>
-      <!-- Juice inside -->
-      <path d="M 16 52 Q 25 50 34 52 L 32 74 L 18 74 Z" fill="#fbbf24"/>
-      <!-- Blender lid -->
-      <rect x="12" y="33" width="26" height="5" rx="2" fill="#334155"/>
-      <!-- Froth swirls -->
-      <path d="M 20 46 Q 25 42 30 46" stroke="#ffffff" stroke-width="1.5" fill="none"/>
+    <!-- 🎨 THEMATIC ARTWORK 1: 鳳梨、果汁機與雪白奶泡 (位於右上象限留白區 x:680~880, y:70~250) -->
+    <g class="illustration-art" filter="url(#illu-art-glow)" pointer-events="none">
+      <!-- Art Backing Glow Card -->
+      <rect x="670" y="70" width="220" height="185" rx="16" fill="rgba(30, 41, 59, 0.7)" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,4"/>
+      
+      <!-- 1. 金鑽鳳梨 (Pineapple) at (725, 145) -->
+      <g transform="translate(690, 85)">
+        <!-- Green Spiky Leaves Crown -->
+        <path d="M 35 30 C 25 15, 15 5, 20 0 C 28 8, 32 20, 35 30 Z" fill="#16a34a"/>
+        <path d="M 35 30 C 35 12, 38 2, 42 2 C 43 12, 40 22, 35 30 Z" fill="#22c55e"/>
+        <path d="M 35 30 C 45 15, 55 5, 50 0 C 42 8, 38 20, 35 30 Z" fill="#15803d"/>
+        <!-- Pineapple Oval Body -->
+        <ellipse cx="35" cy="56" rx="22" ry="30" fill="url(#pineappleSkin)" stroke="#b45309" stroke-width="1.5"/>
+        <!-- Crosshatch diamond pattern -->
+        <path d="M 20 40 L 50 72 M 16 54 L 46 84 M 50 40 L 20 72 M 54 54 L 24 84" stroke="#92400e" stroke-width="1.2" opacity="0.6"/>
+        <!-- Cut Ring Slice -->
+        <circle cx="58" cy="74" r="14" fill="#fde047" stroke="#d97706" stroke-width="1.5"/>
+        <circle cx="58" cy="74" r="4.5" fill="#fef08a" stroke="#ca8a04" stroke-width="1"/>
+      </g>
 
-      <!-- Tall juice glass with straw (right) -->
-      <path d="M 52 48 L 68 48 L 64 82 L 56 82 Z" fill="#fef08a" stroke="#d97706" stroke-width="1.5"/>
-      <!-- White frothy cap -->
-      <ellipse cx="60" cy="48" rx="8" ry="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-      <circle cx="58" cy="44" r="3" fill="#ffffff"/>
-      <circle cx="63" cy="45" r="2.5" fill="#ffffff"/>
-      <!-- Straw -->
-      <line x1="62" y1="52" x2="72" y2="28" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/>
+      <!-- 2. 果汁機高速攪打 (Blender) at (790, 85) -->
+      <g transform="translate(775, 85)">
+        <!-- Blender Glass Pitcher -->
+        <path d="M 12 18 L 38 18 L 34 58 L 16 58 Z" fill="url(#blenderGlass)" stroke="#38bdf8" stroke-width="1.5"/>
+        <!-- Lid -->
+        <rect x="10" y="14" width="30" height="5" rx="2" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+        <rect x="22" y="10" width="6" height="4" rx="1" fill="#cbd5e1"/>
+        <!-- Handle -->
+        <path d="M 38 24 C 46 26, 46 44, 35 48" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Whirling Vortex -->
+        <path d="M 20 30 Q 25 35 30 30 Q 25 45 20 48" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- Motor Base -->
+        <path d="M 14 58 L 36 58 L 39 76 L 11 76 Z" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+        <circle cx="25" cy="67" r="3" fill="#f59e0b"/>
+      </g>
+
+      <!-- 3. 高腳杯雪白泡沫 (Frosted Glass Cup) at (840, 150) -->
+      <g transform="translate(835, 145)">
+        <!-- Glass body with yellow juice -->
+        <path d="M 5 15 L 25 15 L 21 48 L 9 48 Z" fill="#fef08a" opacity="0.9" stroke="#f59e0b" stroke-width="1"/>
+        <!-- White thick cream foam -->
+        <ellipse cx="15" cy="15" rx="11" ry="5.5" fill="#ffffff" filter="drop-shadow(0 1px 2px rgba(0,0,0,0.3))"/>
+        <path d="M 7 15 C 7 11, 12 10, 15 10 C 18 10, 23 11, 23 15 Z" fill="#ffffff"/>
+        <!-- Red Straw -->
+        <path d="M 18 25 L 26 5 L 32 8" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+        <!-- Stem & Foot -->
+        <line x1="15" y1="48" x2="15" y2="60" stroke="#94a3b8" stroke-width="2"/>
+        <ellipse cx="15" cy="60" rx="8" ry="2.5" fill="#64748b"/>
+        <!-- Sparkles -->
+        <text x="28" y="24" font-size="9" fill="#fbbf24">✨</text>
+      </g>
+
+      <!-- Label inside art card -->
+      <text class="art-label" x="780" y="240">手作工序 · 雪白果香泡沫</text>
     </g>
 
     <!-- Main Node: 手作鳳梨汁 -->
-    <rect class="card-box" x="800" y="286" width="150" height="50" fill="url(#illuGradPineapple)"/>
-    <text class="txt-title" x="875" y="312" font-size="16">🍍 手作鳳梨汁</text>
+    <rect class="node-card" x="770" y="296" width="145" height="48" fill="url(#illu-grad-amber)"/>
+    <text class="node-text main-text" x="842" y="320">🍍 手作鳳梨汁</text>
 
     <!-- Sub Nodes -->
-    <rect class="card-box" x="980" y="140" width="105" height="38" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
-    <text class="txt-node" x="1032" y="160">準備材料</text>
+    <rect class="node-card" x="945" y="142" width="95" height="36" fill="#78350f" stroke="#d97706" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="992" y="160">準備材料</text>
 
-    <rect class="card-box" x="980" y="280" width="105" height="38" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
-    <text class="txt-node" x="1032" y="300">製作步驟</text>
+    <rect class="node-card" x="945" y="282" width="95" height="36" fill="#78350f" stroke="#d97706" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="992" y="300">製作步驟</text>
 
-    <rect class="card-box" x="980" y="430" width="105" height="38" fill="#78350f" stroke="#f59e0b" stroke-width="1.5"/>
-    <text class="txt-node" x="1032" y="450">成品特徵</text>
+    <rect class="node-card" x="945" y="422" width="95" height="36" fill="#78350f" stroke="#d97706" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="992" y="440">成品特徵</text>
 
-    <!-- Leaf Cards -->
-    <rect class="card-box" x="1110" y="115" width="85" height="28" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-    <text class="txt-node" x="1152" y="130" font-size="12">有機金鑽鳳梨</text>
+    <!-- Leaf Nodes: 材料 -->
+    <rect class="node-card" x="1090" y="122" width="95" height="26" fill="#1e293b" stroke="#d97706" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="135">金鑽鳳梨</text>
 
-    <rect class="card-box" x="1110" y="170" width="60" height="28" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-    <text class="txt-node" x="1140" y="185" font-size="12">開水調和</text>
+    <rect class="node-card" x="1090" y="172" width="75" height="26" fill="#1e293b" stroke="#d97706" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1127" y="185">開水</text>
 
-    <rect class="card-box" x="1105" y="220" width="90" height="28" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-    <text class="txt-node" x="1150" y="235" font-size="12">削皮去頭尾</text>
+    <!-- Leaf Nodes: 步驟 -->
+    <rect class="node-card" x="1090" y="222" width="85" height="26" fill="#1e293b" stroke="#d97706" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1132" y="235">切頭削皮</text>
 
-    <rect class="card-box" x="1105" y="265" width="90" height="28" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-    <text class="txt-node" x="1150" y="280" font-size="12">剔除鳳梨心</text>
+    <rect class="node-card" x="1090" y="262" width="85" height="26" fill="#1e293b" stroke="#d97706" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1132" y="275">去芯切塊</text>
 
-    <rect class="card-box" x="1105" y="310" width="90" height="28" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-    <text class="txt-node" x="1150" y="325" font-size="12">裝入玻璃缸</text>
+    <rect class="node-card" x="1090" y="312" width="85" height="26" fill="#1e293b" stroke="#d97706" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1132" y="325">入玻璃缸</text>
 
-    <rect class="card-box" x="1105" y="355" width="90" height="28" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-    <text class="txt-node" x="1150" y="370" font-size="12">果汁機攪打</text>
+    <rect class="node-card" x="1090" y="352" width="95" height="26" fill="#1e293b" stroke="#d97706" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="365">果汁機攪打</text>
 
-    <rect class="card-box" x="1110" y="410" width="85" height="28" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
-    <text class="txt-node" x="1152" y="425" font-size="12">淺黃色果汁</text>
+    <!-- Leaf Nodes: 成品特徵 -->
+    <rect class="node-card" x="1090" y="402" width="95" height="26" fill="#1e293b" stroke="#d97706" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="415">淺黃色果汁</text>
 
-    <rect class="card-box" x="1110" y="460" width="85" height="28" fill="#78350f" stroke="#fbbf24" stroke-width="1.5"/>
-    <text class="txt-node" x="1152" y="475" font-size="12" fill="#fef08a">✨雪白泡沫</text>
+    <rect class="node-card" x="1090" y="452" width="95" height="26" fill="#1e293b" stroke="#d97706" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="465">雪白泡沫</text>
   </g>
 
   <!-- ======================================================== -->
-  <!-- QUADRANT 2: 左上 (TOP-LEFT) - 童年芭樂汁 (翠綠插畫篇)     -->
+  <!-- QUADRANT 2: 左上 (TOP-LEFT) - 童年芭樂汁記憶 (含主題精緻插畫) -->
   <!-- ======================================================== -->
-  <g class="illu-group" id="illu-guava-group" data-quadrant="guava">
-    <!-- Main Ribbon from Center (520, 515) to (370, 310) -->
-    <path class="illu-path" d="M 520 515 C 450 515, 420 340, 370 310" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
-    <path d="M 460 440 Q 445 425 435 440 Q 450 455 460 440" fill="#10b981" opacity="0.7"/>
+  <g class="quadrant-group" id="group-guava" data-quadrant="guava">
+    <!-- Main Branch Connector: Center (490, 520) -> (400, 320) -->
+    <path class="branch-line" d="M 490 520 C 440 520, 430 350, 400 320" stroke="#10b981" stroke-width="3.5"/>
 
-    <!-- Sub Branches -->
-    <path class="illu-path" d="M 260 310 C 230 310, 230 160, 200 160" stroke="#34d399" stroke-width="3.5"/>
-    <path class="illu-path" d="M 260 310 C 225 310, 225 300, 200 300" stroke="#34d399" stroke-width="3.5"/>
-    <path class="illu-path" d="M 260 310 C 230 310, 230 450, 200 450" stroke="#34d399" stroke-width="3.5"/>
+    <!-- Sub Branch Connectors -->
+    <path class="branch-line" d="M 310 320 C 280 320, 270 160, 240 160" stroke="#34d399" stroke-width="2.5"/>
+    <path class="branch-line" d="M 310 320 C 275 320, 265 300, 240 300" stroke="#34d399" stroke-width="2.5"/>
+    <path class="branch-line" d="M 310 320 C 275 320, 265 440, 240 440" stroke="#34d399" stroke-width="2.5"/>
 
     <!-- Leaves Connectors -->
-    <path class="illu-path" d="M 120 160 C 100 160, 95 160, 80 160" stroke="#a7f3d0" stroke-width="2"/>
-    
-    <path class="illu-path" d="M 115 300 C 100 300, 95 240, 80 240" stroke="#a7f3d0" stroke-width="2"/>
-    <path class="illu-path" d="M 115 300 C 100 300, 95 295, 80 295" stroke="#a7f3d0" stroke-width="2"/>
-    <path class="illu-path" d="M 115 300 C 100 300, 95 350, 80 350" stroke="#a7f3d0" stroke-width="2"/>
+    <path class="branch-line" d="M 155 160 C 130 160, 120 160, 95 160" stroke="#a7f3d0" stroke-width="1.8"/>
 
-    <path class="illu-path" d="M 115 450 C 100 450, 95 425, 80 425" stroke="#a7f3d0" stroke-width="2"/>
-    <path class="illu-path" d="M 115 450 C 100 450, 95 475, 80 475" stroke="#a7f3d0" stroke-width="2"/>
+    <path class="branch-line" d="M 155 300 C 125 300, 115 260, 95 260" stroke="#a7f3d0" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 300 C 125 300, 115 340, 95 340" stroke="#a7f3d0" stroke-width="1.8"/>
 
-    <!-- ILLUSTRATION 3: 爸爸抽獎箱與驚喜星星 (x:370, y:170) -->
-    <g transform="translate(360, 160)">
-      <!-- Lottery Lucky Box -->
-      <rect x="15" y="35" width="45" height="38" rx="6" fill="#047857" stroke="#10b981" stroke-width="2"/>
-      <!-- Hole on top -->
-      <ellipse cx="37.5" cy="35" rx="14" ry="4" fill="#022c22"/>
-      <!-- Winning ticket sticking out -->
-      <path d="M 30 18 L 45 15 L 43 35 L 28 38 Z" fill="#fde047" stroke="#ca8a04" stroke-width="1.2"/>
-      <text x="36" y="29" font-size="8" font-weight="900" fill="#b45309" text-anchor="middle">中獎</text>
-      <!-- Sparkle stars -->
-      <path d="M 12 18 Q 14 10 20 8 Q 14 6 12 -2 Q 10 6 4 8 Q 10 10 12 18 Z" fill="#fbbf24"/>
-      <circle cx="58" cy="18" r="3" fill="#fef08a"/>
+    <path class="branch-line" d="M 155 440 C 125 440, 115 415, 95 415" stroke="#a7f3d0" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 440 C 125 440, 115 465, 95 465" stroke="#a7f3d0" stroke-width="1.8"/>
+
+    <!-- 🎨 THEMATIC ARTWORK 2: 爸爸抽獎箱與香氣芭樂 (位於左上象限留白區 x:320~530, y:70~250) -->
+    <g class="illustration-art" filter="url(#illu-art-glow)" pointer-events="none">
+      <!-- Art Backing Glow Card -->
+      <rect x="315" y="70" width="220" height="185" rx="16" fill="rgba(30, 41, 59, 0.7)" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+      <!-- 1. 爸爸幸運抽獎機 (Retro Lotto Raffle Box) at (330, 85) -->
+      <g transform="translate(330, 85)">
+        <!-- Box Stand -->
+        <path d="M 18 68 L 26 48 L 44 48 L 52 68 Z" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+        <!-- Octagonal Rotary Drum -->
+        <polygon points="20,25 35,15 50,25 58,40 50,55 35,65 20,55 12,40" fill="#b45309" stroke="#fbbf24" stroke-width="2"/>
+        <circle cx="35" cy="40" r="14" fill="#d97706"/>
+        <circle cx="35" cy="40" r="4" fill="#fbbf24"/>
+        <!-- Crank Handle -->
+        <path d="M 50 40 L 64 40 L 64 26" fill="none" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="64" cy="26" r="3.5" fill="#ef4444"/>
+        <!-- Lucky Ball & Badge -->
+        <circle cx="22" cy="62" r="5" fill="#fbbf24" stroke="#d97706" stroke-width="1"/>
+        <rect x="8" y="10" width="54" height="16" rx="4" fill="#dc2626" stroke="#fecaca" stroke-width="1"/>
+        <text x="35" y="22" font-size="9.5" font-weight="800" fill="#ffffff" text-anchor="middle">🎉 抽中獎品!</text>
+      </g>
+
+      <!-- 2. 市場熟軟芭樂切片 (Guava Fruit) at (435, 95) -->
+      <g transform="translate(425, 90)">
+        <!-- Green Round Guava Body -->
+        <circle cx="40" cy="45" r="26" fill="#84cc16" stroke="#4d7c0f" stroke-width="2"/>
+        <!-- Cut Slice in front showing pink flesh -->
+        <path d="M 50 30 A 22 22 0 1 1 50 68 Z" fill="#fda4af" stroke="#e11d48" stroke-width="1.5"/>
+        <!-- Guava Seeds -->
+        <circle cx="44" cy="42" r="1.5" fill="#be123c"/>
+        <circle cx="48" cy="48" r="1.5" fill="#be123c"/>
+        <circle cx="43" cy="54" r="1.5" fill="#be123c"/>
+        <!-- Fresh Leaf -->
+        <path d="M 38 20 C 32 10, 22 14, 25 24 C 34 24, 38 22, 38 20 Z" fill="#15803d"/>
+        <!-- Aroma Curls & Music Notes -->
+        <path d="M 68 35 Q 76 30 72 20 Q 68 12 78 8" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 76 48 Q 84 42 80 34" fill="none" stroke="#34d399" stroke-width="1.5" stroke-linecap="round"/>
+        <text x="82" y="16" font-size="12" fill="#34d399">♫</text>
+        <text x="74" y="58" font-size="10" fill="#a7f3d0">♪</text>
+      </g>
+
+      <!-- Label inside art card -->
+      <text class="art-label" x="425" y="240">童年回憶 · 滿室芬芳果香</text>
     </g>
 
-    <!-- ILLUSTRATION 4: 熟軟芭樂與果香氣旋 (x:200, y:50) -->
-    <g transform="translate(200, 60)">
-      <!-- Whole soft guava -->
-      <ellipse cx="35" cy="50" rx="20" ry="24" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
-      <!-- Stem and leaf -->
-      <path d="M 35 26 Q 38 18 45 16" stroke="#15803d" stroke-width="2" fill="none"/>
-      <path d="M 45 16 Q 58 14 55 24 Q 45 22 45 16 Z" fill="#22c55e" stroke="#15803d" stroke-width="1"/>
-      <!-- Half guava sliced showing pink/white center -->
-      <ellipse cx="68" cy="54" rx="16" ry="18" fill="#fbcfe8" stroke="#16a34a" stroke-width="1.5"/>
-      <circle cx="68" cy="54" r="1.5" fill="#be185d"/><circle cx="72" cy="50" r="1.5" fill="#be185d"/><circle cx="64" cy="56" r="1.5" fill="#be185d"/>
-      <!-- Aroma wave lines -->
-      <path d="M 85 30 Q 95 24 90 16 Q 85 8 95 2" stroke="#a7f3d0" stroke-width="2" stroke-linecap="round" fill="none"/>
-      <path d="M 78 26 Q 86 20 82 14" stroke="#a7f3d0" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-    </g>
-
-    <!-- Main Node: 童年芭樂汁記憶 -->
-    <rect class="card-box" x="250" y="286" width="165" height="50" fill="url(#illuGradGuava)"/>
-    <text class="txt-title" x="332" y="312" font-size="16">🍈 童年芭樂汁記憶</text>
+    <!-- Main Node: 童年芭樂汁 -->
+    <rect class="node-card" x="285" y="296" width="155" height="48" fill="url(#illu-grad-emerald)"/>
+    <text class="node-text main-text" x="362" y="320">🍈 童年芭樂汁記憶</text>
 
     <!-- Sub Nodes -->
-    <rect class="card-box" x="115" y="140" width="95" height="38" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
-    <text class="txt-node" x="162" y="160">幸福契機</text>
+    <rect class="node-card" x="145" y="142" width="95" height="36" fill="#064e3b" stroke="#059669" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="160">情感契機</text>
 
-    <rect class="card-box" x="115" y="280" width="95" height="38" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
-    <text class="txt-node" x="162" y="300">製作過程</text>
+    <rect class="node-card" x="145" y="282" width="95" height="36" fill="#064e3b" stroke="#059669" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="300">製作過程</text>
 
-    <rect class="card-box" x="115" y="430" width="95" height="38" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
-    <text class="txt-node" x="162" y="450">成品特色</text>
+    <rect class="node-card" x="145" y="422" width="95" height="36" fill="#064e3b" stroke="#059669" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="440">成品特色</text>
 
-    <!-- Leaf Cards -->
-    <rect class="card-box" x="5" y="145" width="105" height="28" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-    <text class="txt-node" x="57" y="160" font-size="11.5">爸爸抽獎果汁機</text>
+    <!-- Leaf Nodes: 契機 -->
+    <rect class="node-card" x="10" y="147" width="85" height="26" fill="#1e293b" stroke="#059669" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="160">爸爸抽獎得獎</text>
 
-    <rect class="card-box" x="5" y="225" width="105" height="28" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-    <text class="txt-node" x="57" y="240" font-size="11.5">市場黃綠軟芭樂</text>
+    <!-- Leaf Nodes: 過程 -->
+    <rect class="node-card" x="10" y="247" width="85" height="26" fill="#1e293b" stroke="#059669" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="260">買黃綠軟芭樂</text>
 
-    <rect class="card-box" x="5" y="280" width="105" height="28" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-    <text class="txt-node" x="57" y="295" font-size="11.5">洗淨切成小塊狀</text>
+    <rect class="node-card" x="10" y="327" width="85" height="26" fill="#1e293b" stroke="#059669" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="340">洗淨切塊攪打</text>
 
-    <rect class="card-box" x="5" y="335" width="105" height="28" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-    <text class="txt-node" x="57" y="350" font-size="11.5">整盤倒入攪打</text>
+    <!-- Leaf Nodes: 特色 -->
+    <rect class="node-card" x="10" y="402" width="85" height="26" fill="#1e293b" stroke="#059669" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="415">芭樂香氣濃郁</text>
 
-    <rect class="card-box" x="5" y="410" width="105" height="28" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
-    <text class="txt-node" x="57" y="425" font-size="11.5" fill="#a7f3d0">🎵芭樂香氣濃郁</text>
-
-    <rect class="card-box" x="5" y="460" width="105" height="28" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
-    <text class="txt-node" x="57" y="475" font-size="11.5">轉眼成好喝果汁</text>
+    <rect class="node-card" x="10" y="452" width="85" height="26" fill="#1e293b" stroke="#059669" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="465">轉眼成好喝果汁</text>
   </g>
 
   <!-- ======================================================== -->
-  <!-- QUADRANT 3: 左下 (BOTTOM-LEFT) - 熬煮李子果醬 (紫紅插畫篇)  -->
+  <!-- QUADRANT 3: 左下 (BOTTOM-LEFT) - 熬煮李子果醬 (含主題精緻插畫)-->
   <!-- ======================================================== -->
-  <g class="illu-group" id="illu-plum-group" data-quadrant="plum">
-    <!-- Main Ribbon from Center (520, 585) to (370, 780) -->
-    <path class="illu-path" d="M 520 585 C 450 585, 420 750, 370 780" stroke="#f43f5e" stroke-width="5" stroke-linecap="round"/>
-    <path d="M 460 660 Q 445 675 435 660 Q 450 645 460 660" fill="#f43f5e" opacity="0.7"/>
+  <g class="quadrant-group" id="group-plum" data-quadrant="plum">
+    <!-- Main Branch Connector: Center (490, 580) -> (400, 780) -->
+    <path class="branch-line" d="M 490 580 C 440 580, 430 730, 400 780" stroke="#f43f5e" stroke-width="3.5"/>
 
-    <!-- Sub Branches -->
-    <path class="illu-path" d="M 260 780 C 230 780, 230 650, 200 650" stroke="#fb7185" stroke-width="3.5"/>
-    <path class="illu-path" d="M 260 780 C 225 780, 225 780, 200 780" stroke="#fb7185" stroke-width="3.5"/>
-    <path class="illu-path" d="M 260 780 C 230 780, 230 920, 200 920" stroke="#fb7185" stroke-width="3.5"/>
+    <!-- Sub Branch Connectors -->
+    <path class="branch-line" d="M 310 780 C 280 780, 270 620, 240 620" stroke="#fb7185" stroke-width="2.5"/>
+    <path class="branch-line" d="M 310 780 C 275 780, 265 760, 240 760" stroke="#fb7185" stroke-width="2.5"/>
+    <path class="branch-line" d="M 310 780 C 275 780, 265 900, 240 900" stroke="#fb7185" stroke-width="2.5"/>
 
     <!-- Leaves Connectors -->
-    <path class="illu-path" d="M 115 650 C 100 650, 95 615, 80 615" stroke="#fecdd3" stroke-width="2"/>
-    <path class="illu-path" d="M 115 650 C 100 650, 95 650, 80 650" stroke="#fecdd3" stroke-width="2"/>
-    <path class="illu-path" d="M 115 650 C 100 650, 95 685, 80 685" stroke="#fecdd3" stroke-width="2"/>
+    <path class="branch-line" d="M 155 620 C 125 620, 115 595, 95 595" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 620 C 125 620, 115 645, 95 645" stroke="#fecdd3" stroke-width="1.8"/>
 
-    <path class="illu-path" d="M 115 780 C 100 780, 95 745, 80 745" stroke="#fecdd3" stroke-width="2"/>
-    <path class="illu-path" d="M 115 780 C 100 780, 95 780, 80 780" stroke="#fecdd3" stroke-width="2"/>
-    <path class="illu-path" d="M 115 780 C 100 780, 95 815, 80 815" stroke="#fecdd3" stroke-width="2"/>
+    <path class="branch-line" d="M 155 760 C 125 760, 115 700, 95 700" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 760 C 125 760, 115 740, 95 740" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 760 C 125 760, 115 780, 95 780" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 760 C 125 760, 115 820, 95 820" stroke="#fecdd3" stroke-width="1.8"/>
 
-    <path class="illu-path" d="M 115 920 C 100 920, 95 870, 80 870" stroke="#fecdd3" stroke-width="2"/>
-    <path class="illu-path" d="M 115 920 C 100 920, 95 905, 80 905" stroke="#fecdd3" stroke-width="2"/>
-    <path class="illu-path" d="M 115 920 C 100 920, 95 940, 80 940" stroke="#fecdd3" stroke-width="2"/>
-    <path class="illu-path" d="M 115 920 C 100 920, 95 975, 80 975" stroke="#fecdd3" stroke-width="2"/>
+    <path class="branch-line" d="M 155 900 C 125 900, 115 875, 95 875" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 900 C 125 900, 115 925, 95 925" stroke="#fecdd3" stroke-width="1.8"/>
 
-    <!-- ILLUSTRATION 5: 鮮紅李子與大鍋熱氣騰騰 (x:360, y:840) -->
-    <g transform="translate(350, 830)">
-      <!-- Two plums -->
-      <circle cx="20" cy="22" r="16" fill="#be123c" stroke="#881337" stroke-width="2"/>
-      <circle cx="16" cy="18" r="4" fill="#fb7185" opacity="0.6"/>
-      <circle cx="44" cy="24" r="14" fill="#9f1239" stroke="#881337" stroke-width="2"/>
+    <!-- 🎨 THEMATIC ARTWORK 3: 李子果實、大熬煮鍋與果醬罐 (位於左下象限留白區 x:315~535, y:835~1035) -->
+    <g class="illustration-art" filter="url(#illu-art-glow)" pointer-events="none">
+      <!-- Art Backing Glow Card -->
+      <rect x="315" y="835" width="220" height="195" rx="16" fill="rgba(30, 41, 59, 0.7)" stroke="#e11d48" stroke-width="1.5" stroke-dasharray="4,4"/>
 
-      <!-- Big cooking stockpot -->
-      <rect x="75" y="15" width="55" height="38" rx="6" fill="#475569" stroke="#334155" stroke-width="2"/>
-      <path d="M 72 20 L 68 25 M 133 20 L 137 25" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
-      <!-- Jam boiling inside -->
-      <ellipse cx="102.5" cy="18" rx="25" ry="6" fill="#e11d48"/>
-      <!-- Bubbles -->
-      <circle cx="94" cy="18" r="2.5" fill="#fecdd3"/><circle cx="110" cy="16" r="3" fill="#fecdd3"/>
-      <!-- Flames below -->
-      <path d="M 85 55 Q 92 48 95 55 Q 102 45 105 55 Q 112 48 115 55" stroke="#f97316" stroke-width="3" fill="none"/>
-    </g>
+      <!-- 1. 鮮紅李子 (Fresh Plums) at (335, 850) -->
+      <g transform="translate(330, 850)">
+        <!-- Plum 1 -->
+        <circle cx="20" cy="24" r="15" fill="#881337" stroke="#4c0519" stroke-width="1.5"/>
+        <path d="M 20 9 C 20 18, 16 26, 20 38" fill="none" stroke="#4c0519" stroke-width="1.2" opacity="0.6"/>
+        <path d="M 20 9 C 26 2, 34 5, 30 14 Z" fill="#15803d"/>
+        <!-- Plum 2 (overlapping) -->
+        <circle cx="42" cy="28" r="14" fill="#9f1239" stroke="#881337" stroke-width="1.5"/>
+        <path d="M 42 14 C 42 22, 39 30, 42 41" fill="none" stroke="#4c0519" stroke-width="1.2" opacity="0.6"/>
+      </g>
 
-    <!-- ILLUSTRATION 6: 小湯匙試吃與手工果醬罐 (x:190, y:980) -->
-    <g transform="translate(180, 970)">
-      <!-- Wooden Spoon with jam drop -->
-      <path d="M 20 22 C 30 18, 45 18, 55 24 C 45 30, 30 30, 20 22 Z" fill="#d97706" stroke="#b45309" stroke-width="1.5"/>
-      <line x1="55" y1="24" x2="85" y2="28" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
-      <!-- Jam on spoon -->
-      <circle cx="34" cy="23" r="5" fill="#be123c"/>
-      <path d="M 34 28 Q 34 35 32 37 Q 30 35 34 28 Z" fill="#be123c"/>
+      <!-- 2. 大熬煮鍋與焦糖氣泡 (Simmering Jam Pot) at (410, 850) -->
+      <g transform="translate(400, 850)">
+        <!-- Gas Stove Blue Flame -->
+        <path d="M 20 62 Q 24 54 28 62 Q 32 54 36 62 Q 40 54 44 62 Q 48 54 52 62" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+        <!-- Pot Body -->
+        <path d="M 12 25 L 60 25 L 56 56 L 16 56 Z" fill="url(#potGrad)" stroke="#fda4af" stroke-width="1.5"/>
+        <!-- Handles -->
+        <path d="M 12 32 C 4 32, 4 44, 13 44" fill="none" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 60 32 C 68 32, 68 44, 59 44" fill="none" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Jam surface & bubbles -->
+        <ellipse cx="36" cy="25" rx="24" ry="7" fill="#be123c"/>
+        <circle cx="28" cy="23" r="2.5" fill="#fbcfe8"/>
+        <circle cx="42" cy="24" r="3" fill="#fb7185"/>
+        <circle cx="34" cy="27" r="2" fill="#fda4af"/>
+        <!-- Sweet Steam Curls -->
+        <path d="M 26 18 Q 22 8 28 0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 44 18 Q 50 8 44 0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-linecap="round"/>
+      </g>
 
-      <!-- Jam Jar with fabric lid & ribbon -->
-      <rect x="95" y="14" width="35" height="42" rx="5" fill="rgba(244, 63, 94, 0.4)" stroke="#e11d48" stroke-width="1.5"/>
-      <rect x="98" y="24" width="29" height="30" fill="#be123c"/>
-      <!-- Label -->
-      <rect x="102" y="32" width="21" height="14" rx="2" fill="#fff"/>
-      <text x="112.5" y="41" font-size="7" font-weight="900" fill="#881337" text-anchor="middle">李子醬</text>
-      <!-- Fabric Lid -->
-      <path d="M 91 14 Q 112 10 134 14 L 131 19 Q 112 16 94 19 Z" fill="#f43f5e"/>
-      <line x1="93" y1="18" x2="132" y2="18" stroke="#fef08a" stroke-width="2"/>
+      <!-- 3. 木湯匙試吃 & 果醬罐 (Tasting Spoon & Jam Jar) at (335, 930) -->
+      <g transform="translate(330, 925)">
+        <!-- Wooden Spoon with jam drop -->
+        <ellipse cx="35" cy="20" rx="9" ry="6" fill="#d97706" stroke="#92400e" stroke-width="1.2"/>
+        <path d="M 35 26 L 15 48" stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="35" cy="21" r="5" fill="#be123c"/>
+        <path d="M 35 25 Q 35 32 37 32 Q 39 32 37 25" fill="#be123c"/>
+        <!-- Confidence Badge -->
+        <rect x="52" y="10" width="75" height="18" rx="4" fill="#fbbf24" stroke="#d97706" stroke-width="1"/>
+        <text x="89.5" y="22.5" font-size="9.5" font-weight="800" fill="#78350f" text-anchor="middle">⭐ 試吃自信!</text>
+
+        <!-- Artisanal Jam Jar with cloth lid -->
+        <g transform="translate(135, 0)">
+          <!-- Glass Jar -->
+          <rect x="6" y="14" width="30" height="36" rx="4" fill="rgba(190, 18, 60, 0.85)" stroke="#fda4af" stroke-width="1.5"/>
+          <!-- Label -->
+          <rect x="10" y="24" width="22" height="14" rx="2" fill="#fff1f2" stroke="#e11d48" stroke-width="0.8"/>
+          <text x="21" y="34" font-size="7.5" font-weight="800" fill="#9f1239" text-anchor="middle">李子醬</text>
+          <!-- Cloth Lid & String -->
+          <ellipse cx="21" cy="14" rx="17" ry="5.5" fill="#e11d48" stroke="#ffffff" stroke-width="1"/>
+          <path d="M 5 14 Q 21 18 37 14 L 39 18 Q 21 21 3 18 Z" fill="#be123c"/>
+          <line x1="3" y1="17" x2="39" y2="17" stroke="#fbbf24" stroke-width="1.5"/>
+        </g>
+      </g>
+
+      <!-- Label inside art card -->
+      <text class="art-label" x="425" y="1015">小火慢熬 · 建立小小味覺自信</text>
     </g>
 
     <!-- Main Node: 熬煮李子果醬 -->
-    <rect class="card-box" x="250" y="756" width="165" height="50" fill="url(#illuGradPlum)"/>
-    <text class="txt-title" x="332" y="782" font-size="16">🍒 熬煮李子果醬</text>
+    <rect class="node-card" x="285" y="756" width="155" height="48" fill="url(#illu-grad-rose)"/>
+    <text class="node-text main-text" x="362" y="780">🍒 熬煮李子果醬</text>
 
     <!-- Sub Nodes -->
-    <rect class="card-box" x="115" y="630" width="95" height="38" fill="#881337" stroke="#f43f5e" stroke-width="1.5"/>
-    <text class="txt-node" x="162" y="650">李子特性</text>
+    <rect class="node-card" x="145" y="602" width="95" height="36" fill="#881337" stroke="#e11d48" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="620">李子特性</text>
 
-    <rect class="card-box" x="115" y="760" width="95" height="38" fill="#881337" stroke="#f43f5e" stroke-width="1.5"/>
-    <text class="txt-node" x="162" y="780">熬煮工序</text>
+    <rect class="node-card" x="145" y="742" width="95" height="36" fill="#881337" stroke="#e11d48" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="760">熬煮流程</text>
 
-    <rect class="card-box" x="115" y="900" width="95" height="38" fill="#881337" stroke="#f43f5e" stroke-width="1.5"/>
-    <text class="txt-node" x="162" y="920">熬煮互動</text>
+    <rect class="node-card" x="145" y="882" width="95" height="36" fill="#881337" stroke="#e11d48" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="900">親子互動</text>
 
-    <!-- Leaf Cards -->
-    <rect class="card-box" x="5" y="600" width="105" height="28" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
-    <text class="txt-node" x="57" y="615" font-size="11.5">外觀暗紅美麗</text>
+    <!-- Leaf Nodes: 特性 -->
+    <rect class="node-card" x="10" y="582" width="85" height="26" fill="#1e293b" stroke="#e11d48" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="595">暗紅美麗</text>
 
-    <rect class="card-box" x="5" y="635" width="105" height="28" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
-    <text class="txt-node" x="57" y="650" font-size="11.5">酸得讓人皺眉</text>
+    <rect class="node-card" x="10" y="632" width="85" height="26" fill="#1e293b" stroke="#e11d48" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="645">酸得皺眉</text>
 
-    <rect class="card-box" x="5" y="670" width="105" height="28" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
-    <text class="txt-node" x="57" y="685" font-size="11.5">大人說對皮膚好</text>
+    <!-- Leaf Nodes: 流程 -->
+    <rect class="node-card" x="10" y="687" width="85" height="26" fill="#1e293b" stroke="#e11d48" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="700">大鍋開火</text>
 
-    <rect class="card-box" x="5" y="730" width="105" height="28" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
-    <text class="txt-node" x="57" y="745" font-size="11.5">最大鍋子開火</text>
+    <rect class="node-card" x="10" y="727" width="85" height="26" fill="#1e293b" stroke="#e11d48" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="740">切開去核</text>
 
-    <rect class="card-box" x="5" y="765" width="105" height="28" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
-    <text class="txt-node" x="57" y="780" font-size="11.5">切開李子取果核</text>
+    <rect class="node-card" x="10" y="767" width="85" height="26" fill="#1e293b" stroke="#e11d48" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="780">加黃砂糖</text>
 
-    <rect class="card-box" x="5" y="800" width="105" height="28" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
-    <text class="txt-node" x="57" y="815" font-size="11.5">倒一包黃砂糖</text>
+    <rect class="node-card" x="10" y="807" width="85" height="26" fill="#1e293b" stroke="#e11d48" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="820">融化混和焦糖</text>
 
-    <rect class="card-box" x="5" y="855" width="105" height="28" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
-    <text class="txt-node" x="57" y="870" font-size="11.5">果肉混合焦糖</text>
+    <!-- Leaf Nodes: 互動 -->
+    <rect class="node-card" x="10" y="862" width="85" height="26" fill="#1e293b" stroke="#e11d48" stroke-width="1"/>
+    <text class="node-text leaf-text" x="52" y="875">小湯匙試吃</text>
 
-    <rect class="card-box" x="5" y="890" width="105" height="28" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
-    <text class="txt-node" x="57" y="905" font-size="11.5">小湯匙舀出嘗味</text>
-
-    <rect class="card-box" x="5" y="925" width="115" height="30" fill="#9f1239" stroke="#fb7185" stroke-width="2"/>
-    <text class="txt-node" x="62" y="940" font-size="12" font-weight="800" fill="#ffe4e6">⭐建立味覺自信</text>
-
-    <rect class="card-box" x="5" y="960" width="105" height="28" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
-    <text class="txt-node" x="57" y="975" font-size="11.5">熄火冷卻後裝瓶</text>
+    <rect class="node-card" x="10" y="912" width="95" height="26" fill="#831843" stroke="#f43f5e" stroke-width="1.8"/>
+    <text class="node-text leaf-text" x="57" y="925" font-weight="700" fill="#fecdd3">⭐味覺自信</text>
   </g>
 
   <!-- ======================================================== -->
-  <!-- QUADRANT 4: 右下 (BOTTOM-RIGHT) - 自然哲思篇 (晴空插畫篇)   -->
+  <!-- QUADRANT 4: 右下 (BOTTOM-RIGHT) - 教育初衷與哲思 (含主題精緻插畫)-->
   <!-- ======================================================== -->
-  <g class="illu-group" id="illu-nature-group" data-quadrant="education">
-    <!-- Main Ribbon from Center (680, 585) to (830, 780) -->
-    <path class="illu-path" d="M 680 585 C 750 585, 780 750, 830 780" stroke="#0ea5e9" stroke-width="5" stroke-linecap="round"/>
-    <path d="M 740 660 Q 755 675 765 660 Q 750 645 740 660" fill="#0ea5e9" opacity="0.7"/>
+  <g class="quadrant-group" id="group-education" data-quadrant="education">
+    <!-- Main Branch Connector: Center (710, 580) -> (800, 780) -->
+    <path class="branch-line" d="M 710 580 C 760 580, 770 730, 800 780" stroke="#0ea5e9" stroke-width="3.5"/>
 
-    <!-- Sub Branches -->
-    <path class="illu-path" d="M 970 780 C 1000 780, 1000 640, 1030 640" stroke="#38bdf8" stroke-width="3.5"/>
-    <path class="illu-path" d="M 970 780 C 1005 780, 1005 780, 1030 780" stroke="#38bdf8" stroke-width="3.5"/>
-    <path class="illu-path" d="M 970 780 C 1000 780, 1000 920, 1030 920" stroke="#38bdf8" stroke-width="3.5"/>
+    <!-- Sub Branch Connectors -->
+    <path class="branch-line" d="M 890 780 C 920 780, 930 620, 960 620" stroke="#38bdf8" stroke-width="2.5"/>
+    <path class="branch-line" d="M 890 780 C 925 780, 935 760, 960 760" stroke="#38bdf8" stroke-width="2.5"/>
+    <path class="branch-line" d="M 890 780 C 925 780, 935 900, 960 900" stroke="#38bdf8" stroke-width="2.5"/>
 
     <!-- Leaves Connectors -->
-    <path class="illu-path" d="M 1100 640 C 1115 640, 1120 615, 1130 615" stroke="#bae6fd" stroke-width="2"/>
-    <path class="illu-path" d="M 1100 640 C 1115 640, 1120 655, 1130 655" stroke="#bae6fd" stroke-width="2"/>
+    <path class="branch-line" d="M 1025 620 C 1055 620, 1065 595, 1090 595" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 620 C 1055 620, 1065 645, 1090 645" stroke="#bae6fd" stroke-width="1.8"/>
 
-    <path class="illu-path" d="M 1110 780 C 1120 780, 1125 715, 1135 715" stroke="#bae6fd" stroke-width="2"/>
-    <path class="illu-path" d="M 1110 780 C 1120 780, 1125 750, 1135 750" stroke="#bae6fd" stroke-width="2"/>
-    <path class="illu-path" d="M 1110 780 C 1120 780, 1125 790, 1135 790" stroke="#bae6fd" stroke-width="2"/>
-    <path class="illu-path" d="M 1110 780 C 1120 780, 1125 825, 1135 825" stroke="#bae6fd" stroke-width="2"/>
+    <path class="branch-line" d="M 1025 760 C 1055 760, 1065 700, 1090 700" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 760 C 1055 760, 1065 740, 1090 740" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 760 C 1055 760, 1065 780, 1090 780" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 760 C 1055 760, 1065 820, 1090 820" stroke="#bae6fd" stroke-width="1.8"/>
 
-    <path class="illu-path" d="M 1100 920 C 1115 920, 1120 880, 1130 880" stroke="#bae6fd" stroke-width="2"/>
-    <path class="illu-path" d="M 1100 920 C 1115 920, 1120 915, 1130 915" stroke="#bae6fd" stroke-width="2"/>
-    <path class="illu-path" d="M 1100 920 C 1115 920, 1120 955, 1130 955" stroke="#bae6fd" stroke-width="2"/>
+    <path class="branch-line" d="M 1025 900 C 1055 900, 1065 875, 1090 875" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 900 C 1055 900, 1065 925, 1090 925" stroke="#bae6fd" stroke-width="1.8"/>
 
-    <!-- ILLUSTRATION 7: 大自然生命四重奏 (泥土/開花/陽光/星空) (x:750, y:850) -->
-    <g transform="translate(740, 830)">
-      <!-- Soil & Sprout 🌱 -->
-      <path d="M 10 50 Q 25 45 40 50 L 40 58 L 10 58 Z" fill="#78350f"/>
-      <path d="M 25 50 Q 25 35 30 30" stroke="#16a34a" stroke-width="2.5" fill="none"/>
-      <path d="M 30 30 Q 38 25 38 34 Q 30 36 30 30 Z" fill="#22c55e"/>
+    <!-- 🎨 THEMATIC ARTWORK 4: 泥土幼苗、太陽星空與最好禮物 (位於右下象限留白區 x:670~890, y:835~1035) -->
+    <g class="illustration-art" filter="url(#illu-art-glow)" pointer-events="none">
+      <!-- Art Backing Glow Card -->
+      <rect x="670" y="835" width="220" height="195" rx="16" fill="rgba(30, 41, 59, 0.7)" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="4,4"/>
 
-      <!-- Golden Sun ☀️ -->
-      <circle cx="65" cy="25" r="12" fill="#fbbf24" stroke="#f59e0b" stroke-width="1.5"/>
-      <path d="M 65 8 L 65 4 M 65 42 L 65 46 M 48 25 L 44 25 M 82 25 L 86 25 M 53 13 L 50 10 M 77 37 L 80 40 M 53 37 L 50 40 M 77 13 L 80 10" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+      <!-- 1. 溫暖太陽 ☀️ (Sun) at (695, 850) -->
+      <g transform="translate(685, 845)">
+        <circle cx="25" cy="25" r="18" fill="url(#sunGlow)"/>
+        <circle cx="25" cy="25" r="12" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+        <!-- Sun Rays -->
+        <line x1="25" y1="8" x2="25" y2="4" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+        <line x1="25" y1="42" x2="25" y2="46" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+        <line x1="8" y1="25" x2="4" y2="25" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+        <line x1="42" y1="25" x2="46" y2="25" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+        <text x="25" y="44" font-size="7.5" font-weight="700" fill="#fef08a" text-anchor="middle">陽光甜蜜</text>
+      </g>
 
-      <!-- Night Moon & Stars 🌙✨ -->
-      <path d="M 105 18 A 12 12 0 1 0 118 36 A 15 15 0 0 1 105 18 Z" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/>
-      <circle cx="126" cy="16" r="2.5" fill="#ffffff"/>
-      <circle cx="118" cy="8" r="1.8" fill="#38bdf8"/>
+      <!-- 2. 深夜月彎與星斗 🌙✨ (Crescent Moon & Stars) at (765, 845) -->
+      <g transform="translate(755, 845)">
+        <path d="M 28 8 A 16 16 0 1 0 40 32 A 20 20 0 0 1 28 8 Z" fill="#38bdf8" stroke="#0284c7" stroke-width="1"/>
+        <text x="14" y="22" font-size="10" fill="#bae6fd">✨</text>
+        <text x="44" y="16" font-size="8" fill="#fef08a">★</text>
+        <text x="32" y="44" font-size="7.5" font-weight="700" fill="#bae6fd" text-anchor="middle">黑夜堅強</text>
+      </g>
+
+      <!-- 3. 泥土裡生長的綠芽 🌱 (Seedling from Earth) at (690, 915) -->
+      <g transform="translate(685, 915)">
+        <!-- Rich Earth Mound -->
+        <path d="M 10 46 Q 30 32 50 46 Z" fill="#78350f" stroke="#451a03" stroke-width="1.5"/>
+        <circle cx="22" cy="42" r="1.5" fill="#a16207"/>
+        <circle cx="36" cy="40" r="1.5" fill="#a16207"/>
+        <!-- Sprouting Stem & Two Leaves -->
+        <path d="M 30 36 C 30 26 28 16 30 10" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 30 20 C 18 16 14 26 24 28 C 28 26 30 22 30 20 Z" fill="#4ade80" stroke="#16a34a" stroke-width="1"/>
+        <path d="M 30 16 C 42 12 46 22 36 24 C 32 22 30 18 30 16 Z" fill="#22c55e" stroke="#15803d" stroke-width="1"/>
+        <text x="30" y="58" font-size="8" font-weight="700" fill="#86efac" text-anchor="middle">泥土生成</text>
+      </g>
+
+      <!-- 4. 最好味覺禮物盒 🎁 (Gift Box) at (780, 915) -->
+      <g transform="translate(775, 910)">
+        <!-- Box Body -->
+        <rect x="12" y="24" width="38" height="30" rx="3" fill="#6366f1" stroke="#818cf8" stroke-width="1.5"/>
+        <rect x="8" y="16" width="46" height="10" rx="2" fill="#4f46e5" stroke="#a5b4fc" stroke-width="1.2"/>
+        <!-- Gold Ribbon -->
+        <rect x="28" y="16" width="6" height="38" fill="#fbbf24"/>
+        <rect x="12" y="36" width="38" height="6" fill="#fbbf24"/>
+        <!-- Ribbon Bow -->
+        <path d="M 31 16 C 20 8 18 2 26 6 C 30 10 31 14 31 16 Z" fill="#f59e0b"/>
+        <path d="M 31 16 C 42 8 44 2 36 6 C 32 10 31 14 31 16 Z" fill="#f59e0b"/>
+        <circle cx="31" cy="16" r="3" fill="#fbbf24"/>
+        <text x="31" y="65" font-size="8.5" font-weight="800" fill="#fbbf24" text-anchor="middle">最好禮物</text>
+      </g>
+
+      <!-- Label inside art card -->
+      <text class="art-label" x="780" y="1015">自然生成 · 親手做的最好禮物</text>
     </g>
 
-    <!-- ILLUSTRATION 8: 愛心禮物盒 🎁 (x:910, y:970) -->
-    <g transform="translate(930, 970)">
-      <rect x="15" y="15" width="40" height="35" rx="5" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
-      <line x1="35" y1="15" x2="35" y2="50" stroke="#fbbf24" stroke-width="5"/>
-      <line x1="15" y1="32.5" x2="55" y2="32.5" stroke="#fbbf24" stroke-width="5"/>
-      <!-- Ribbon bow -->
-      <path d="M 35 15 C 22 5, 20 18, 35 15 C 50 18, 48 5, 35 15 Z" fill="#f59e0b" stroke="#d97706" stroke-width="1.5"/>
-      <circle cx="35" cy="15" r="3" fill="#fbbf24"/>
-    </g>
-
-    <!-- Main Node: 手作初衷與教育意義 -->
-    <rect class="card-box" x="800" y="756" width="185" height="50" fill="url(#illuGradNature)"/>
-    <text class="txt-title" x="892" y="782" font-size="16">🌿 手作初衷與教育意義</text>
+    <!-- Main Node: 手作初衷與教育 -->
+    <rect class="node-card" x="770" y="756" width="165" height="48" fill="url(#illu-grad-sky)"/>
+    <text class="node-text main-text" x="852" y="780">🌿 手作初衷與教育</text>
 
     <!-- Sub Nodes -->
-    <rect class="card-box" x="1005" y="620" width="105" height="38" fill="#0c4a6e" stroke="#0ea5e9" stroke-width="1.5"/>
-    <text class="txt-node" x="1057" y="640">生活擔憂</text>
+    <rect class="node-card" x="945" y="602" width="95" height="36" fill="#075985" stroke="#0284c7" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="992" y="620">現代省思</text>
 
-    <rect class="card-box" x="995" y="760" width="125" height="38" fill="#0c4a6e" stroke="#0ea5e9" stroke-width="1.5"/>
-    <text class="txt-node" x="1057" y="780">引導想像植物生成</text>
+    <rect class="node-card" x="945" y="742" width="95" height="36" fill="#075985" stroke="#0284c7" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="992" y="760">自然哲思</text>
 
-    <rect class="card-box" x="1005" y="900" width="105" height="38" fill="#0c4a6e" stroke="#0ea5e9" stroke-width="1.5"/>
-    <text class="txt-node" x="1057" y="920">核心價值</text>
+    <rect class="node-card" x="945" y="882" width="95" height="36" fill="#075985" stroke="#0284c7" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="992" y="900">生命禮物</text>
 
-    <!-- Leaf Cards -->
-    <rect class="card-box" x="1115" y="600" width="80" height="28" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
-    <text class="txt-node" x="1155" y="615" font-size="11.5">隨處見茶飲店</text>
+    <!-- Leaf Nodes: 省思 -->
+    <rect class="node-card" x="1090" y="582" width="95" height="26" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="595">隨處見茶飲</text>
 
-    <rect class="card-box" x="1115" y="640" width="80" height="28" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
-    <text class="txt-node" x="1155" y="655" font-size="11.5">化學麻痺味覺</text>
+    <rect class="node-card" x="1090" y="632" width="95" height="26" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="645">怕化學麻痺</text>
 
-    <rect class="card-box" x="1120" y="700" width="75" height="28" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
-    <text class="txt-node" x="1157" y="715" font-size="11.5">🌱泥土裡生成</text>
+    <!-- Leaf Nodes: 哲思 -->
+    <rect class="node-card" x="1090" y="687" width="95" height="26" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="700">泥土裡生成</text>
 
-    <rect class="card-box" x="1120" y="735" width="75" height="28" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
-    <text class="txt-node" x="1157" y="750" font-size="11.5">🌸開花後結果</text>
+    <rect class="node-card" x="1090" y="727" width="95" height="26" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="740">開花後結果</text>
 
-    <rect class="card-box" x="1120" y="775" width="75" height="28" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
-    <text class="txt-node" x="1157" y="790" font-size="11.5">☀️陽光變甜蜜</text>
+    <rect class="node-card" x="1090" y="767" width="95" height="26" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="780">陽光變甜蜜</text>
 
-    <rect class="card-box" x="1120" y="810" width="75" height="28" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
-    <text class="txt-node" x="1157" y="825" font-size="11.5">🌙黑夜變堅強</text>
+    <rect class="node-card" x="1090" y="807" width="95" height="26" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="820">黑夜變堅強</text>
 
-    <rect class="card-box" x="1115" y="865" width="80" height="28" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
-    <text class="txt-node" x="1155" y="880" font-size="11.5">嘗食物真味道</text>
+    <!-- Leaf Nodes: 禮物 -->
+    <rect class="node-card" x="1090" y="862" width="95" height="26" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1137" y="875">嘗食物原味</text>
 
-    <rect class="card-box" x="1115" y="900" width="80" height="28" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
-    <text class="txt-node" x="1155" y="915" font-size="11.5">家熬果醬最好</text>
-
-    <rect class="card-box" x="1105" y="940" width="92" height="30" fill="#0369a1" stroke="#38bdf8" stroke-width="1.8"/>
-    <text class="txt-node" x="1151" y="955" font-size="11.5" font-weight="800" fill="#e0f2fe">🎁動手做最好禮物</text>
+    <rect class="node-card" x="1090" y="912" width="105" height="26" fill="#0369a1" stroke="#38bdf8" stroke-width="1.8"/>
+    <text class="node-text leaf-text" x="1142" y="925" font-weight="700" fill="#ffffff">🎁動手做是禮物</text>
   </g>
 
   <!-- ======================================================== -->
-  <!-- CENTER THEME NODE: 最好的味覺禮物 (繪本禮物盒插畫)          -->
+  <!-- CENTER THEME NODE: 最好的味覺禮物                         -->
   <!-- ======================================================== -->
-  <g id="illu-center-node-group" style="cursor: pointer;">
-    <!-- Center Ribbon Shadow and Box -->
-    <rect x="470" y="510" width="260" height="80" rx="26" ry="26" fill="url(#illuGradCenter)" filter="url(#illuGlow)" stroke="#f472b6" stroke-width="3"/>
-    
-    <!-- Title Text -->
-    <text x="600" y="542" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="21" font-weight="900" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">最好的味覺禮物</text>
-    <text x="600" y="569" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="12.5" font-weight="700" fill="#fdf4ff" text-anchor="middle" dominant-baseline="middle">🎨 溫暖童趣手繪插畫風心智圖</text>
-
-    <!-- Gift Bow on top of Center -->
-    <g transform="translate(580, 488)">
-      <path d="M 20 18 C 5 2, 0 16, 20 18 C 40 16, 35 2, 20 18 Z" fill="#f43f5e" stroke="#ffe4e6" stroke-width="1.8"/>
-      <circle cx="20" cy="18" r="4.5" fill="#fde047" stroke="#ca8a04" stroke-width="1.5"/>
-    </g>
+  <g class="center-group" id="center-node-group">
+    <rect x="480" y="515" width="240" height="70" rx="22" ry="22" fill="url(#illu-grad-center)" filter="url(#illu-shadow-center)" stroke="#a5b4fc" stroke-width="2.5"/>
+    <text x="600" y="542" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">最好的味覺禮物</text>
+    <text x="600" y="567" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="12" font-weight="600" fill="#c7d2fe" text-anchor="middle" dominant-baseline="middle">第5課 · 豐富插畫心智圖</text>
   </g>
 </svg>
