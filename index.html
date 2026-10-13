@@ -1390,57 +1390,47 @@
           <div id="svg-layer-illustrated" class="svg-style-layer" style="display: none;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1100" width="100%" height="100%" id="illustrated-mindmap-svg">
   <defs>
-    <!-- Background Gradients -->
+    <!-- Background Glows -->
     <radialGradient id="illuCenterGlow" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#6366f1" stop-opacity="0.32"/>
       <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
     </radialGradient>
+    <radialGradient id="sunGlowDoodle" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="potJamGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#fb7185"/>
+      <stop offset="70%" stop-color="#be123c"/>
+      <stop offset="100%" stop-color="#881337"/>
+    </radialGradient>
+    <radialGradient id="foamBubble" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="80%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </radialGradient>
 
-    <!-- Quadrant Glow Gradients -->
+    <!-- Node Gradient Fills -->
     <linearGradient id="illu-grad-center" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#4f46e5"/>
       <stop offset="100%" stop-color="#7c3aed"/>
     </linearGradient>
-
     <linearGradient id="illu-grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#d97706"/>
       <stop offset="100%" stop-color="#b45309"/>
     </linearGradient>
-
     <linearGradient id="illu-grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#059669"/>
       <stop offset="100%" stop-color="#047857"/>
     </linearGradient>
-
     <linearGradient id="illu-grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#e11d48"/>
       <stop offset="100%" stop-color="#be123c"/>
     </linearGradient>
-
     <linearGradient id="illu-grad-sky" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0284c7"/>
       <stop offset="100%" stop-color="#0369a1"/>
-    </linearGradient>
-
-    <!-- Illustration specific gradients -->
-    <linearGradient id="potGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#991b1b"/>
-      <stop offset="50%" stop-color="#7f1d1d"/>
-      <stop offset="100%" stop-color="#450a0a"/>
-    </linearGradient>
-    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="60%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="pineappleSkin" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fbbf24"/>
-      <stop offset="100%" stop-color="#d97706"/>
-    </linearGradient>
-    <linearGradient id="blenderGlass" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="rgba(186, 230, 253, 0.45)"/>
-      <stop offset="50%" stop-color="rgba(254, 240, 138, 0.65)"/>
-      <stop offset="100%" stop-color="rgba(186, 230, 253, 0.3)"/>
     </linearGradient>
 
     <!-- Drop Shadows -->
@@ -1450,8 +1440,8 @@
     <filter id="illu-shadow-center" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#6366f1" flood-opacity="0.55"/>
     </filter>
-    <filter id="illu-art-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="2" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    <filter id="doodle-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.5"/>
     </filter>
 
     <style>
@@ -1463,7 +1453,8 @@
       .main-text { font-size: 16px; font-weight: 700; fill: #ffffff; }
       .sub-text { font-size: 14px; font-weight: 600; fill: #ffffff; }
       .leaf-text { font-size: 12.5px; font-weight: 500; fill: #e2e8f0; }
-      .art-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif; font-size: 11px; font-weight: 700; fill: #cbd5e1; text-anchor: middle; }
+      .doodle-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif; font-size: 11px; font-weight: 700; text-anchor: middle; }
+      .doodle-stroke { stroke-linecap: round; stroke-linejoin: round; }
     </style>
   </defs>
 
@@ -1476,7 +1467,7 @@
   <line x1="40" y1="550" x2="1160" y2="550" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,6" opacity="0.35"/>
 
   <!-- ======================================================== -->
-  <!-- QUADRANT 1: 右上 (TOP-RIGHT) - 手作鳳梨汁 (含主題精緻插畫)   -->
+  <!-- QUADRANT 1: 右上 (TOP-RIGHT) - 手作鳳梨汁 (手繪插畫點綴)     -->
   <!-- ======================================================== -->
   <g class="quadrant-group" id="group-pineapple" data-quadrant="pineapple">
     <!-- Main Branch Connector: Center (710, 520) -> (800, 320) -->
@@ -1499,60 +1490,79 @@
     <path class="branch-line" d="M 1025 440 C 1055 440, 1065 415, 1090 415" stroke="#fde68a" stroke-width="1.8"/>
     <path class="branch-line" d="M 1025 440 C 1055 440, 1065 465, 1090 465" stroke="#fde68a" stroke-width="1.8"/>
 
-    <!-- 🎨 THEMATIC ARTWORK 1: 鳳梨、果汁機與雪白奶泡 (位於右上象限留白區 x:680~880, y:70~250) -->
-    <g class="illustration-art" filter="url(#illu-art-glow)" pointer-events="none">
-      <!-- Art Backing Glow Card -->
-      <rect x="670" y="70" width="220" height="185" rx="16" fill="rgba(30, 41, 59, 0.7)" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,4"/>
-      
-      <!-- 1. 金鑽鳳梨 (Pineapple) at (725, 145) -->
-      <g transform="translate(690, 85)">
-        <!-- Green Spiky Leaves Crown -->
-        <path d="M 35 30 C 25 15, 15 5, 20 0 C 28 8, 32 20, 35 30 Z" fill="#16a34a"/>
-        <path d="M 35 30 C 35 12, 38 2, 42 2 C 43 12, 40 22, 35 30 Z" fill="#22c55e"/>
-        <path d="M 35 30 C 45 15, 55 5, 50 0 C 42 8, 38 20, 35 30 Z" fill="#15803d"/>
-        <!-- Pineapple Oval Body -->
-        <ellipse cx="35" cy="56" rx="22" ry="30" fill="url(#pineappleSkin)" stroke="#b45309" stroke-width="1.5"/>
-        <!-- Crosshatch diamond pattern -->
-        <path d="M 20 40 L 50 72 M 16 54 L 46 84 M 50 40 L 20 72 M 54 54 L 24 84" stroke="#92400e" stroke-width="1.2" opacity="0.6"/>
-        <!-- Cut Ring Slice -->
-        <circle cx="58" cy="74" r="14" fill="#fde047" stroke="#d97706" stroke-width="1.5"/>
-        <circle cx="58" cy="74" r="4.5" fill="#fef08a" stroke="#ca8a04" stroke-width="1"/>
+    <!-- 🎨 手繪風格點綴插畫 (手繪金鑽鳳梨、旋轉果汁機、厚奶泡高腳杯) -->
+    <g class="illustration-art" filter="url(#doodle-glow)" pointer-events="none">
+      <!-- 1. 手繪金鑽鳳梨與切片 (x: 660, y: 55) -->
+      <g transform="translate(660, 55)">
+        <ellipse cx="55" cy="100" rx="48" ry="58" fill="#f59e0b" opacity="0.08"/>
+        <!-- 冠芽綠葉 -->
+        <path d="M 46 65 C 32 40, 18 15, 28 5 C 40 17, 46 40, 50 65 Z" fill="#16a34a" stroke="#14532d" stroke-width="1.8" class="doodle-stroke"/>
+        <path d="M 55 65 C 50 30, 55 -5, 63 -5 C 67 20, 63 45, 57 65 Z" fill="#22c55e" stroke="#15803d" stroke-width="1.8" class="doodle-stroke"/>
+        <path d="M 64 65 C 78 35, 98 10, 91 3 C 81 17, 74 40, 66 65 Z" fill="#15803d" stroke="#14532d" stroke-width="1.8" class="doodle-stroke"/>
+        <path d="M 50 65 C 41 45, 26 30, 36 25 C 44 35, 49 50, 52 65 Z" fill="#4ade80" stroke="#16a34a" stroke-width="1.5" class="doodle-stroke"/>
+        <path d="M 61 65 C 71 45, 86 30, 78 25 C 71 35, 66 50, 63 65 Z" fill="#22c55e" stroke="#15803d" stroke-width="1.5" class="doodle-stroke"/>
+        <!-- 鳳梨橢圓果身 (手繪微曲輪廓) -->
+        <path d="M 32 80 C 22 105, 26 145, 52 155 C 78 160, 102 140, 96 105 C 92 80, 72 70, 52 70 C 42 70, 35 73, 32 80 Z" fill="#f59e0b" stroke="#92400e" stroke-width="2.5" class="doodle-stroke"/>
+        <!-- 菱形果眼手繪刻紋 -->
+        <path d="M 38 92 Q 62 112 85 132 M 32 112 Q 58 132 78 147 M 88 92 Q 62 115 42 137 M 94 112 Q 70 135 52 152" stroke="#b45309" stroke-width="1.8" stroke-dasharray="2,1" fill="none" class="doodle-stroke"/>
+        <circle cx="52" cy="102" r="2" fill="#78350f"/><circle cx="72" cy="112" r="2" fill="#78350f"/><circle cx="58" cy="127" r="2" fill="#78350f"/><circle cx="45" cy="122" r="2" fill="#78350f"/><circle cx="68" cy="138" r="2" fill="#78350f"/>
+        <path d="M 36 86 C 32 100, 34 120, 40 130" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+        <!-- 旁邊一片手繪切片 -->
+        <circle cx="106" cy="142" r="22" fill="#fde047" stroke="#b45309" stroke-width="2.2" class="doodle-stroke"/>
+        <circle cx="106" cy="142" r="7" fill="#0f172a" stroke="#d97706" stroke-width="1.8" class="doodle-stroke"/>
+        <path d="M 96 132 L 101 137 M 116 132 L 111 137 M 96 152 L 101 147 M 116 152 L 111 147" stroke="#ca8a04" stroke-width="1.5" class="doodle-stroke"/>
+        <path d="M 92 125 Q 101 121 111 123" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+        <!-- 手繪標籤文字 -->
+        <path d="M 22 170 Q 64 165 106 170" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+        <text x="64" y="184" class="doodle-text" fill="#fef08a">🍍 金鑽鳳梨 · 新鮮手作</text>
       </g>
 
-      <!-- 2. 果汁機高速攪打 (Blender) at (790, 85) -->
-      <g transform="translate(775, 85)">
-        <!-- Blender Glass Pitcher -->
-        <path d="M 12 18 L 38 18 L 34 58 L 16 58 Z" fill="url(#blenderGlass)" stroke="#38bdf8" stroke-width="1.5"/>
-        <!-- Lid -->
-        <rect x="10" y="14" width="30" height="5" rx="2" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
-        <rect x="22" y="10" width="6" height="4" rx="1" fill="#cbd5e1"/>
-        <!-- Handle -->
-        <path d="M 38 24 C 46 26, 46 44, 35 48" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Whirling Vortex -->
-        <path d="M 20 30 Q 25 35 30 30 Q 25 45 20 48" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/>
-        <!-- Motor Base -->
-        <path d="M 14 58 L 36 58 L 39 76 L 11 76 Z" fill="#334155" stroke="#475569" stroke-width="1.5"/>
-        <circle cx="25" cy="67" r="3" fill="#f59e0b"/>
+      <!-- 2. 手繪旋轉攪打果汁機 (x: 780, y: 65) -->
+      <g transform="translate(780, 65)">
+        <!-- 玻璃攪拌杯身 -->
+        <path d="M 12 25 L 52 25 L 46 90 L 18 90 Z" fill="rgba(186, 230, 253, 0.45)" stroke="#38bdf8" stroke-width="2.2" class="doodle-stroke"/>
+        <!-- 蓋子與頂部量杯 -->
+        <path d="M 8 22 L 56 22 C 56 18, 52 16, 32 16 C 12 16, 8 18, 8 22 Z" fill="#334155" stroke="#64748b" stroke-width="1.8" class="doodle-stroke"/>
+        <rect x="27" y="10" width="10" height="6" rx="2" fill="#94a3b8" stroke="#cbd5e1" stroke-width="1.2"/>
+        <!-- 把手 -->
+        <path d="M 52 35 C 68 38, 68 72, 47 78" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+        <!-- 杯中金色果汁漩渦 -->
+        <path d="M 20 75 C 24 55, 40 55, 44 75 C 46 88, 18 88, 20 75 Z" fill="#fbbf24" opacity="0.85"/>
+        <path d="M 24 45 Q 32 55 40 45 Q 32 70 27 75" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- 飛濺果汁水滴 -->
+        <circle cx="10" cy="45" r="2.5" fill="#fde047" stroke="#d97706" stroke-width="1"/>
+        <circle cx="58" cy="50" r="2.5" fill="#fde047" stroke="#d97706" stroke-width="1"/>
+        <circle cx="30" cy="4" r="2" fill="#38bdf8"/>
+        <!-- 底座與旋鈕 -->
+        <path d="M 16 90 L 48 90 L 52 118 L 12 118 Z" fill="#1e293b" stroke="#64748b" stroke-width="2" class="doodle-stroke"/>
+        <circle cx="32" cy="104" r="4.5" fill="#f59e0b" stroke="#fbbf24" stroke-width="1.5"/>
+        <!-- 振動手繪線條 -->
+        <path d="M 4 100 Q 0 104 4 108 M 60 100 Q 64 104 60 108" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- 刻度手繪線 -->
+        <line x1="20" y1="45" x2="26" y2="45" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="20" y1="58" x2="26" y2="58" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="20" y1="70" x2="26" y2="70" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
       </g>
 
-      <!-- 3. 高腳杯雪白泡沫 (Frosted Glass Cup) at (840, 150) -->
-      <g transform="translate(835, 145)">
-        <!-- Glass body with yellow juice -->
-        <path d="M 5 15 L 25 15 L 21 48 L 9 48 Z" fill="#fef08a" opacity="0.9" stroke="#f59e0b" stroke-width="1"/>
-        <!-- White thick cream foam -->
-        <ellipse cx="15" cy="15" rx="11" ry="5.5" fill="#ffffff" filter="drop-shadow(0 1px 2px rgba(0,0,0,0.3))"/>
-        <path d="M 7 15 C 7 11, 12 10, 15 10 C 18 10, 23 11, 23 15 Z" fill="#ffffff"/>
-        <!-- Red Straw -->
-        <path d="M 18 25 L 26 5 L 32 8" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
-        <!-- Stem & Foot -->
-        <line x1="15" y1="48" x2="15" y2="60" stroke="#94a3b8" stroke-width="2"/>
-        <ellipse cx="15" cy="60" rx="8" ry="2.5" fill="#64748b"/>
-        <!-- Sparkles -->
-        <text x="28" y="24" font-size="9" fill="#fbbf24">✨</text>
+      <!-- 3. 手繪高腳果汁杯與厚綿白泡 (x: 855, y: 110) -->
+      <g transform="translate(855, 110)">
+        <!-- 喇叭型高腳杯 -->
+        <path d="M 10 30 L 40 30 L 35 75 C 33 85, 17 85, 15 75 Z" fill="#fef08a" opacity="0.9" stroke="#f59e0b" stroke-width="2.2" class="doodle-stroke"/>
+        <line x1="25" y1="83" x2="25" y2="105" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="25" cy="106" rx="14" ry="4" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+        <!-- 雲朵般厚白奶泡 -->
+        <path d="M 7 30 C 3 22, 13 14, 19 18 C 23 10, 33 10, 37 18 C 43 14, 50 22, 43 30 Z" fill="url(#foamBubble)" stroke="#e2e8f0" stroke-width="1.8" class="doodle-stroke"/>
+        <!-- 紅白條紋斜插吸管 -->
+        <path d="M 30 45 L 43 -2 L 53 2" fill="none" stroke="#ef4444" stroke-width="3.2" stroke-linecap="round"/>
+        <path d="M 30 45 L 43 -2 L 53 2" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="3,4"/>
+        <!-- 杯緣鳳梨三角切片 -->
+        <polygon points="5,22 -5,12 10,10" fill="#fde047" stroke="#b45309" stroke-width="1.5"/>
+        <!-- 閃爍星星手繪點綴 -->
+        <text x="51" y="20" font-size="12" fill="#fbbf24">✨</text>
+        <text x="-3" y="50" font-size="9" fill="#fde68a">✦</text>
+        <!-- 手繪標籤 -->
+        <text x="25" y="125" class="doodle-text" fill="#fef08a">雪白泡沫 · 淺黃果汁</text>
       </g>
-
-      <!-- Label inside art card -->
-      <text class="art-label" x="780" y="240">手作工序 · 雪白果香泡沫</text>
     </g>
 
     <!-- Main Node: 手作鳳梨汁 -->
@@ -1598,7 +1608,7 @@
   </g>
 
   <!-- ======================================================== -->
-  <!-- QUADRANT 2: 左上 (TOP-LEFT) - 童年芭樂汁記憶 (含主題精緻插畫) -->
+  <!-- QUADRANT 2: 左上 (TOP-LEFT) - 童年芭樂汁記憶 (手繪插畫點綴)  -->
   <!-- ======================================================== -->
   <g class="quadrant-group" id="group-guava" data-quadrant="guava">
     <!-- Main Branch Connector: Center (490, 520) -> (400, 320) -->
@@ -1618,49 +1628,66 @@
     <path class="branch-line" d="M 155 440 C 125 440, 115 415, 95 415" stroke="#a7f3d0" stroke-width="1.8"/>
     <path class="branch-line" d="M 155 440 C 125 440, 115 465, 95 465" stroke="#a7f3d0" stroke-width="1.8"/>
 
-    <!-- 🎨 THEMATIC ARTWORK 2: 爸爸抽獎箱與香氣芭樂 (位於左上象限留白區 x:320~530, y:70~250) -->
-    <g class="illustration-art" filter="url(#illu-art-glow)" pointer-events="none">
-      <!-- Art Backing Glow Card -->
-      <rect x="315" y="70" width="220" height="185" rx="16" fill="rgba(30, 41, 59, 0.7)" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,4"/>
-
-      <!-- 1. 爸爸幸運抽獎機 (Retro Lotto Raffle Box) at (330, 85) -->
-      <g transform="translate(330, 85)">
-        <!-- Box Stand -->
-        <path d="M 18 68 L 26 48 L 44 48 L 52 68 Z" fill="#334155" stroke="#475569" stroke-width="1.5"/>
-        <!-- Octagonal Rotary Drum -->
-        <polygon points="20,25 35,15 50,25 58,40 50,55 35,65 20,55 12,40" fill="#b45309" stroke="#fbbf24" stroke-width="2"/>
-        <circle cx="35" cy="40" r="14" fill="#d97706"/>
-        <circle cx="35" cy="40" r="4" fill="#fbbf24"/>
-        <!-- Crank Handle -->
-        <path d="M 50 40 L 64 40 L 64 26" fill="none" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="64" cy="26" r="3.5" fill="#ef4444"/>
-        <!-- Lucky Ball & Badge -->
-        <circle cx="22" cy="62" r="5" fill="#fbbf24" stroke="#d97706" stroke-width="1"/>
-        <rect x="8" y="10" width="54" height="16" rx="4" fill="#dc2626" stroke="#fecaca" stroke-width="1"/>
-        <text x="35" y="22" font-size="9.5" font-weight="800" fill="#ffffff" text-anchor="middle">🎉 抽中獎品!</text>
+    <!-- 🎨 手繪風格點綴插畫 (手繪搖獎機、熟軟芭樂切片、果香音符飄揚) -->
+    <g class="illustration-art" filter="url(#doodle-glow)" pointer-events="none">
+      <!-- 1. 爸爸幸運手搖抽獎機 (x: 420, y: 65) -->
+      <g transform="translate(420, 65)">
+        <!-- 支架底座 -->
+        <path d="M 16 85 L 24 53 L 56 53 L 64 85" fill="#334155" stroke="#475569" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="20" y1="73" x2="60" y2="73" stroke="#475569" stroke-width="2"/>
+        <!-- 八角型木質滾輪轉桶 -->
+        <polygon points="20,25 40,11 60,25 70,45 60,65 40,75 20,65 10,45" fill="#b45309" stroke="#fbbf24" stroke-width="2.5" class="doodle-stroke"/>
+        <circle cx="40" cy="45" r="16" fill="#d97706" stroke="#f59e0b" stroke-width="1.5"/>
+        <circle cx="40" cy="45" r="5" fill="#fde047"/>
+        <!-- 手搖把手 -->
+        <path d="M 60 45 L 78 45 L 78 29" fill="none" stroke="#e2e8f0" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="78" cy="29" r="4.5" fill="#ef4444" stroke="#b91c1c" stroke-width="1"/>
+        <!-- 轉動弧形虛線 -->
+        <path d="M 84 37 C 88 43, 86 51, 80 55" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2,2"/>
+        <polygon points="78,57 84,55 82,49" fill="#fbbf24"/>
+        <!-- 滾出的中獎金球 -->
+        <circle cx="20" cy="79" r="6.5" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+        <text x="20" y="82" font-size="7" font-weight="800" fill="#78350f" text-anchor="middle">★</text>
+        <!-- 慶祝中獎橫幅標籤 -->
+        <rect x="4" y="-3" width="72" height="20" rx="6" fill="#dc2626" stroke="#fecaca" stroke-width="1.5"/>
+        <text x="40" y="11" font-size="10.5" font-weight="800" fill="#ffffff" text-anchor="middle">🎉 幸運中獎!</text>
+        <!-- 彩色紙花小點 -->
+        <circle cx="-2" cy="20" r="2.5" fill="#fbbf24"/><circle cx="85" cy="15" r="2.5" fill="#38bdf8"/><circle cx="5" cy="45" r="2" fill="#34d399"/><circle cx="82" cy="70" r="2" fill="#f43f5e"/>
       </g>
 
-      <!-- 2. 市場熟軟芭樂切片 (Guava Fruit) at (435, 95) -->
-      <g transform="translate(425, 90)">
-        <!-- Green Round Guava Body -->
-        <circle cx="40" cy="45" r="26" fill="#84cc16" stroke="#4d7c0f" stroke-width="2"/>
-        <!-- Cut Slice in front showing pink flesh -->
-        <path d="M 50 30 A 22 22 0 1 1 50 68 Z" fill="#fda4af" stroke="#e11d48" stroke-width="1.5"/>
-        <!-- Guava Seeds -->
-        <circle cx="44" cy="42" r="1.5" fill="#be123c"/>
-        <circle cx="48" cy="48" r="1.5" fill="#be123c"/>
-        <circle cx="43" cy="54" r="1.5" fill="#be123c"/>
-        <!-- Fresh Leaf -->
-        <path d="M 38 20 C 32 10, 22 14, 25 24 C 34 24, 38 22, 38 20 Z" fill="#15803d"/>
-        <!-- Aroma Curls & Music Notes -->
-        <path d="M 68 35 Q 76 30 72 20 Q 68 12 78 8" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
-        <path d="M 76 48 Q 84 42 80 34" fill="none" stroke="#34d399" stroke-width="1.5" stroke-linecap="round"/>
-        <text x="82" y="16" font-size="12" fill="#34d399">♫</text>
-        <text x="74" y="58" font-size="10" fill="#a7f3d0">♪</text>
+      <!-- 2. 手繪熟軟芭樂與切片 (x: 295, y: 75) -->
+      <g transform="translate(295, 75)">
+        <ellipse cx="50" cy="55" rx="45" ry="45" fill="#10b981" opacity="0.08"/>
+        <!-- 整顆圓潤黃綠芭樂 -->
+        <path d="M 20 50 C 5 25, 15 0, 40 0 C 65 0, 75 25, 60 50 C 50 65, 30 65, 20 50 Z" fill="#84cc16" stroke="#365314" stroke-width="2.5" class="doodle-stroke"/>
+        <!-- 果蒂與綠葉 -->
+        <path d="M 40 0 Q 42 -10 48 -13" fill="none" stroke="#4d7c0f" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 46 -11 C 58 -19, 68 -9, 55 -3 Z" fill="#15803d" stroke="#14532d" stroke-width="1.5"/>
+        <!-- 表皮自然手繪小雀斑 -->
+        <circle cx="30" cy="25" r="1.2" fill="#4d7c0f"/><circle cx="45" cy="35" r="1.2" fill="#4d7c0f"/><circle cx="38" cy="47" r="1.2" fill="#4d7c0f"/>
+        <!-- 面前露出的月牙切片 (粉紅果肉) -->
+        <path d="M 50 30 C 65 20, 85 30, 85 50 C 85 70, 65 80, 50 70 Z" fill="#84cc16" stroke="#365314" stroke-width="2.2" class="doodle-stroke"/>
+        <path d="M 52 33 C 63 25, 80 33, 80 50 C 80 65, 63 73, 52 65 Z" fill="#fda4af" stroke="#f43f5e" stroke-width="1.5"/>
+        <!-- 芭樂籽點綴 -->
+        <circle cx="62" cy="43" r="1.6" fill="#be123c"/><circle cx="70" cy="50" r="1.6" fill="#be123c"/><circle cx="64" cy="57" r="1.6" fill="#be123c"/>
+        <path d="M 22 20 C 20 30, 22 40, 28 47" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <!-- 飄散的滿室果香與音符 -->
+        <path d="M 82 20 Q 96 10 90 -5 Q 84 -20 98 -30" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 95 35 Q 108 25 104 10 Q 100 0 110 -10" fill="none" stroke="#a7f3d0" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="104" y="-25" font-size="15" fill="#34d399">♫</text>
+        <text x="118" y="5" font-size="12" fill="#6ee7b7">♪</text>
+        <!-- 手繪標籤文字 -->
+        <text x="50" y="93" class="doodle-text" fill="#a7f3d0">🍈 黃綠熟軟 · 滿室芬芳</text>
       </g>
 
-      <!-- Label inside art card -->
-      <text class="art-label" x="425" y="240">童年回憶 · 滿室芬芳果香</text>
+      <!-- 3. 溫馨童年果汁杯 (x: 470, y: 175) -->
+      <g transform="translate(470, 175)">
+        <path d="M 5 15 L 35 15 L 28 50 L 12 50 Z" fill="#a7f3d0" opacity="0.85" stroke="#059669" stroke-width="2" class="doodle-stroke"/>
+        <ellipse cx="20" cy="15" rx="15" ry="4" fill="#6ee7b7" stroke="#059669" stroke-width="1.5"/>
+        <circle cx="40" cy="20" r="3" fill="#34d399"/>
+        <path d="M 20 25 L 25 5" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+        <text x="20" y="65" class="doodle-text" fill="#6ee7b7">轉瞬成好喝果汁</text>
+      </g>
     </g>
 
     <!-- Main Node: 童年芭樂汁 -->
@@ -1697,7 +1724,7 @@
   </g>
 
   <!-- ======================================================== -->
-  <!-- QUADRANT 3: 左下 (BOTTOM-LEFT) - 熬煮李子果醬 (含主題精緻插畫)-->
+  <!-- QUADRANT 3: 左下 (BOTTOM-LEFT) - 熬煮李子果醬 (手繪插畫點綴) -->
   <!-- ======================================================== -->
   <g class="quadrant-group" id="group-plum" data-quadrant="plum">
     <!-- Main Branch Connector: Center (490, 580) -> (400, 780) -->
@@ -1720,68 +1747,79 @@
     <path class="branch-line" d="M 155 900 C 125 900, 115 875, 95 875" stroke="#fecdd3" stroke-width="1.8"/>
     <path class="branch-line" d="M 155 900 C 125 900, 115 925, 95 925" stroke="#fecdd3" stroke-width="1.8"/>
 
-    <!-- 🎨 THEMATIC ARTWORK 3: 李子果實、大熬煮鍋與果醬罐 (位於左下象限留白區 x:315~535, y:835~1035) -->
-    <g class="illustration-art" filter="url(#illu-art-glow)" pointer-events="none">
-      <!-- Art Backing Glow Card -->
-      <rect x="315" y="835" width="220" height="195" rx="16" fill="rgba(30, 41, 59, 0.7)" stroke="#e11d48" stroke-width="1.5" stroke-dasharray="4,4"/>
-
-      <!-- 1. 鮮紅李子 (Fresh Plums) at (335, 850) -->
-      <g transform="translate(330, 850)">
-        <!-- Plum 1 -->
-        <circle cx="20" cy="24" r="15" fill="#881337" stroke="#4c0519" stroke-width="1.5"/>
-        <path d="M 20 9 C 20 18, 16 26, 20 38" fill="none" stroke="#4c0519" stroke-width="1.2" opacity="0.6"/>
-        <path d="M 20 9 C 26 2, 34 5, 30 14 Z" fill="#15803d"/>
-        <!-- Plum 2 (overlapping) -->
-        <circle cx="42" cy="28" r="14" fill="#9f1239" stroke="#881337" stroke-width="1.5"/>
-        <path d="M 42 14 C 42 22, 39 30, 42 41" fill="none" stroke="#4c0519" stroke-width="1.2" opacity="0.6"/>
+    <!-- 🎨 手繪風格點綴插畫 (手繪深紅李子、大熬煮鍋咕嘟冒泡、木湯匙試吃、布蓋果醬罐) -->
+    <g class="illustration-art" filter="url(#doodle-glow)" pointer-events="none">
+      <!-- 1. 手繪深紅李子與酸味表情 (x: 420, y: 830) -->
+      <g transform="translate(420, 830)">
+        <!-- 枝梗與綠葉 -->
+        <path d="M 25 12 Q 30 0 40 -2" fill="none" stroke="#78350f" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 38 0 C 50 -8, 58 2, 48 8 Z" fill="#15803d" stroke="#14532d" stroke-width="1.5"/>
+        <!-- 第一顆深紅心型李子 -->
+        <path d="M 10 25 C 0 10, 22 2, 32 18 C 42 2, 64 10, 54 25 C 44 48, 20 48, 10 25 Z" fill="#9f1239" stroke="#4c0519" stroke-width="2.5" class="doodle-stroke"/>
+        <path d="M 32 18 C 30 26, 30 35, 32 42" fill="none" stroke="#4c0519" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M 16 16 C 14 22, 15 30, 19 35" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" opacity="0.65"/>
+        <!-- 第二顆交疊李子 -->
+        <circle cx="56" cy="35" r="16" fill="#881337" stroke="#4c0519" stroke-width="2.2" class="doodle-stroke"/>
+        <path d="M 56 22 C 54 30, 54 40, 56 48" fill="none" stroke="#4c0519" stroke-width="1.5"/>
+        <!-- 逗趣手繪酸味表情 (>_<) -->
+        <circle cx="90" cy="28" r="13" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+        <path d="M 83 25 L 87 27 L 83 29 M 97 25 L 93 27 L 97 29" fill="none" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 88 35 Q 90 32 92 35" fill="none" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
+        <text x="90" y="52" class="doodle-text" font-size="9.5" fill="#fef08a">酸得皺眉!</text>
       </g>
 
-      <!-- 2. 大熬煮鍋與焦糖氣泡 (Simmering Jam Pot) at (410, 850) -->
-      <g transform="translate(400, 850)">
-        <!-- Gas Stove Blue Flame -->
-        <path d="M 20 62 Q 24 54 28 62 Q 32 54 36 62 Q 40 54 44 62 Q 48 54 52 62" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
-        <!-- Pot Body -->
-        <path d="M 12 25 L 60 25 L 56 56 L 16 56 Z" fill="url(#potGrad)" stroke="#fda4af" stroke-width="1.5"/>
-        <!-- Handles -->
-        <path d="M 12 32 C 4 32, 4 44, 13 44" fill="none" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 60 32 C 68 32, 68 44, 59 44" fill="none" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Jam surface & bubbles -->
-        <ellipse cx="36" cy="25" rx="24" ry="7" fill="#be123c"/>
-        <circle cx="28" cy="23" r="2.5" fill="#fbcfe8"/>
-        <circle cx="42" cy="24" r="3" fill="#fb7185"/>
-        <circle cx="34" cy="27" r="2" fill="#fda4af"/>
-        <!-- Sweet Steam Curls -->
-        <path d="M 26 18 Q 22 8 28 0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M 44 18 Q 50 8 44 0" fill="none" stroke="#f43f5e" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- 2. 手繪大熬煮鍋與焦糖氣泡 (x: 300, y: 835) -->
+      <g transform="translate(300, 835)">
+        <!-- 瓦斯爐藍火 -->
+        <path d="M 15 66 Q 20 56 25 66 Q 30 56 35 66 Q 40 56 45 66 Q 50 56 55 66 Q 60 56 65 66" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+        <!-- 大鍋身 -->
+        <path d="M 10 22 L 70 22 L 64 62 L 16 62 Z" fill="#4c0519" stroke="#fda4af" stroke-width="2.2" class="doodle-stroke"/>
+        <!-- 雙耳把手 -->
+        <path d="M 10 32 C 0 32, 0 48, 11 48" fill="none" stroke="#cbd5e1" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 70 32 C 80 32, 80 48, 69 48" fill="none" stroke="#cbd5e1" stroke-width="3" stroke-linecap="round"/>
+        <!-- 滾煮果醬面與泡泡 -->
+        <ellipse cx="40" cy="22" rx="30" ry="9" fill="url(#potJamGlow)"/>
+        <circle cx="28" cy="20" r="3.5" fill="#fbcfe8" stroke="#be123c" stroke-width="1"/>
+        <circle cx="46" cy="22" r="4" fill="#fb7185" stroke="#be123c" stroke-width="1"/>
+        <circle cx="38" cy="25" r="2.8" fill="#fda4af"/>
+        <circle cx="56" cy="20" r="2.5" fill="#fbcfe8"/>
+        <!-- 冉冉升起甜蜜蒸氣 -->
+        <path d="M 26 12 Q 20 0 28 -10 Q 36 -20 30 -30" fill="none" stroke="#f43f5e" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M 54 12 Q 60 0 52 -10 Q 44 -20 52 -30" fill="none" stroke="#fb7185" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- 木攪拌匙斜放 -->
+        <path d="M 46 35 L 66 -2" stroke="#d97706" stroke-width="4" stroke-linecap="round"/>
       </g>
 
-      <!-- 3. 木湯匙試吃 & 果醬罐 (Tasting Spoon & Jam Jar) at (335, 930) -->
-      <g transform="translate(330, 925)">
-        <!-- Wooden Spoon with jam drop -->
-        <ellipse cx="35" cy="20" rx="9" ry="6" fill="#d97706" stroke="#92400e" stroke-width="1.2"/>
-        <path d="M 35 26 L 15 48" stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="35" cy="21" r="5" fill="#be123c"/>
-        <path d="M 35 25 Q 35 32 37 32 Q 39 32 37 25" fill="#be123c"/>
-        <!-- Confidence Badge -->
-        <rect x="52" y="10" width="75" height="18" rx="4" fill="#fbbf24" stroke="#d97706" stroke-width="1"/>
-        <text x="89.5" y="22.5" font-size="9.5" font-weight="800" fill="#78350f" text-anchor="middle">⭐ 試吃自信!</text>
-
-        <!-- Artisanal Jam Jar with cloth lid -->
-        <g transform="translate(135, 0)">
-          <!-- Glass Jar -->
-          <rect x="6" y="14" width="30" height="36" rx="4" fill="rgba(190, 18, 60, 0.85)" stroke="#fda4af" stroke-width="1.5"/>
-          <!-- Label -->
-          <rect x="10" y="24" width="22" height="14" rx="2" fill="#fff1f2" stroke="#e11d48" stroke-width="0.8"/>
-          <text x="21" y="34" font-size="7.5" font-weight="800" fill="#9f1239" text-anchor="middle">李子醬</text>
-          <!-- Cloth Lid & String -->
-          <ellipse cx="21" cy="14" rx="17" ry="5.5" fill="#e11d48" stroke="#ffffff" stroke-width="1"/>
-          <path d="M 5 14 Q 21 18 37 14 L 39 18 Q 21 21 3 18 Z" fill="#be123c"/>
-          <line x1="3" y1="17" x2="39" y2="17" stroke="#fbbf24" stroke-width="1.5"/>
-        </g>
+      <!-- 3. 手繪木湯匙試吃 & 自信標籤 (x: 430, y: 935) -->
+      <g transform="translate(430, 935)">
+        <!-- 木質湯匙 -->
+        <ellipse cx="22" cy="13" rx="12" ry="8" fill="#d97706" stroke="#92400e" stroke-width="1.8"/>
+        <path d="M 22 21 L 0 50" stroke="#d97706" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- 湯匙上的紅果醬水滴 -->
+        <ellipse cx="22" cy="13" rx="8" ry="5.5" fill="#be123c"/>
+        <path d="M 22 19 Q 22 27 24 27 Q 26 27 24 19" fill="#be123c"/>
+        <circle cx="24" cy="33" r="2" fill="#be123c"/>
+        <!-- 建立自信金色緞帶 -->
+        <rect x="-6" y="55" width="88" height="22" rx="6" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+        <text x="38" y="70" font-size="11" font-weight="800" fill="#78350f" text-anchor="middle">⭐ 建立味覺自信</text>
+        <text x="-10" y="10" font-size="13" fill="#fbbf24">✨</text>
+        <text x="42" y="5" font-size="10" fill="#fbcfe8">✦</text>
       </g>
 
-      <!-- Label inside art card -->
-      <text class="art-label" x="425" y="1015">小火慢熬 · 建立小小味覺自信</text>
+      <!-- 4. 手工布蓋李子果醬罐 (x: 320, y: 935) -->
+      <g transform="translate(320, 935)">
+        <rect x="10" y="15" width="38" height="46" rx="6" fill="rgba(190, 18, 60, 0.9)" stroke="#fda4af" stroke-width="2" class="doodle-stroke"/>
+        <!-- 牛皮紙標籤 -->
+        <rect x="15" y="29" width="28" height="18" rx="3" fill="#fff1f2" stroke="#e11d48" stroke-width="1"/>
+        <text x="29" y="41" font-size="9" font-weight="800" fill="#9f1239" text-anchor="middle">李子醬</text>
+        <!-- 格紋布蓋與麻繩蝴蝶結 -->
+        <ellipse cx="29" cy="15" rx="22" ry="7" fill="#e11d48" stroke="#ffffff" stroke-width="1.5"/>
+        <path d="M 8 15 Q 29 21 50 15 L 52 21 Q 29 25 6 21 Z" fill="#be123c"/>
+        <line x1="6" y1="19" x2="52" y2="19" stroke="#fbbf24" stroke-width="2"/>
+        <path d="M 29 19 Q 23 25 20 29 M 29 19 Q 35 25 38 29" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+        <!-- 標籤文字 -->
+        <text x="29" y="75" class="doodle-text" fill="#fda4af">小火慢熬 · 封存美好</text>
+      </g>
     </g>
 
     <!-- Main Node: 熬煮李子果醬 -->
@@ -1827,7 +1865,7 @@
   </g>
 
   <!-- ======================================================== -->
-  <!-- QUADRANT 4: 右下 (BOTTOM-RIGHT) - 教育初衷與哲思 (含主題精緻插畫)-->
+  <!-- QUADRANT 4: 右下 (BOTTOM-RIGHT) - 教育初衷與哲思 (手繪插畫點綴)-->
   <!-- ======================================================== -->
   <g class="quadrant-group" id="group-education" data-quadrant="education">
     <!-- Main Branch Connector: Center (710, 580) -> (800, 780) -->
@@ -1850,61 +1888,78 @@
     <path class="branch-line" d="M 1025 900 C 1055 900, 1065 875, 1090 875" stroke="#bae6fd" stroke-width="1.8"/>
     <path class="branch-line" d="M 1025 900 C 1055 900, 1065 925, 1090 925" stroke="#bae6fd" stroke-width="1.8"/>
 
-    <!-- 🎨 THEMATIC ARTWORK 4: 泥土幼苗、太陽星空與最好禮物 (位於右下象限留白區 x:670~890, y:835~1035) -->
-    <g class="illustration-art" filter="url(#illu-art-glow)" pointer-events="none">
-      <!-- Art Backing Glow Card -->
-      <rect x="670" y="835" width="220" height="195" rx="16" fill="rgba(30, 41, 59, 0.7)" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="4,4"/>
-
-      <!-- 1. 溫暖太陽 ☀️ (Sun) at (695, 850) -->
-      <g transform="translate(685, 845)">
-        <circle cx="25" cy="25" r="18" fill="url(#sunGlow)"/>
-        <circle cx="25" cy="25" r="12" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
-        <!-- Sun Rays -->
-        <line x1="25" y1="8" x2="25" y2="4" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        <line x1="25" y1="42" x2="25" y2="46" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        <line x1="8" y1="25" x2="4" y2="25" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        <line x1="42" y1="25" x2="46" y2="25" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-        <text x="25" y="44" font-size="7.5" font-weight="700" fill="#fef08a" text-anchor="middle">陽光甜蜜</text>
+    <!-- 🎨 手繪風格點綴插畫 (遠離化學茶飲、破土萌芽幼苗、日夜陰陽守護、最好味覺禮物盒) -->
+    <g class="illustration-art" filter="url(#doodle-glow)" pointer-events="none">
+      <!-- 1. 拒絕化學添加茶飲 (x: 665, y: 830) -->
+      <g transform="translate(665, 830)">
+        <!-- 市售手搖杯手繪外型 -->
+        <path d="M 9 20 L 37 20 L 32 60 L 14 60 Z" fill="#334155" stroke="#64748b" stroke-width="1.8" class="doodle-stroke"/>
+        <ellipse cx="23" cy="20" rx="14" ry="4" fill="#475569"/>
+        <line x1="23" y1="10" x2="23" y2="30" stroke="#94a3b8" stroke-width="2.5"/>
+        <!-- 拒絕化學禁制符號 🚫 -->
+        <circle cx="23" cy="38" r="14" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+        <line x1="13" y1="48" x2="33" y2="28" stroke="#ef4444" stroke-width="2.5"/>
+        <text x="23" y="75" class="doodle-text" font-size="9.5" fill="#f87171">市售化學麻痺</text>
       </g>
 
-      <!-- 2. 深夜月彎與星斗 🌙✨ (Crescent Moon & Stars) at (765, 845) -->
-      <g transform="translate(755, 845)">
-        <path d="M 28 8 A 16 16 0 1 0 40 32 A 20 20 0 0 1 28 8 Z" fill="#38bdf8" stroke="#0284c7" stroke-width="1"/>
-        <text x="14" y="22" font-size="10" fill="#bae6fd">✨</text>
-        <text x="44" y="16" font-size="8" fill="#fef08a">★</text>
-        <text x="32" y="44" font-size="7.5" font-weight="700" fill="#bae6fd" text-anchor="middle">黑夜堅強</text>
+      <!-- 2. 泥土萌芽幼苗 (x: 755, y: 830) -->
+      <g transform="translate(755, 830)">
+        <!-- 肥沃泥土丘 -->
+        <path d="M -10 55 Q 20 40 50 55 Z" fill="#78350f" stroke="#451a03" stroke-width="2" class="doodle-stroke"/>
+        <circle cx="5" cy="50" r="1.5" fill="#a16207"/><circle cx="30" cy="48" r="1.5" fill="#a16207"/>
+        <!-- 破土而出的青翠綠芽 -->
+        <path d="M 20 42 C 20 28 15 18 20 8" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 20 20 C 3 14 -1 28 11 30 C 17 28 20 22 20 20 Z" fill="#4ade80" stroke="#16a34a" stroke-width="1.5" class="doodle-stroke"/>
+        <path d="M 20 14 C 37 8 41 22 29 26 C 23 24 20 18 20 14 Z" fill="#22c55e" stroke="#15803d" stroke-width="1.5" class="doodle-stroke"/>
+        <!-- 旁邊盛開的一朵手繪小花 🌸 -->
+        <circle cx="43" cy="35" r="3.5" fill="#fbbf24"/>
+        <circle cx="43" cy="28" r="3" fill="#f472b6"/><circle cx="50" cy="33" r="3" fill="#f472b6"/><circle cx="48" cy="41" r="3" fill="#f472b6"/><circle cx="38" cy="41" r="3" fill="#f472b6"/><circle cx="36" cy="33" r="3" fill="#f472b6"/>
+        <line x1="43" y1="42" x2="43" y2="55" stroke="#22c55e" stroke-width="1.8"/>
+        <!-- 標籤文字 -->
+        <text x="20" y="72" class="doodle-text" fill="#86efac">泥土生成 · 開花結果</text>
       </g>
 
-      <!-- 3. 泥土裡生長的綠芽 🌱 (Seedling from Earth) at (690, 915) -->
-      <g transform="translate(685, 915)">
-        <!-- Rich Earth Mound -->
-        <path d="M 10 46 Q 30 32 50 46 Z" fill="#78350f" stroke="#451a03" stroke-width="1.5"/>
-        <circle cx="22" cy="42" r="1.5" fill="#a16207"/>
-        <circle cx="36" cy="40" r="1.5" fill="#a16207"/>
-        <!-- Sprouting Stem & Two Leaves -->
-        <path d="M 30 36 C 30 26 28 16 30 10" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 30 20 C 18 16 14 26 24 28 C 28 26 30 22 30 20 Z" fill="#4ade80" stroke="#16a34a" stroke-width="1"/>
-        <path d="M 30 16 C 42 12 46 22 36 24 C 32 22 30 18 30 16 Z" fill="#22c55e" stroke="#15803d" stroke-width="1"/>
-        <text x="30" y="58" font-size="8" font-weight="700" fill="#86efac" text-anchor="middle">泥土生成</text>
+      <!-- 3. 陽光甜蜜與黑夜堅強 (x: 855, y: 830) -->
+      <g transform="translate(855, 830)">
+        <!-- 燦爛暖陽 -->
+        <circle cx="-5" cy="25" r="18" fill="url(#sunGlowDoodle)"/>
+        <circle cx="-5" cy="25" r="13" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+        <circle cx="-9" cy="23" r="1.5" fill="#78350f"/><circle cx="-1" cy="23" r="1.5" fill="#78350f"/>
+        <path d="M -7 28 Q -5 31 -3 28" fill="none" stroke="#78350f" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- 放射光芒 -->
+        <line x1="-5" y1="7" x2="-5" y2="2" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="-5" y1="43" x2="-5" y2="48" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="-23" y1="25" x2="-28" y2="25" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="13" y1="25" x2="18" y2="25" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="-18" y1="12" x2="-22" y2="8" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="8" y1="38" x2="12" y2="42" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- 彎月與星空 -->
+        <path d="M 40 12 A 16 16 0 1 0 53 38 A 20 20 0 0 1 40 12 Z" fill="#38bdf8" stroke="#0284c7" stroke-width="1.8" class="doodle-stroke"/>
+        <circle cx="40" cy="25" r="1.5" fill="#0369a1"/>
+        <text x="57" y="18" font-size="12" fill="#fef08a">✨</text>
+        <text x="31" y="48" font-size="10" fill="#bae6fd">★</text>
+        <!-- 標籤文字 -->
+        <text x="-5" y="65" class="doodle-text" fill="#fde047">陽光甜蜜</text>
+        <text x="47" y="65" class="doodle-text" fill="#7dd3fc">黑夜堅強</text>
       </g>
 
-      <!-- 4. 最好味覺禮物盒 🎁 (Gift Box) at (780, 915) -->
-      <g transform="translate(775, 910)">
-        <!-- Box Body -->
-        <rect x="12" y="24" width="38" height="30" rx="3" fill="#6366f1" stroke="#818cf8" stroke-width="1.5"/>
-        <rect x="8" y="16" width="46" height="10" rx="2" fill="#4f46e5" stroke="#a5b4fc" stroke-width="1.2"/>
-        <!-- Gold Ribbon -->
-        <rect x="28" y="16" width="6" height="38" fill="#fbbf24"/>
-        <rect x="12" y="36" width="38" height="6" fill="#fbbf24"/>
-        <!-- Ribbon Bow -->
-        <path d="M 31 16 C 20 8 18 2 26 6 C 30 10 31 14 31 16 Z" fill="#f59e0b"/>
-        <path d="M 31 16 C 42 8 44 2 36 6 C 32 10 31 14 31 16 Z" fill="#f59e0b"/>
-        <circle cx="31" cy="16" r="3" fill="#fbbf24"/>
-        <text x="31" y="65" font-size="8.5" font-weight="800" fill="#fbbf24" text-anchor="middle">最好禮物</text>
+      <!-- 4. 最好味覺禮物盒 (x: 745, y: 935) -->
+      <g transform="translate(745, 935)">
+        <rect x="0" y="20" width="46" height="36" rx="4" fill="#6366f1" stroke="#818cf8" stroke-width="2.2" class="doodle-stroke"/>
+        <rect x="-5" y="11" width="56" height="11" rx="3" fill="#4f46e5" stroke="#a5b4fc" stroke-width="1.8" class="doodle-stroke"/>
+        <!-- 金色緞帶 -->
+        <rect x="19" y="11" width="8" height="45" fill="#fbbf24"/>
+        <rect x="0" y="35" width="46" height="8" fill="#fbbf24"/>
+        <!-- 蝴蝶結 -->
+        <path d="M 23 11 C 9 -1 5 -11 17 -5 C 22 1 23 7 23 11 Z" fill="#f59e0b" stroke="#d97706" stroke-width="1.2"/>
+        <path d="M 23 11 C 37 -1 41 -11 29 -5 C 24 1 23 7 23 11 Z" fill="#f59e0b" stroke="#d97706" stroke-width="1.2"/>
+        <circle cx="23" cy="11" r="3.5" fill="#fbbf24"/>
+        <text x="-10" y="13" font-size="13" fill="#f43f5e">❤️</text>
+        <text x="53" y="10" font-size="12" fill="#fbbf24">✨</text>
+        <!-- 標籤橫幅 -->
+        <rect x="-25" y="65" width="102" height="22" rx="6" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+        <text x="26" y="80" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">🎁 動手做是最好禮物</text>
       </g>
-
-      <!-- Label inside art card -->
-      <text class="art-label" x="780" y="1015">自然生成 · 親手做的最好禮物</text>
     </g>
 
     <!-- Main Node: 手作初衷與教育 -->
@@ -1950,14 +2005,34 @@
   </g>
 
   <!-- ======================================================== -->
-  <!-- CENTER THEME NODE: 最好的味覺禮物                         -->
+  <!-- CENTER THEME NODE: 最好的味覺禮物 (手繪主廚帽與水果點綴)     -->
   <!-- ======================================================== -->
   <g class="center-group" id="center-node-group">
+    <!-- 手繪主廚帽與星光點綴 (位於中央卡片正上方) -->
+    <g transform="translate(600, 475)" pointer-events="none">
+      <path d="M -14 30 C -24 15, -18 0, -8 5 C -4 -7, 8 -7, 12 5 C 22 0, 28 15, 18 30 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.8" class="doodle-stroke"/>
+      <rect x="-12" y="28" width="28" height="8" rx="2" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+      <circle cx="2" cy="32" r="2" fill="#fbbf24"/>
+      <!-- 左右兩側微型手繪小水果 -->
+      <g transform="translate(35, 20)">
+        <ellipse cx="6" cy="10" rx="6" ry="8" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/>
+        <path d="M 6 2 L 6 -2" stroke="#16a34a" stroke-width="1.5"/>
+      </g>
+      <g transform="translate(-45, 20)">
+        <circle cx="6" cy="10" r="7" fill="#be123c" stroke="#4c0519" stroke-width="1.2"/>
+        <path d="M 6 3 Q 10 -1 12 2" fill="none" stroke="#15803d" stroke-width="1.2"/>
+      </g>
+      <text x="-38" y="10" font-size="11" fill="#fde047">✨</text>
+      <text x="42" y="10" font-size="11" fill="#fde047">✨</text>
+    </g>
+
+    <!-- 中心主題卡片 -->
     <rect x="480" y="515" width="240" height="70" rx="22" ry="22" fill="url(#illu-grad-center)" filter="url(#illu-shadow-center)" stroke="#a5b4fc" stroke-width="2.5"/>
     <text x="600" y="542" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">最好的味覺禮物</text>
-    <text x="600" y="567" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="12" font-weight="600" fill="#c7d2fe" text-anchor="middle" dominant-baseline="middle">第5課 · 豐富插畫心智圖</text>
+    <text x="600" y="567" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="12" font-weight="600" fill="#c7d2fe" text-anchor="middle" dominant-baseline="middle">第5課 · 手繪插畫豐富版</text>
   </g>
 </svg>
+
 
           </div>
 
@@ -2465,9 +2540,9 @@
         viewBox: "0 0 1200 1100",
         focus: "all",
         filename: "illustrated_mindmap.svg",
-        title: "🎨 模範心智圖二 · 課文主題插畫豐富版（原架構＋主題情境插圖）",
+        title: "🎨 模範心智圖二 · 課文主題手繪插畫點綴版（手繪小插圖豐富呈現）",
         defaultRotation: 0,
-        teacherNote: "保留標準心智圖完美的四象限幾何結構，在各分支旁融合課文主題插圖，零重疊、放大後依然清晰無比！",
+        teacherNote: "保留標準心智圖四象限幾何結構，以溫暖活潑的手繪風格小插畫在各分支旁與中央主題上方作為點綴，零重疊、放大後依然清晰無比！",
         overview: "延續方形四象限的高清晰度結構，在象限內部留白處精心繪製專屬插圖：右上角繪有金鑽鳳梨切片、果汁機漩渦與雪白奶泡高腳杯；左上角繪有爸爸幸運抽獎機與滿室芬芳芭樂切片；左下角繪有暗紅李子、大熬煮鍋焦糖氣泡與果醬罐；右下角繪有泥土萌芽幼苗、燦爛太陽、月亮星空與禮物盒！",
         defects: [
           "<strong>架構嚴謹不重疊</strong>：保留標準心智圖的骨幹與次節點，插圖安放在各象限自然空間，絕無重疊遮蔽，視覺清爽大器。",
