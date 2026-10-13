@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
@@ -637,6 +637,234 @@
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
+
+    /* Interactive Mindmap Container & Toolbar */
+    .mindmap-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #1e293b 0%, #0a0f1d 100%);
+    }
+
+    .mindmap-toolbar {
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 9999px;
+      padding: 0.35rem 0.65rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+      z-index: 35;
+      max-width: 92%;
+      overflow-x: auto;
+    }
+
+    .mindmap-pills {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.32rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94a3b8;
+      background: rgba(30, 41, 59, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .pill-btn:hover {
+      color: #fff;
+      background: rgba(51, 65, 85, 0.9);
+      border-color: rgba(148, 163, 184, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .pill-btn.active {
+      color: #fff;
+      background: #4f46e5;
+      border-color: #818cf8;
+      box-shadow: 0 0 14px rgba(99, 102, 241, 0.5);
+    }
+
+    .pill-btn.amber.active {
+      background: #b45309;
+      border-color: #fbbf24;
+      box-shadow: 0 0 14px rgba(245, 158, 11, 0.5);
+    }
+
+    .pill-btn.emerald.active {
+      background: #047857;
+      border-color: #34d399;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.5);
+    }
+
+    .pill-btn.rose.active {
+      background: #be123c;
+      border-color: #fb7185;
+      box-shadow: 0 0 14px rgba(244, 63, 94, 0.5);
+    }
+
+    .pill-btn.sky.active {
+      background: #0369a1;
+      border-color: #38bdf8;
+      box-shadow: 0 0 14px rgba(14, 165, 233, 0.5);
+    }
+
+    .pill-btn.download {
+      color: #38bdf8;
+      background: rgba(2, 132, 199, 0.15);
+      border-color: rgba(56, 189, 248, 0.35);
+      margin-left: 0.35rem;
+    }
+
+    .pill-btn.download:hover {
+      background: #0284c7;
+      color: #fff;
+    }
+
+    .mindmap-svg-wrap {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3.8rem 1rem 1rem 1rem;
+      position: relative;
+    }
+
+    .mindmap-svg-wrap svg {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 12px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Thumbnail styling for Mindmap slides */
+    .thumb-item.mindmap-thumb {
+      background: #1e1b4b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thumb-mindmap-card {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+      padding: 0.3rem;
+    }
+
+    .thumb-card-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .thumb-card-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #f8fafc;
+      text-align: center;
+      line-height: 1.1;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 95%;
+    }
+
+    /* Tab switcher inside benchmark modal */
+    .modal-tab-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.75rem;
+    }
+
+    .tab-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border-color);
+      background: rgba(30, 41, 59, 0.6);
+      color: #94a3b8;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+      background: rgba(51, 65, 85, 0.8);
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      background: #0284c7;
+      border-color: #38bdf8;
+    }
+
+    /* Benchmark Viewport Header & Toggle */
+    .benchmark-header-bar {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 15;
+    }
+
+    .benchmark-header-bar .badge-benchmark {
+      position: static;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-benchmark-toggle {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: #38bdf8;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-benchmark-toggle:hover {
+      background: #0284c7;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -689,13 +917,406 @@
       <div class="image-container" id="img-container">
         <img class="slide-image" id="current-slide-img" src="IMG_20261013_160125.jpg" alt="學生心智圖">
       </div>
+
+      <!-- Interactive Square Mind Map Container (Slides 20-24) -->
+      <div class="mindmap-container" id="mindmap-container" style="display: none;">
+        <div class="mindmap-toolbar">
+          <div class="mindmap-pills">
+            <button class="pill-btn active" id="pill-all" data-view="all" title="全圖總覽 (快捷鍵: 0)">🔍 全圖總覽</button>
+            <button class="pill-btn amber" id="pill-pineapple" data-view="pineapple" title="第一象限：鳳梨汁 (快捷鍵: 1)">🍍 鳳梨汁</button>
+            <button class="pill-btn emerald" id="pill-guava" data-view="guava" title="第二象限：芭樂汁 (快捷鍵: 2)">🍈 芭樂汁</button>
+            <button class="pill-btn rose" id="pill-plum" data-view="plum" title="第三象限：李子果醬 (快捷鍵: 3)">🍒 李子果醬</button>
+            <button class="pill-btn sky" id="pill-education" data-view="education" title="第四象限：教育初衷 (快捷鍵: 4)">🌿 教育初衷</button>
+          </div>
+          <a class="pill-btn download" href="square_mindmap.svg" download="第5課_最好的味覺禮物_方形心智圖.svg" title="下載 SVG 向量圖檔">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            <span>下載心智圖</span>
+          </a>
+        </div>
+        
+        <div class="mindmap-svg-wrap" id="mindmap-svg-wrap">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1100" width="100%" height="100%" id="square-mindmap-svg">
+  <defs>
+    <!-- Background Gradients -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Quadrant Glow Gradients -->
+    <linearGradient id="grad-center" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+
+    <linearGradient id="grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e11d48"/>
+      <stop offset="100%" stop-color="#be123c"/>
+    </linearGradient>
+
+    <linearGradient id="grad-sky" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="shadow-card" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <filter id="shadow-center" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#6366f1" flood-opacity="0.55"/>
+    </filter>
+
+    <style>
+      .quadrant-group { transition: opacity 0.4s ease, transform 0.4s ease; cursor: pointer; }
+      .quadrant-group:hover { filter: brightness(1.08); }
+      .branch-line { fill: none; stroke-linecap: round; transition: stroke-width 0.3s; }
+      .node-card { rx: 8px; ry: 8px; filter: url(#shadow-card); }
+      .node-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif; font-size: 13px; font-weight: 500; fill: #f8fafc; text-anchor: middle; dominant-baseline: middle; user-select: none; }
+      .main-text { font-size: 16px; font-weight: 700; fill: #ffffff; }
+      .sub-text { font-size: 14px; font-weight: 600; fill: #ffffff; }
+      .leaf-text { font-size: 12.5px; font-weight: 500; fill: #e2e8f0; }
+    </style>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="1100" fill="#0f172a" rx="16"/>
+  <circle cx="600" cy="550" r="480" fill="url(#centerGlow)"/>
+
+  <!-- Subtle Quadrant Divider Guides -->
+  <line x1="600" y1="40" x2="600" y2="1060" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,6" opacity="0.35"/>
+  <line x1="40" y1="550" x2="1160" y2="550" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,6" opacity="0.35"/>
+
+  <!-- ========================================== -->
+  <!-- QUADRANT 1: 右上 (TOP-RIGHT) - 手作鳳梨汁    -->
+  <!-- ========================================== -->
+  <g class="quadrant-group" id="group-pineapple" data-quadrant="pineapple">
+    <!-- Main Branch Connector: Center (710, 520) -> (800, 320) -->
+    <path class="branch-line" d="M 710 520 C 760 520, 770 350, 800 320" stroke="#f59e0b" stroke-width="3.5"/>
+
+    <!-- Sub Branch Connectors -->
+    <!-- (890, 320) -> Sub 1 (960, 160) -->
+    <path class="branch-line" d="M 890 320 C 920 320, 930 160, 960 160" stroke="#fbbf24" stroke-width="2.5"/>
+    <!-- (890, 320) -> Sub 2 (960, 300) -->
+    <path class="branch-line" d="M 890 320 C 925 320, 935 300, 960 300" stroke="#fbbf24" stroke-width="2.5"/>
+    <!-- (890, 320) -> Sub 3 (960, 440) -->
+    <path class="branch-line" d="M 890 320 C 925 320, 935 440, 960 440" stroke="#fbbf24" stroke-width="2.5"/>
+
+    <!-- Leaves Connectors -->
+    <!-- Sub 1 -> Leaves -->
+    <path class="branch-line" d="M 1025 160 C 1055 160, 1065 135, 1090 135" stroke="#fde68a" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 160 C 1055 160, 1065 185, 1090 185" stroke="#fde68a" stroke-width="1.8"/>
+
+    <!-- Sub 2 -> Leaves -->
+    <path class="branch-line" d="M 1025 300 C 1055 300, 1065 235, 1090 235" stroke="#fde68a" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 300 C 1055 300, 1065 275, 1090 275" stroke="#fde68a" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 300 C 1055 300, 1065 325, 1090 325" stroke="#fde68a" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 300 C 1055 300, 1065 365, 1090 365" stroke="#fde68a" stroke-width="1.8"/>
+
+    <!-- Sub 3 -> Leaves -->
+    <path class="branch-line" d="M 1025 440 C 1055 440, 1065 415, 1090 415" stroke="#fde68a" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1025 440 C 1055 440, 1065 465, 1090 465" stroke="#fde68a" stroke-width="1.8"/>
+
+    <!-- Main Node: 手作鳳梨汁 -->
+    <rect class="node-card" x="770" y="296" width="145" height="48" fill="url(#grad-amber)"/>
+    <text class="node-text main-text" x="842" y="320">🍍 手作鳳梨汁</text>
+
+    <!-- Sub Nodes -->
+    <rect class="node-card" x="945" y="142" width="95" height="36" fill="#78350f" stroke="#d97706" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="992" y="160">準備材料</text>
+
+    <rect class="node-card" x="945" y="282" width="95" height="36" fill="#78350f" stroke="#d97706" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="992" y="300">製作步驟</text>
+
+    <rect class="node-card" x="945" y="422" width="95" height="36" fill="#78350f" stroke="#d97706" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="992" y="440">成品特徵</text>
+
+    <!-- Leaf Nodes (Cards) -->
+    <!-- 材料 -->
+    <rect class="node-card" x="1080" y="120" width="105" height="30" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1132" y="135">有機金鑽鳳梨</text>
+
+    <rect class="node-card" x="1080" y="170" width="65" height="30" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1112" y="185">開水</text>
+
+    <!-- 步驟 -->
+    <rect class="node-card" x="1075" y="220" width="118" height="30" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1134" y="235">切掉鳳梨頭與削皮</text>
+
+    <rect class="node-card" x="1075" y="260" width="118" height="30" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1134" y="275">除去鳳梨心並切塊</text>
+
+    <rect class="node-card" x="1075" y="310" width="110" height="30" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1130" y="325">裝進玻璃缸備用</text>
+
+    <rect class="node-card" x="1075" y="350" width="110" height="30" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1130" y="365">倒入果汁機攪打</text>
+
+    <!-- 成品 -->
+    <rect class="node-card" x="1080" y="400" width="95" height="30" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1127" y="415">淺黃色果汁</text>
+
+    <rect class="node-card" x="1075" y="450" width="118" height="30" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1134" y="465">上方覆蓋雪白泡沫</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- QUADRANT 2: 左上 (TOP-LEFT) - 童年芭樂汁記憶  -->
+  <!-- ========================================== -->
+  <g class="quadrant-group" id="group-guava" data-quadrant="guava">
+    <!-- Main Branch Connector: Center (490, 520) -> (390, 320) -->
+    <path class="branch-line" d="M 490 520 C 440 520, 430 350, 390 320" stroke="#10b981" stroke-width="3.5"/>
+
+    <!-- Sub Branch Connectors -->
+    <!-- (300, 320) -> Sub 1 (220, 160) -->
+    <path class="branch-line" d="M 300 320 C 270 320, 260 160, 220 160" stroke="#34d399" stroke-width="2.5"/>
+    <!-- (300, 320) -> Sub 2 (220, 300) -->
+    <path class="branch-line" d="M 300 320 C 265 320, 255 300, 220 300" stroke="#34d399" stroke-width="2.5"/>
+    <!-- (300, 320) -> Sub 3 (220, 440) -->
+    <path class="branch-line" d="M 300 320 C 265 320, 255 440, 220 440" stroke="#34d399" stroke-width="2.5"/>
+
+    <!-- Leaves Connectors -->
+    <!-- Sub 1 -> Leaves -->
+    <path class="branch-line" d="M 160 160 C 130 160, 120 160, 95 160" stroke="#a7f3d0" stroke-width="1.8"/>
+
+    <!-- Sub 2 -> Leaves -->
+    <path class="branch-line" d="M 155 300 C 130 300, 115 250, 95 250" stroke="#a7f3d0" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 300 C 130 300, 115 300, 95 300" stroke="#a7f3d0" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 300 C 130 300, 115 350, 95 350" stroke="#a7f3d0" stroke-width="1.8"/>
+
+    <!-- Sub 3 -> Leaves -->
+    <path class="branch-line" d="M 155 440 C 130 440, 115 415, 95 415" stroke="#a7f3d0" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 440 C 130 440, 115 465, 95 465" stroke="#a7f3d0" stroke-width="1.8"/>
+
+    <!-- Main Node: 童年芭樂汁記憶 -->
+    <rect class="node-card" x="275" y="296" width="165" height="48" fill="url(#grad-emerald)"/>
+    <text class="node-text main-text" x="357" y="320">🍈 童年芭樂汁記憶</text>
+
+    <!-- Sub Nodes -->
+    <rect class="node-card" x="145" y="142" width="80" height="36" fill="#064e3b" stroke="#059669" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="185" y="160">契機</text>
+
+    <rect class="node-card" x="145" y="282" width="95" height="36" fill="#064e3b" stroke="#059669" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="300">製作過程</text>
+
+    <rect class="node-card" x="145" y="422" width="95" height="36" fill="#064e3b" stroke="#059669" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="440">成品特色</text>
+
+    <!-- Leaf Nodes (Cards) -->
+    <!-- 契機 -->
+    <rect class="node-card" x="5" y="145" width="130" height="30" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+    <text class="node-text leaf-text" x="70" y="160">爸爸抽獎帶回果汁機</text>
+
+    <!-- 過程 -->
+    <rect class="node-card" x="5" y="235" width="140" height="30" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+    <text class="node-text leaf-text" x="75" y="250">市場買回黃綠色軟芭樂</text>
+
+    <rect class="node-card" x="5" y="285" width="105" height="30" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+    <text class="node-text leaf-text" x="57" y="300">洗淨切成小塊狀</text>
+
+    <rect class="node-card" x="5" y="335" width="120" height="30" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+    <text class="node-text leaf-text" x="65" y="350">整盤投入玻璃容器</text>
+
+    <!-- 特色 -->
+    <rect class="node-card" x="5" y="400" width="100" height="30" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+    <text class="node-text leaf-text" x="55" y="415">芭樂香氣濃郁</text>
+
+    <rect class="node-card" x="5" y="450" width="130" height="30" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+    <text class="node-text leaf-text" x="70" y="465">轉瞬間成為好喝果汁</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- QUADRANT 3: 左下 (BOTTOM-LEFT) - 熬煮李子果醬 -->
+  <!-- ========================================== -->
+  <g class="quadrant-group" id="group-plum" data-quadrant="plum">
+    <!-- Main Branch Connector: Center (490, 580) -> (390, 770) -->
+    <path class="branch-line" d="M 490 580 C 440 580, 430 740, 390 770" stroke="#f43f5e" stroke-width="3.5"/>
+
+    <!-- Sub Branch Connectors -->
+    <!-- (295, 770) -> Sub 1 (220, 650) -->
+    <path class="branch-line" d="M 295 770 C 265 770, 255 650, 220 650" stroke="#fb7185" stroke-width="2.5"/>
+    <!-- (295, 770) -> Sub 2 (220, 770) -->
+    <path class="branch-line" d="M 295 770 C 265 770, 255 770, 220 770" stroke="#fb7185" stroke-width="2.5"/>
+    <!-- (295, 770) -> Sub 3 (220, 920) -->
+    <path class="branch-line" d="M 295 770 C 265 770, 255 920, 220 920" stroke="#fb7185" stroke-width="2.5"/>
+
+    <!-- Leaves Connectors -->
+    <!-- Sub 1 -> Leaves -->
+    <path class="branch-line" d="M 155 650 C 130 650, 115 605, 95 605" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 650 C 130 650, 115 650, 95 650" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 650 C 130 650, 115 695, 95 695" stroke="#fecdd3" stroke-width="1.8"/>
+
+    <!-- Sub 2 -> Leaves -->
+    <path class="branch-line" d="M 155 770 C 130 770, 115 740, 95 740" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 770 C 130 770, 115 775, 95 775" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 770 C 130 770, 115 810, 95 810" stroke="#fecdd3" stroke-width="1.8"/>
+
+    <!-- Sub 3 -> Leaves -->
+    <path class="branch-line" d="M 155 920 C 130 920, 115 865, 95 865" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 920 C 130 920, 115 905, 95 905" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 920 C 130 920, 115 945, 95 945" stroke="#fecdd3" stroke-width="1.8"/>
+    <path class="branch-line" d="M 155 920 C 130 920, 115 985, 95 985" stroke="#fecdd3" stroke-width="1.8"/>
+
+    <!-- Main Node: 熬煮李子果醬 -->
+    <rect class="node-card" x="285" y="746" width="150" height="48" fill="url(#grad-rose)"/>
+    <text class="node-text main-text" x="360" y="770">🍒 熬煮李子果醬</text>
+
+    <!-- Sub Nodes -->
+    <rect class="node-card" x="145" y="632" width="95" height="36" fill="#881337" stroke="#e11d48" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="650">李子特性</text>
+
+    <rect class="node-card" x="145" y="752" width="95" height="36" fill="#881337" stroke="#e11d48" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="770">熬煮流程</text>
+
+    <rect class="node-card" x="145" y="902" width="95" height="36" fill="#881337" stroke="#e11d48" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="192" y="920">熬煮互動</text>
+
+    <!-- Leaf Nodes (Cards) -->
+    <!-- 特性 -->
+    <rect class="node-card" x="10" y="590" width="95" height="30" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+    <text class="node-text leaf-text" x="57" y="605">外觀暗紅美麗</text>
+
+    <rect class="node-card" x="10" y="635" width="120" height="30" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+    <text class="node-text leaf-text" x="70" y="650">口感酸得讓人皺眉</text>
+
+    <rect class="node-card" x="10" y="680" width="120" height="30" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+    <text class="node-text leaf-text" x="70" y="695">大人遊說對皮膚好</text>
+
+    <!-- 流程 -->
+    <rect class="node-card" x="10" y="725" width="120" height="30" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+    <text class="node-text leaf-text" x="70" y="740">搬出最大鍋子開火</text>
+
+    <rect class="node-card" x="10" y="760" width="105" height="30" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+    <text class="node-text leaf-text" x="62" y="775">切開李子取果核</text>
+
+    <rect class="node-card" x="10" y="795" width="130" height="30" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+    <text class="node-text leaf-text" x="75" y="810">加入一包黃砂糖熬煮</text>
+
+    <!-- 互動 -->
+    <rect class="node-card" x="10" y="850" width="120" height="30" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+    <text class="node-text leaf-text" x="70" y="865">果肉融化混合焦糖</text>
+
+    <rect class="node-card" x="10" y="890" width="120" height="30" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+    <text class="node-text leaf-text" x="70" y="905">小湯匙舀出嘗味道</text>
+
+    <rect class="node-card" x="10" y="930" width="135" height="30" fill="#881337" stroke="#fb7185" stroke-width="1.8"/>
+    <text class="node-text leaf-text" x="77" y="945" font-weight="700" fill="#ffe4e6">⭐ 建立小小味覺自信</text>
+
+    <rect class="node-card" x="10" y="970" width="105" height="30" fill="#1e293b" stroke="#f43f5e" stroke-width="1"/>
+    <text class="node-text leaf-text" x="62" y="985">熄火冷卻後裝瓶</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- QUADRANT 4: 右下 (BOTTOM-RIGHT) - 手作初衷與教育意義 -->
+  <!-- ========================================== -->
+  <g class="quadrant-group" id="group-education" data-quadrant="education">
+    <!-- Main Branch Connector: Center (710, 580) -> (790, 770) -->
+    <path class="branch-line" d="M 710 580 C 760 580, 765 740, 790 770" stroke="#0ea5e9" stroke-width="3.5"/>
+
+    <!-- Sub Branch Connectors -->
+    <!-- (930, 770) -> Sub 1 (985, 630) -->
+    <path class="branch-line" d="M 930 770 C 950 770, 960 630, 985 630" stroke="#38bdf8" stroke-width="2.5"/>
+    <!-- (930, 770) -> Sub 2 (985, 770) -->
+    <path class="branch-line" d="M 930 770 C 955 770, 965 770, 985 770" stroke="#38bdf8" stroke-width="2.5"/>
+    <!-- (930, 770) -> Sub 3 (985, 930) -->
+    <path class="branch-line" d="M 930 770 C 950 770, 960 930, 985 930" stroke="#38bdf8" stroke-width="2.5"/>
+
+    <!-- Leaves Connectors -->
+    <!-- Sub 1 -> Leaves -->
+    <path class="branch-line" d="M 1055 630 C 1070 630, 1075 605, 1095 605" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1055 630 C 1070 630, 1075 650, 1095 650" stroke="#bae6fd" stroke-width="1.8"/>
+
+    <!-- Sub 2 -> Leaves -->
+    <path class="branch-line" d="M 1085 770 C 1095 770, 1100 705, 1115 705" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1085 770 C 1095 770, 1100 745, 1115 745" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1085 770 C 1095 770, 1100 790, 1115 790" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1085 770 C 1095 770, 1100 830, 1115 830" stroke="#bae6fd" stroke-width="1.8"/>
+
+    <!-- Sub 3 -> Leaves -->
+    <path class="branch-line" d="M 1055 930 C 1070 930, 1075 885, 1095 885" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1055 930 C 1070 930, 1075 925, 1095 925" stroke="#bae6fd" stroke-width="1.8"/>
+    <path class="branch-line" d="M 1055 930 C 1070 930, 1075 965, 1095 965" stroke="#bae6fd" stroke-width="1.8"/>
+
+    <!-- Main Node: 手作初衷與教育意義 -->
+    <rect class="node-card" x="770" y="746" width="185" height="48" fill="url(#grad-sky)"/>
+    <text class="node-text main-text" x="862" y="770">🌿 手作初衷與教育意義</text>
+
+    <!-- Sub Nodes -->
+    <rect class="node-card" x="970" y="612" width="95" height="36" fill="#0c4a6e" stroke="#0284c7" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="1017" y="630">擔憂現象</text>
+
+    <rect class="node-card" x="965" y="752" width="125" height="36" fill="#0c4a6e" stroke="#0284c7" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="1027" y="770">引導想像植物生成</text>
+
+    <rect class="node-card" x="970" y="912" width="95" height="36" fill="#0c4a6e" stroke="#0284c7" stroke-width="1.5"/>
+    <text class="node-text sub-text" x="1017" y="930">核心價值</text>
+
+    <!-- Leaf Nodes (Cards) -->
+    <!-- 擔憂 -->
+    <rect class="node-card" x="1080" y="590" width="110" height="30" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1135" y="605">隨處可見的茶飲店</text>
+
+    <rect class="node-card" x="1075" y="635" width="122" height="30" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1136" y="650">化學色素麻痺味覺</text>
+
+    <!-- 植物生成 -->
+    <rect class="node-card" x="1100" y="690" width="95" height="30" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1147" y="705">從泥土裡生成</text>
+
+    <rect class="node-card" x="1100" y="730" width="95" height="30" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1147" y="745">開花之後結果</text>
+
+    <rect class="node-card" x="1100" y="775" width="95" height="30" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1147" y="790">陽光照射變甜蜜</text>
+
+    <rect class="node-card" x="1100" y="815" width="95" height="30" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1147" y="830">黑夜星空變堅強</text>
+
+    <!-- 核心價值 -->
+    <rect class="node-card" x="1075" y="870" width="122" height="30" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1136" y="885">嘗食物真正的味道</text>
+
+    <rect class="node-card" x="1075" y="910" width="122" height="30" fill="#1e293b" stroke="#0ea5e9" stroke-width="1"/>
+    <text class="node-text leaf-text" x="1136" y="925">家裡熬的果醬最好</text>
+
+    <rect class="node-card" x="1065" y="950" width="132" height="30" fill="#0369a1" stroke="#38bdf8" stroke-width="1.8"/>
+    <text class="node-text leaf-text" x="1131" y="965" font-weight="700" fill="#e0f2fe">🎁 動手做是最好禮物</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- CENTER THEME NODE: 最好的味覺禮物 (CENTER)   -->
+  <!-- ========================================== -->
+  <g id="center-node-group" style="cursor: pointer;">
+    <rect x="480" y="515" width="240" height="70" rx="22" ry="22" fill="url(#grad-center)" filter="url(#shadow-center)" stroke="#a5b4fc" stroke-width="2.5"/>
+    <text x="600" y="542" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="19" font-weight="800" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">最好的味覺禮物</text>
+    <text x="600" y="567" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="12" font-weight="600" fill="#c7d2fe" text-anchor="middle" dominant-baseline="middle">第5課 · 完整方形心智圖結構</text>
+  </g>
+</svg>
+
+        </div>
+      </div>
     </div>
 
     <!-- Viewport 2: Benchmark Split View -->
     <div class="benchmark-viewport" id="benchmark-viewport">
-      <div class="badge-benchmark">標準心智圖（NotebookLM）</div>
-      <div class="image-container">
-        <img class="slide-image" src="NotebookLM Mind Map (2).png" alt="NotebookLM 標準心智圖">
+      <div class="benchmark-header-bar">
+        <div class="badge-benchmark" id="benchmark-type-badge">標準心智圖（方形結構）</div>
+        <button class="btn btn-benchmark-toggle" id="btn-toggle-benchmark-type" title="切換方形結構 / NotebookLM 長條結構">
+          🔄 切換長條/方形
+        </button>
+      </div>
+      <div class="image-container" id="benchmark-img-container">
+        <img class="slide-image" id="benchmark-display-img" src="square_mindmap.svg" alt="標準心智圖">
       </div>
     </div>
 
@@ -754,7 +1375,7 @@
   <!-- Bottom Thumbnail Drawer -->
   <div class="thumb-drawer" id="thumb-drawer">
     <div class="thumb-drawer-header">
-      <span class="thumb-drawer-title">投影片快速切換（全 19 張）</span>
+      <span class="thumb-drawer-title">投影片快速切換（全 24 張 · 含 5 張模範心智圖示範）</span>
       <button class="btn btn-icon-only" id="btn-close-thumbs">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
@@ -768,13 +1389,28 @@
   <div class="modal-overlay" id="modal-benchmark">
     <div class="modal-dialog">
       <div class="modal-header">
-        <h2 class="modal-title">📌 NotebookLM 完整標準心智圖解析架構</h2>
+        <h2 class="modal-title">📌 模範標準心智圖解析架構</h2>
         <button class="btn btn-icon-only" id="btn-close-benchmark-modal">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
       <div class="modal-body">
-        <img class="benchmark-img-modal" src="NotebookLM Mind Map (2).png" alt="標準心智圖">
+        <div class="modal-tab-bar">
+          <button class="tab-btn active" id="tab-square-btn">📱 完整方形心智圖（視覺平衡推薦）</button>
+          <button class="tab-btn" id="tab-notebook-btn">📜 NotebookLM 原版長條心智圖</button>
+        </div>
+        <div id="modal-square-view">
+          <img class="benchmark-img-modal" src="square_mindmap.svg" alt="方形心智圖" style="max-height: 55vh;">
+          <p style="text-align: center; font-size: 0.85rem; color: #94a3b8; margin: -0.5rem 0 1rem 0;">
+            💡 改善原版長條不易看清的問題，以 1200×1100 四象限平衡放射佈局，文字更大、視野開闊。
+          </p>
+        </div>
+        <div id="modal-notebook-view" style="display: none;">
+          <img class="benchmark-img-modal" src="NotebookLM Mind Map (2).png" alt="NotebookLM 原版長條心智圖" style="max-height: 55vh;">
+          <p style="text-align: center; font-size: 0.85rem; color: #94a3b8; margin: -0.5rem 0 1rem 0;">
+            ⚠️ 原版心智圖為長條直式結構，在 16:9 電腦螢幕或教室投影機上縮放比例較細小。
+          </p>
+        </div>
         <h3>四大核心主支脈絡標準：</h3>
         <ul>
           <li><strong>一、手作鳳梨汁</strong>：
@@ -1135,6 +1771,97 @@
         ],
         formatIssues: "左右版面邏輯跳躍，缺乏視覺順時針或區塊整合感。",
         suggestions: "整合現代與童年兩大時間軸，或按主題重組四大板塊，並將敘事句分解為層級分明的關鍵詞樹狀圖。"
+      },
+      {
+        id: 20,
+        type: "mindmap",
+        viewBox: "0 0 1200 1100",
+        focus: "all",
+        filename: "square_mindmap.svg",
+        title: "🌟 模範心智圖 · 方形結構全圖總覽",
+        defaultRotation: 0,
+        teacherNote: "全篇核心知識地圖，改善原版長條結構，以 1200×1100 方形平衡四象限展開",
+        overview: "打破原長條心智圖縱向拉長不易一次看清的缺點，重新採用中央放射、四大象限平衡展開的方形幾何結構。中央主題為《最好的味覺禮物》，四方枝幹均勻對稱，閱讀視野開闊。",
+        defects: [
+          "<strong>四大象限色彩編碼與記憶錨點</strong>：以琥珀金（右上-鳳梨汁）、翠綠（左上-芭樂汁）、紫紅（左下-李子果醬）、晴空藍（右下-教育初衷）四色區隔，大幅強化大腦的圖像色彩提取記憶。",
+          "<strong>層級嚴謹清晰、邏輯脈絡分明</strong>：中心主題 ➔ 一級主幹 ➔ 二級分類 ➔ 三級特徵細節，遵循標準放射性結構，層次分明。",
+          "<strong>精準提煉關鍵字，杜絕長句堆疊</strong>：將課文敘事提煉為 2~8 字核心關鍵語詞，徹底擺脫全班作業中常見的整段抄錄與流水帳式筆記弊端。",
+          "<strong>完整收納深層哲思與情感互動</strong>：補齊 90% 學生遺漏的『建立小小味覺自信』與『泥土生成、陽光甜蜜、黑夜堅強』生命哲思意境！"
+        ],
+        formatIssues: "示範心智圖最佳排版實例：全圖比例 12:11 偏向方形，投影於教室大螢幕或電子白板皆能完整清晰呈現，字距線條皆經視認性最佳化設計。",
+        suggestions: "課堂教學引導：可先引導學生綜覽全圖，觀察四個主幹的關聯性與色彩編碼，再使用上方按鈕或按下快速鍵 1~4，逐一放大各象限深入剖析。"
+      },
+      {
+        id: 21,
+        type: "mindmap",
+        viewBox: "520 40 680 500",
+        focus: "pineapple",
+        filename: "square_mindmap.svg",
+        title: "🍍 示範解析一 · 手作鳳梨汁（第一象限放大聚焦）",
+        defaultRotation: 0,
+        teacherNote: "第一象限（右上·琥珀金黃）局部聚焦",
+        overview: "聚焦課文開篇『手作鳳梨汁』，拆解準備材料、製作步驟、成品特徵三大次級分支，展示如何將動作工序轉化為結構清晰的心智圖節點。",
+        defects: [
+          "<strong>材料抓取精準乾淨</strong>：提取『有機金鑽鳳梨』與『開水』，點出健康純粹手作的本質，不冗長敘述。",
+          "<strong>步驟動詞提煉到位</strong>：『削皮切頭』➔『去芯切塊』➔『裝入玻璃缸』➔『果汁機攪打』，以動態動詞引導流程，擺脫學生作業中 1~7 點的僵硬食譜條列。",
+          "<strong>感官色彩鮮活描摹</strong>：次級分支精準提取『淺黃色果汁』搭配『上方覆蓋雪白泡沫』，視覺對比躍然紙上。"
+        ],
+        formatIssues: "第一象限向右上方延展，線條弧度平滑自然，卡片節點高低錯落，既符合自然閱讀動線，又維持版面緊湊俐落。",
+        suggestions: "教學要點：引導學生對照第1、7、14張作業，學習如何將冗長的生活口語精煉為簡潔明確的心智圖關鍵詞節點。"
+      },
+      {
+        id: 22,
+        type: "mindmap",
+        viewBox: "0 40 680 500",
+        focus: "guava",
+        filename: "square_mindmap.svg",
+        title: "🍈 示範解析二 · 童年芭樂汁記憶（第二象限放大聚焦）",
+        defaultRotation: 0,
+        teacherNote: "第二象限（左上·翠綠薄荷）局部聚焦",
+        overview: "聚焦作者回憶父親與童年家庭氛圍，涵蓋契機（果汁機由來）、製作過程（市場選材與處理）以及成品特色（香氣與美味），展現時間軸與親情線索。",
+        defects: [
+          "<strong>情感契機精煉提取</strong>：『爸爸抽獎帶回果汁機』，一句關鍵詞即點出童年回憶的開端，保留原文溫馨生動的生活情趣。",
+          "<strong>食材特徵精準觀察</strong>：提煉『市場買回黃綠色軟芭樂』，捕捉熟成芭樂的顏色與軟硬特徵，導正部分學生自行腦補『甘草芭樂』等非課文內容的錯誤。",
+          "<strong>嗅覺與味覺通感呈現</strong>：提煉『芭樂香氣濃郁』與『轉瞬間成為好喝果汁』，展現果汁機運轉後的驚喜與美味感官體驗。"
+        ],
+        formatIssues: "第二象限向左上方伸展，色彩採用翠綠薄荷色系，視覺清新舒暢，與鳳梨汁的琥珀金黃形成和諧的對稱美感。",
+        suggestions: "教學要點：強調『心智圖要忠於文本事實』，提醒學生從課文中尋找線索，避免將個人主觀生活印象誤植進課文結構圖。"
+      },
+      {
+        id: 23,
+        type: "mindmap",
+        viewBox: "0 530 680 530",
+        focus: "plum",
+        filename: "square_mindmap.svg",
+        title: "🍒 示範解析三 · 熬煮李子果醬（第三象限放大聚焦）",
+        defaultRotation: 0,
+        teacherNote: "第三象限（左下·紫紅寶石）局部聚焦",
+        overview: "聚焦母親熬煮李子果醬的經典段落，包含李子特性、熬煮流程以及最重要的親子互動環節，完整收納了全班作業中最常遺漏的關鍵精神！",
+        defects: [
+          "<strong>外觀與口感反差提煉</strong>：『暗紅美麗』與『酸得讓人皺眉』形成鮮明對照，呈現孩子對李子的最初排斥，為後續果醬熬煮鋪陳對比張力。",
+          "<strong>熬煮工序去蕪存菁</strong>：搬出最大鍋子開火 ➔ 切開取果核 ➔ 加入黃砂糖 ➔ 果肉融化混和焦糖 ➔ 熄火冷卻裝瓶，條理清晰。",
+          "<strong>⭐ 全班最常遺漏核心亮點：【建立小小味覺自信】</strong>！課文中媽媽讓孩子用小湯匙舀出嘗味道，使孩子從排斥到獲得『味覺自信』，是心靈成長核心，在此完整呈現！"
+        ],
+        formatIssues: "第三象限向左下方伸展，採用紫紅寶石色調，層級分明，核心亮點以星號高亮特殊樣式標示，視覺辨識度極高。",
+        suggestions: "教學要點：提醒全班同學『心智圖不能只停留在動作表面（做果醬）』，必須挖掘並提煉出事件背後的情感變化與心理成長！"
+      },
+      {
+        id: 24,
+        type: "mindmap",
+        viewBox: "520 530 680 530",
+        focus: "education",
+        filename: "square_mindmap.svg",
+        title: "🌿 示範解析四 · 手作初衷與教育意義（第四象限放大聚焦）",
+        defaultRotation: 0,
+        teacherNote: "第四象限（右下·晴空天藍）局部聚焦",
+        overview: "聚焦課文昇華與思想主旨，涵蓋對現代化學飲品的擔憂、大自然植物生成的想像，以及手作是最好禮物的核心價值，呈現最高層次的思想提煉。",
+        defects: [
+          "<strong>現代生活反思提煉</strong>：『隨處可見的茶飲店』與『化學色素麻痺味覺』，點出作者堅持親自動手做的強烈動機。",
+          "<strong>大自然生長哲思意象（課文最美篇章，90%學生遺漏）</strong>：提煉出『泥土裡生成』➔『開花之後結果』➔『陽光照射變甜蜜』➔『黑夜星空變堅強』四大生命階段！",
+          "<strong>全文核心主題昇華</strong>：提煉『嘗食物真正味道』➔『自己家裡熬的果醬最好』➔『🎁 自己動手做是最好的味覺禮物』，首尾呼應課文篇名！"
+        ],
+        formatIssues: "第四象限向右下方展開，晴空天藍色系明亮開闊，末端禮物節點高亮凸顯，為全幅心智圖劃下完美句點。",
+        suggestions: "教學要點：引導學生理解心智圖的最高境界，是能將作者的價值觀、人生哲思與情感昇華提煉為具備感染力的心靈架構。"
       }
     ];
 
@@ -1146,6 +1873,8 @@
     let isPanelOpen = true;
 
     // DOM Elements
+    const imgContainer = document.getElementById("img-container");
+    const mindmapContainer = document.getElementById("mindmap-container");
     const slideImg = document.getElementById("current-slide-img");
     const slideBadge = document.getElementById("slide-badge");
     const slideCounter = document.getElementById("slide-counter");
@@ -1165,6 +1894,80 @@
       setTimeout(() => toast.classList.remove("show"), 2200);
     }
 
+    // Smooth SVG ViewBox Camera Animation
+    let currentVbAnimation = null;
+    function animateViewBox(targetVbStr, duration = 600) {
+      const svg = document.getElementById("square-mindmap-svg");
+      if (!svg) return;
+
+      const currentVbStr = svg.getAttribute("viewBox") || "0 0 1200 1100";
+      const startVals = currentVbStr.split(" ").map(Number);
+      const targetVals = targetVbStr.split(" ").map(Number);
+
+      if (currentVbAnimation) {
+        cancelAnimationFrame(currentVbAnimation);
+        currentVbAnimation = null;
+      }
+
+      const startTime = performance.now();
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = easeInOutCubic(progress);
+
+        const curX = startVals[0] + (targetVals[0] - startVals[0]) * ease;
+        const curY = startVals[1] + (targetVals[1] - startVals[1]) * ease;
+        const curW = startVals[2] + (targetVals[2] - startVals[2]) * ease;
+        const curH = startVals[3] + (targetVals[3] - startVals[3]) * ease;
+
+        svg.setAttribute("viewBox", `${curX} ${curY} ${curW} ${curH}`);
+
+        if (progress < 1) {
+          currentVbAnimation = requestAnimationFrame(step);
+        } else {
+          currentVbAnimation = null;
+        }
+      }
+
+      currentVbAnimation = requestAnimationFrame(step);
+    }
+
+    // Quadrant Highlight Control
+    function updateQuadrantHighlight(focus) {
+      const groups = {
+        pineapple: document.getElementById("group-pineapple"),
+        guava: document.getElementById("group-guava"),
+        plum: document.getElementById("group-plum"),
+        education: document.getElementById("group-education"),
+        center: document.getElementById("center-node-group")
+      };
+
+      if (focus === "all") {
+        Object.values(groups).forEach(g => {
+          if (g) {
+            g.style.opacity = "1";
+            g.style.filter = "none";
+          }
+        });
+      } else {
+        Object.keys(groups).forEach(k => {
+          const g = groups[k];
+          if (!g) return;
+          if (k === focus || k === "center") {
+            g.style.opacity = "1";
+            g.style.filter = "drop-shadow(0 0 18px rgba(255, 255, 255, 0.4))";
+          } else {
+            g.style.opacity = "0.2";
+            g.style.filter = "none";
+          }
+        });
+      }
+    }
+
     // Render Slide by Index
     function renderSlide(index) {
       if (index < 0) index = 0;
@@ -1173,73 +1976,151 @@
 
       const slide = slidesData[currentIndex];
 
-      // Update Image
-      slideImg.src = slide.filename;
-      currentRotation = slide.defaultRotation || 0;
-      currentZoom = 1;
-      applyImageTransform();
+      if (slide.type === "mindmap") {
+        // Mind Map Slide Mode
+        imgContainer.style.display = "none";
+        mindmapContainer.style.display = "flex";
 
-      // Update Badges & Counter
-      slideBadge.textContent = `第 ${slide.id} / ${slidesData.length} 張 · ${slide.title}`;
-      slideCounter.textContent = `第 ${slide.id} / ${slidesData.length} 張`;
-      critiquePanelTitle.textContent = `第 ${slide.id} 張 · 呈現缺點剖析`;
+        animateViewBox(slide.viewBox, 550);
+        updateQuadrantHighlight(slide.focus);
 
-      // Update Panel Content
-      let defectsHtml = slide.defects.map(d => `<li>${d}</li>`).join("");
+        // Update pills active status
+        document.querySelectorAll(".pill-btn[data-view]").forEach(btn => {
+          if (btn.dataset.view === slide.focus) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
 
-      panelContent.innerHTML = `
-        <div class="critique-card">
-          <div class="card-title">
-            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            作品概況
-          </div>
-          <div class="card-body">
-            <strong>檔案名稱：</strong>${slide.filename}<br>
-            <strong>結構摘要：</strong>${slide.overview}
-          </div>
-        </div>
+        slideBadge.textContent = `第 ${slide.id} / ${slidesData.length} 張 · 🌟 模範心智圖`;
+        slideCounter.textContent = `第 ${slide.id} / ${slidesData.length} 張`;
+        critiquePanelTitle.textContent = `${slide.title}`;
 
-        ${slide.teacherNote ? `
-        <div class="critique-card teacher-note">
-          <div class="card-title teacher">
-            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-            老師現場紅筆評語
-          </div>
-          <div class="card-body">
-            ${slide.teacherNote}
-          </div>
-        </div>` : ''}
+        let pointsHtml = slide.defects.map(d => `<li>${d}</li>`).join("");
 
-        <div class="critique-card danger">
-          <div class="card-title danger">
-            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-            與標準心智圖對照之主要缺點
+        panelContent.innerHTML = `
+          <div class="critique-card" style="border-left: 4px solid #6366f1; background: rgba(99, 102, 241, 0.08);">
+            <div class="card-title" style="color: #a5b4fc;">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              架構定位與設計說明
+            </div>
+            <div class="card-body">
+              <strong>展示區塊：</strong>${slide.title}<br>
+              <strong>結構概述：</strong>${slide.overview}
+            </div>
           </div>
-          <div class="card-body">
-            <ul>${defectsHtml}</ul>
-          </div>
-        </div>
 
-        <div class="critique-card warning">
-          <div class="card-title warning">
-            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"></path></svg>
-            排版與心智圖繪製形式缺失
+          <div class="critique-card teacher-note">
+            <div class="card-title teacher">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              課堂教學引導重點
+            </div>
+            <div class="card-body">
+              ${slide.teacherNote}
+            </div>
           </div>
-          <div class="card-body">
-            ${slide.formatIssues}
-          </div>
-        </div>
 
-        <div class="critique-card success">
-          <div class="card-title success">
-            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            具體改進指導建議
+          <div class="critique-card success">
+            <div class="card-title success">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              模範心智圖優勢與關鍵詞示範
+            </div>
+            <div class="card-body">
+              <ul>${pointsHtml}</ul>
+            </div>
           </div>
-          <div class="card-body">
-            ${slide.suggestions}
+
+          <div class="critique-card warning">
+            <div class="card-title warning">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"></path></svg>
+              針對全班常見錯誤之導正建議
+            </div>
+            <div class="card-body">
+              ${slide.formatIssues}
+            </div>
           </div>
-        </div>
-      `;
+
+          <div class="critique-card" style="border-left: 4px solid #38bdf8; background: rgba(56, 189, 248, 0.08);">
+            <div class="card-title" style="color: #38bdf8;">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+              投影教學提示
+            </div>
+            <div class="card-body">
+              ${slide.suggestions}
+            </div>
+          </div>
+        `;
+      } else {
+        // Student Homework Photo Mode
+        mindmapContainer.style.display = "none";
+        imgContainer.style.display = "flex";
+
+        slideImg.src = slide.filename;
+        currentRotation = slide.defaultRotation || 0;
+        currentZoom = 1;
+        applyImageTransform();
+
+        slideBadge.textContent = `第 ${slide.id} / ${slidesData.length} 張 · 學生作品`;
+        slideCounter.textContent = `第 ${slide.id} / ${slidesData.length} 張`;
+        critiquePanelTitle.textContent = `第 ${slide.id} 張 · 呈現缺點剖析`;
+
+        let defectsHtml = slide.defects.map(d => `<li>${d}</li>`).join("");
+
+        panelContent.innerHTML = `
+          <div class="critique-card">
+            <div class="card-title">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              作品概況
+            </div>
+            <div class="card-body">
+              <strong>檔案名稱：</strong>${slide.filename}<br>
+              <strong>結構摘要：</strong>${slide.overview}
+            </div>
+          </div>
+
+          ${slide.teacherNote ? `
+          <div class="critique-card teacher-note">
+            <div class="card-title teacher">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+              老師現場紅筆評語
+            </div>
+            <div class="card-body">
+              ${slide.teacherNote}
+            </div>
+          </div>` : ''}
+
+          <div class="critique-card danger">
+            <div class="card-title danger">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+              與標準心智圖對照之主要缺點
+            </div>
+            <div class="card-body">
+              <ul>${defectsHtml}</ul>
+            </div>
+          </div>
+
+          <div class="critique-card warning">
+            <div class="card-title warning">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"></path></svg>
+              排版與心智圖繪製形式缺失
+            </div>
+            <div class="card-body">
+              ${slide.formatIssues}
+            </div>
+          </div>
+
+          <div class="critique-card success">
+            <div class="card-title success">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              具體改進指導建議
+            </div>
+            <div class="card-body">
+              ${slide.suggestions}
+            </div>
+          </div>
+        `;
+      }
 
       // Update Active Thumbnail
       document.querySelectorAll(".thumb-item").forEach((thumb, i) => {
@@ -1274,17 +2155,30 @@
     }
 
     function rotateImage() {
+      if (slidesData[currentIndex].type === "mindmap") {
+        showToast("模範心智圖已是最佳視角，無需旋轉");
+        return;
+      }
       currentRotation = (currentRotation + 90) % 360;
       applyImageTransform();
       showToast(`旋轉至 ${currentRotation}°`);
     }
 
     function zoomIn() {
+      if (slidesData[currentIndex].type === "mindmap") {
+        showToast("請點擊上方藥丸標籤或象限進行局部聚焦");
+        return;
+      }
       currentZoom = Math.min(currentZoom + 0.25, 2.5);
       applyImageTransform();
     }
 
     function zoomReset() {
+      if (slidesData[currentIndex].type === "mindmap") {
+        renderSlide(19);
+        showToast("已回到模範心智圖全圖總覽");
+        return;
+      }
       currentZoom = 1;
       currentRotation = slidesData[currentIndex].defaultRotation || 0;
       applyImageTransform();
@@ -1345,16 +2239,65 @@
       slidesData.forEach((slide, idx) => {
         const item = document.createElement("div");
         item.className = `thumb-item ${idx === 0 ? "active" : ""}`;
-        item.title = `第 ${slide.id} 張 · ${slide.filename}`;
-        item.innerHTML = `
-          <img src="${slide.filename}" alt="${slide.title}">
-          <span class="thumb-number">${slide.id}</span>
-        `;
+
+        if (slide.type === "mindmap") {
+          let badgeColor = "#4f46e5";
+          let icon = "🌟";
+          let label = "模範總覽";
+          if (slide.focus === "pineapple") { badgeColor = "#d97706"; icon = "🍍"; label = "手作鳳梨"; }
+          else if (slide.focus === "guava") { badgeColor = "#059669"; icon = "🍈"; label = "童年芭樂"; }
+          else if (slide.focus === "plum") { badgeColor = "#e11d48"; icon = "🍒"; label = "李子果醬"; }
+          else if (slide.focus === "education") { badgeColor = "#0284c7"; icon = "🌿"; label = "教育初衷"; }
+
+          item.classList.add("mindmap-thumb");
+          item.title = `第 ${slide.id} 張 · ${slide.title}`;
+          item.innerHTML = `
+            <div class="thumb-mindmap-card" style="background: linear-gradient(135deg, ${badgeColor}, #0f172a);">
+              <span class="thumb-card-icon">${icon}</span>
+              <span class="thumb-card-title">${label}</span>
+            </div>
+            <span class="thumb-number" style="background: ${badgeColor}; color: #fff;">${slide.id}</span>
+          `;
+        } else {
+          item.title = `第 ${slide.id} 張 · ${slide.filename}`;
+          item.innerHTML = `
+            <img src="${slide.filename}" alt="${slide.title}">
+            <span class="thumb-number">${slide.id}</span>
+          `;
+        }
+
         item.addEventListener("click", () => {
           renderSlide(idx);
           thumbDrawer.classList.remove("active");
         });
         thumbStrip.appendChild(item);
+      });
+    }
+
+    // Initialize Mindmap Interactive Clicking
+    function initMindmapInteractions() {
+      const pineapple = document.getElementById("group-pineapple");
+      const guava = document.getElementById("group-guava");
+      const plum = document.getElementById("group-plum");
+      const education = document.getElementById("group-education");
+      const center = document.getElementById("center-node-group");
+
+      if (pineapple) pineapple.addEventListener("click", () => renderSlide(20));
+      if (guava) guava.addEventListener("click", () => renderSlide(21));
+      if (plum) plum.addEventListener("click", () => renderSlide(22));
+      if (education) education.addEventListener("click", () => renderSlide(23));
+      if (center) center.addEventListener("click", () => renderSlide(19));
+
+      // Pill buttons
+      document.querySelectorAll(".pill-btn[data-view]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const view = btn.dataset.view;
+          if (view === "all") renderSlide(19);
+          else if (view === "pineapple") renderSlide(20);
+          else if (view === "guava") renderSlide(21);
+          else if (view === "plum") renderSlide(22);
+          else if (view === "education") renderSlide(23);
+        });
       });
     }
 
@@ -1398,9 +2341,50 @@
       if (e.target === summaryModal) summaryModal.classList.remove("active");
     });
 
+    // Modal Benchmark Tab Switcher
+    const tabSquareBtn = document.getElementById("tab-square-btn");
+    const tabNotebookBtn = document.getElementById("tab-notebook-btn");
+    const modalSquareView = document.getElementById("modal-square-view");
+    const modalNotebookView = document.getElementById("modal-notebook-view");
+
+    if (tabSquareBtn && tabNotebookBtn) {
+      tabSquareBtn.addEventListener("click", () => {
+        tabSquareBtn.classList.add("active");
+        tabNotebookBtn.classList.remove("active");
+        modalSquareView.style.display = "block";
+        modalNotebookView.style.display = "none";
+      });
+      tabNotebookBtn.addEventListener("click", () => {
+        tabNotebookBtn.classList.add("active");
+        tabSquareBtn.classList.remove("active");
+        modalSquareView.style.display = "none";
+        modalNotebookView.style.display = "block";
+      });
+    }
+
+    // Benchmark Viewport Split Toggle (Square vs NotebookLM)
+    const btnToggleBenchmarkType = document.getElementById("btn-toggle-benchmark-type");
+    const benchmarkDisplayImg = document.getElementById("benchmark-display-img");
+    const benchmarkTypeBadge = document.getElementById("benchmark-type-badge");
+    let benchmarkIsSquare = true;
+
+    if (btnToggleBenchmarkType) {
+      btnToggleBenchmarkType.addEventListener("click", () => {
+        benchmarkIsSquare = !benchmarkIsSquare;
+        if (benchmarkIsSquare) {
+          benchmarkDisplayImg.src = "square_mindmap.svg";
+          benchmarkTypeBadge.textContent = "標準心智圖（方形結構）";
+          showToast("已切換為方形標準心智圖");
+        } else {
+          benchmarkDisplayImg.src = "NotebookLM Mind Map (2).png";
+          benchmarkTypeBadge.textContent = "標準心智圖（NotebookLM 長條）";
+          showToast("已切換為原版長條心智圖");
+        }
+      });
+    }
+
     // Keyboard Shortcuts
     window.addEventListener("keydown", (e) => {
-      // Ignore when typing inside inputs
       if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
 
       switch(e.key) {
@@ -1443,7 +2427,19 @@
           toggleFullscreen();
           break;
         case "0":
-          zoomReset();
+          if (currentIndex >= 19) renderSlide(19); else zoomReset();
+          break;
+        case "1":
+          if (currentIndex >= 19) renderSlide(20);
+          break;
+        case "2":
+          if (currentIndex >= 19) renderSlide(21);
+          break;
+        case "3":
+          if (currentIndex >= 19) renderSlide(22);
+          break;
+        case "4":
+          if (currentIndex >= 19) renderSlide(23);
           break;
         case "+":
         case "=":
@@ -1472,7 +2468,6 @@
       const diffX = touchEndX - touchStartX;
       const diffY = touchEndY - touchStartY;
 
-      // Ensure horizontal swipe
       if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
         if (diffX < 0) nextSlide();
         else prevSlide();
@@ -1481,6 +2476,7 @@
 
     // Initialize
     initThumbnails();
+    initMindmapInteractions();
     renderSlide(0);
   </script>
 </body>
