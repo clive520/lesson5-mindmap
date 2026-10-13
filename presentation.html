@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>第5課《最好的味覺禮物》心智圖簡報與缺點剖析</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍍</text></svg>">
   <style>
     :root {
       --bg-primary: #0f172a;
@@ -829,6 +830,8 @@
       border-radius: 12px;
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
     }
+
+    /* Thumbnail styling for Mindmap slides */
     .thumb-item.mindmap-thumb {
       background: #1e1b4b;
       display: flex;
@@ -990,31 +993,30 @@
         <div class="mindmap-toolbar">
           <!-- Style Switcher Bar -->
           <div class="mindmap-style-bar">
-            <span class="style-label">憸冽?豢?嚗?/span>
-            <button class="style-btn active" data-style="standard" id="style-btn-standard" title="撟曆?璅?蝯? (敹急?? Z)">?? 撟曆?璅?</button>
-            <button class="style-btn illu" data-style="illustrated" id="style-btn-illustrated" title="隤脫?銝駁??鞊???(敹急?? X)">? 鞊??</button>
+            <span class="style-label">風格選擇：</span>
+            <button class="style-btn active" data-style="standard" id="style-btn-standard" title="幾何標準結構 (快捷鍵: Z)">📐 幾何標準</button>
+            <button class="style-btn illu" data-style="illustrated" id="style-btn-illustrated" title="課文主題插畫豐富版 (快捷鍵: X)">🎨 豐富插畫</button>
           </div>
 
           <!-- Quadrant Navigation Pills -->
           <div class="mindmap-pills">
-            <button class="pill-btn active" id="pill-all" data-view="all" title="?典?蝮質汗 (敹急?? 0)">?? ?典?蝮質汗</button>
-            <button class="pill-btn amber" id="pill-pineapple" data-view="pineapple" title="蝚砌?鞊⊿?嚗陶璇冽? (敹急?? 1)">?? 曈單◢瘙?/button>
-            <button class="pill-btn emerald" id="pill-guava" data-view="guava" title="蝚砌?鞊⊿?嚗璅? (敹急?? 2)">?? ?剜?瘙?/button>
-            <button class="pill-btn rose" id="pill-plum" data-view="plum" title="蝚砌?鞊⊿?嚗?摮???(敹急?? 3)">?? ???</button>
-            <button class="pill-btn sky" id="pill-education" data-view="education" title="蝚砍?鞊⊿?嚗??脣?銵?(敹急?? 4)">? ??◎</button>
+            <button class="pill-btn active" id="pill-all" data-view="all" title="全圖總覽 (快捷鍵: 0)">🔍 全圖總覽</button>
+            <button class="pill-btn amber" id="pill-pineapple" data-view="pineapple" title="第一象限：鳳梨汁 (快捷鍵: 1)">🍍 鳳梨汁</button>
+            <button class="pill-btn emerald" id="pill-guava" data-view="guava" title="第二象限：芭樂汁 (快捷鍵: 2)">🍈 芭樂汁</button>
+            <button class="pill-btn rose" id="pill-plum" data-view="plum" title="第三象限：李子果醬 (快捷鍵: 3)">🍒 李子果醬</button>
+            <button class="pill-btn sky" id="pill-education" data-view="education" title="第四象限：教育初衷 (快捷鍵: 4)">🌿 教育初衷</button>
           </div>
 
           <!-- Download Action -->
           <div class="mindmap-actions">
-            <a class="pill-btn download" id="btn-download-mindmap" href="square_mindmap.svg" download="蝚?隤淪?憟賜??唾死蝳桃_?孵耦敹??svg" title="銝??嗅?憸冽 SVG ????">
+            <a class="pill-btn download" id="btn-download-mindmap" href="square_mindmap.svg" download="第5課_最好的味覺禮物_方形心智圖.svg" title="下載當前風格 SVG 向量圖檔">
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-              <span id="download-btn-text">銝?璅???SVG</span>
+              <span id="download-btn-text">下載標準版 SVG</span>
             </a>
           </div>
         </div>
         
         <div class="mindmap-svg-wrap" id="mindmap-svg-wrap">
-          <!-- Style 1: 撟曆?璅?蝯? (Square Standard) -->
           <div id="svg-layer-standard" class="svg-style-layer" style="display: flex;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1100" width="100%" height="100%" id="square-mindmap-svg">
   <defs>
@@ -1384,8 +1386,7 @@
   </g>
 </svg>
           </div>
-
-          <!-- Style 2: 隤脫?銝駁??鞊???(Enriched Illustrated Mindmap) -->
+          <!-- Style 2: 課文主題插畫豐富版 -->
           <div id="svg-layer-illustrated" class="svg-style-layer" style="display: none;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1100" width="100%" height="100%" id="illustrated-mindmap-svg">
   <defs>
@@ -1957,10 +1958,13 @@
     <text x="600" y="567" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="12" font-weight="600" fill="#c7d2fe" text-anchor="middle" dominant-baseline="middle">第5課 · 豐富插畫心智圖</text>
   </g>
 </svg>
+
           </div>
+
         </div>
       </div>
     </div>
+
     <!-- Viewport 2: Benchmark Split View -->
     <div class="benchmark-viewport" id="benchmark-viewport">
       <div class="benchmark-header-bar">
@@ -2029,7 +2033,7 @@
   <!-- Bottom Thumbnail Drawer -->
   <div class="thumb-drawer" id="thumb-drawer">
     <div class="thumb-drawer-header">
-      <span class="thumb-drawer-title">?蔣?翰??????25 撘?繚 ??2 蝔桅◢?潛內蝭? 4 鞊⊿??嚗?/span>
+      <span class="thumb-drawer-title">投影片快速切換（全 25 張 · 含 6 張模範心智圖示範）</span>
       <button class="btn btn-icon-only" id="btn-close-thumbs">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
@@ -2050,25 +2054,29 @@
       </div>
       <div class="modal-body">
         <div class="modal-tab-bar">
-          <button class="tab-btn active" id="tab-square-btn">?? 撟曆?璅?嚗敶Ｗ?鞊⊿?嚗?/button>
-          <button class="tab-btn" id="tab-illu-btn">? 隤脫?銝駁??鞊???/button>
-          <button class="tab-btn" id="tab-notebook-btn">?? NotebookLM ???瑟?</button>
+          <button class="tab-btn active" id="tab-square-btn">📐 幾何標準（方形四象限）</button>
+          <button class="tab-btn" id="tab-illu-btn">🎨 課文主題插畫豐富版</button>
+          <button class="tab-btn" id="tab-notebook-btn">📜 NotebookLM 原版長條心智圖</button>
         </div>
         <div id="modal-square-view">
-          <img class="benchmark-img-modal" src="square_mindmap.svg" alt="?孵耦敹?? style="max-height: 55vh;">
+          <img class="benchmark-img-modal" src="square_mindmap.svg" alt="方形心智圖" style="max-height: 55vh;">
           <p style="text-align: center; font-size: 0.85rem; color: #94a3b8; margin: -0.5rem 0 1rem 0;">
-            ? ?孵????瑟?銝?????憿?隞?1200?1100 ?情?像銵⊥撠?撅嚗?摮憭扼?????          </p>
+            💡 改善原版長條不易看清的問題，以 1200×1100 四象限平衡放射佈局，文字更大、視野開闊。
+          </p>
         </div>
         <div id="modal-illu-view" style="display: none;">
-          <img class="benchmark-img-modal" src="illustrated_mindmap.svg" alt="隤脫?銝駁??鞊?敹?? style="max-height: 55vh;">
+          <img class="benchmark-img-modal" src="illustrated_mindmap.svg" alt="課文主題插畫豐富心智圖" style="max-height: 55vh;">
           <p style="text-align: center; font-size: 0.85rem; color: #94a3b8; margin: -0.5rem 0 1rem 0;">
-            ? 撱嗥??孵耦蝯???皜摨佗?銝血???舀?憓溶隤脫?銝駁??嚗陶璇冽?瘙???拳??格?摮??野?匱??蝳桃??嚗?琿?頛舐?瑽???蝢?嚗?          </p>
+            🎨 延續方形結構的高清晰度，並在各分支旁增添課文主題插畫（鳳梨果汁機、抽獎箱、熬煮李子鍋、泥土幼苗與禮物盒），兼具邏輯結構與圖像美感！
+          </p>
         </div>
         <div id="modal-notebook-view" style="display: none;">
-          <img class="benchmark-img-modal" src="NotebookLM Mind Map (2).png" alt="NotebookLM ???瑟?敹?? style="max-height: 55vh;">
+          <img class="benchmark-img-modal" src="NotebookLM Mind Map (2).png" alt="NotebookLM 原版長條心智圖" style="max-height: 55vh;">
           <p style="text-align: center; font-size: 0.85rem; color: #94a3b8; margin: -0.5rem 0 1rem 0;">
-            ?? ??敹??瑟??游?蝯?嚗 16:9 ?餉?Ｗ???摰斗?敶望?銝葬?暹?靘?蝝啣???          </p>
+            ⚠️ 原版心智圖為長條直式結構，在 16:9 電腦螢幕或教室投影機上縮放比例較細小。
+          </p>
         </div>
+
         <h3>四大核心主支脈絡標準：</h3>
         <ul>
           <li><strong>一、手作鳳梨汁</strong>：
@@ -2437,18 +2445,18 @@
         viewBox: "0 0 1200 1100",
         focus: "all",
         filename: "square_mindmap.svg",
-        title: "?? 璅∠?敹?? 繚 撟曆?璅?蝯?嚗?鞊⊿?撟唾﹛??",
+        title: "🌟 模範心智圖一 · 幾何標準結構（四象限平衡版）",
         defaultRotation: 0,
-        teacherNote: "撠?函雿平蝷箇?嚗?雿誑 1200?1100 甇?瘥??﹛撅??情??撱箇?皜?撠雯蝯⊥雁??,
-        overview: "?∠?情?撠??脩?瑽??喃??寧????箝?雿陶璇冽???撌虫??寧?蝬??瑞?咱撟渲璅???撌虫??寧換蝝窄?喟??格?摮??研??喃??寞蝛箏予????脣?銵瑁??脫?撅斤?????摮移??,
+        teacherNote: "對照全班作業示範：如何以 1200×1100 正方比例均衡展開四個象限，建立清晰的放射網絡思維。",
+        overview: "打破原長條心智圖縱向拉長不易一次看清的缺點，重新採用中央放射、四大象限平衡展開的方形幾何結構。中央主題為《最好的味覺禮物》，四方枝幹均勻對稱，閱讀視野開闊。",
         defects: [
-          "<strong>?瘥???芸?</strong>嚗???NotebookLM ???漲?寥嚗?6:5嚗?蔣璈???皜???嚗?冽迤?寡???憭批??拍?Ｗ?蝛粹???,
-          "<strong>?典惜蝝??菔???</strong>嚗器摨??方玨??伐?蝭暺移蝺渡 2~4 摮敹?敶?蝷箇??迤???箏?蝬脩窗??瘜?,
-          "<strong>?鞊⊿??摩甇賊?</strong>嚗誑????蝬換蝝予???脣???憭找蜓憿?閬死??瘚?芰??,
-          "<strong>鋆??函?箸?銋?蜓??/strong>嚗??湔?????憭?撘瑯??遣蝡閬箄靽～????擃漲??
+          "<strong>四大象限色彩編碼與記憶錨點</strong>：以琥珀金（右上-鳳梨汁）、翠綠（左上-芭樂汁）、紫紅（左下-李子果醬）、晴空藍（右下-教育初衷）四色區隔，大幅強化大腦的圖像色彩提取記憶。",
+          "<strong>層級嚴謹清晰、邏輯脈絡分明</strong>：中心主題 ➔ 一級主幹 ➔ 二級分類 ➔ 三級特徵細節，遵循標準放射性結構，層次分明。",
+          "<strong>精準提煉關鍵字，杜絕長句堆疊</strong>：將課文敘事提煉為 2~8 字核心關鍵語詞，徹底擺脫全班作業中常見的整段抄錄與流水帳式筆記弊端。",
+          "<strong>完整收納深層哲思與情感互動</strong>：補齊 90% 學生遺漏的『建立小小味覺自信』與『泥土生成、陽光甜蜜、黑夜堅強』生命哲思意境！"
         ],
-        formatIssues: "撟曆??∠?????嚗?撓撅方敶抵?撟單?鞎?脩?嚗?瑕?璆剝?頛舀瑽?蝢???,
-        suggestions: "?飛撘?嚗?撠飛??撖葉敹撠?瑽?瘥??芸楛??璆剜?虫??瑕?皜??蝝?蝝?蝝惜蝝??脯?
+        formatIssues: "示範心智圖最佳排版實例：全圖比例 12:11 偏向方形，投影於教室大螢幕或電子白板皆能完整清晰呈現，字距線條皆經視認性最佳化設計。",
+        suggestions: "課堂教學引導：可先引導學生綜覽全圖，觀察四個主幹的關聯性與色彩編碼，再使用上方按鈕或按下快速鍵 1~4，逐一放大各象限深入剖析。"
       },
       {
         id: 21,
@@ -2457,18 +2465,18 @@
         viewBox: "0 0 1200 1100",
         focus: "all",
         filename: "illustrated_mindmap.svg",
-        title: "? 璅∠?敹?? 繚 隤脫?銝駁??鞊????瑽?銝駁?????嚗?,
+        title: "🎨 模範心智圖二 · 課文主題插畫豐富版（原架構＋主題情境插圖）",
         defaultRotation: 0,
-        teacherNote: "靽?璅?敹??蝢??情?嗾雿?瑽??典?????玨?蜓憿????園??憭批?靘皜?⊥?嚗?,
-        overview: "撱嗥??孵耦?情??擃??啣漲蝯?嚗鞊⊿??折??移敹鼓鋆賢?撅祆????喃?閫鼓???賡陶璇典???瘙?瞍拇蒂??賢扒瘜⊿??單嚗椰銝?蝜芣??貊撟賊??賜?璈?皛踹恕?祈?剜???嚗椰銝?蝜芣??????之?祉?蝟除瘜∟??蝵??喃?閫鼓?野???賢匱??云?賬?鈭格?蝛箄?蝳桃??",
+        teacherNote: "保留標準心智圖完美的四象限幾何結構，在各分支旁融合課文主題插圖，零重疊、放大後依然清晰無比！",
+        overview: "延續方形四象限的高清晰度結構，在象限內部留白處精心繪製專屬插圖：右上角繪有金鑽鳳梨切片、果汁機漩渦與雪白奶泡高腳杯；左上角繪有爸爸幸運抽獎機與滿室芬芳芭樂切片；左下角繪有暗紅李子、大熬煮鍋焦糖氣泡與果醬罐；右下角繪有泥土萌芽幼苗、燦爛太陽、月亮星空與禮物盒！",
         defects: [
-          "<strong>?嗆??渲牲銝???/strong>嚗???皞??箏??爸撟寡?甈∠?暺???摰?典?鞊⊿??芰蝛粹?嚗??⊿???踝?閬死皜憭批??,
-          "<strong>鞊⊿??曉之?⊥香閫?/strong>嚗?憭扯情?憭扳?嚗?????蝭暺?蝢蒂摮??Ｚ蝝啁????閰??甈??撠??蜓憿??恬?",
-          "<strong>??蝺函Ⅳ憓撥閮嚗ual Coding嚗?/strong>嚗?摮??萄?蝯??鼓?情嚗鼠?抵?閬箏?????摮貊咱敹恍??玨?敦蝭??,
-          "<strong>?脫????瑁情??/strong>嚗??遣蝡閬箄靽～誑閰血??冽僖???橘?撠野???憭???游?憳抵 ????脣云???儭???蝛???嚗??澈??
+          "<strong>架構嚴謹不重疊</strong>：保留標準心智圖的骨幹與次節點，插圖安放在各象限自然空間，絕無重疊遮蔽，視覺清爽大器。",
+          "<strong>象限放大無死角</strong>：四大象限放大時，插圖與文字節點完美並存，既能細看文字關鍵詞，又能欣賞對應的主題插畫！",
+          "<strong>雙重編碼增強記憶（Dual Coding）</strong>：文字關鍵字結合手繪意象，幫助視覺型與語文型學童快速提取課文細節。",
+          "<strong>哲思與情感具象化</strong>：將『建立味覺自信』以試吃木湯匙呈現，將『泥土、陽光、黑夜』轉化為破土嫩芽 🌱、金色太陽 ☀️ 與星空 🌙，生動溫暖。"
         ],
-        formatIssues: "?典?璆剖??箏???頛臬蝷?嚗??交澈?暑瞏?????嚗??拙?撠飛擃僑蝝玨?內蝭??????,
-        suggestions: "?飛撘?嚗??萄飛?隤脣?敹???芰?憛??嚗閬?????玨?敦蝭銝?撟脫??嚗?臬?瘛梁?閫???雿喳極?瘀?"
+        formatIssues: "在專業心智圖的邏輯基礎上，融入溫暖活潑的插圖元素，是最適合小學高年級課堂示範的理想型態。",
+        suggestions: "教學引導：鼓勵學生在課堂心智圖旁自由加入塗鴉插畫，只要插圖緊扣課文細節且不干擾文字，即是加深理解的最佳工具！"
       },
       {
         id: 22,
@@ -2476,17 +2484,17 @@
         viewBox: "520 40 680 500",
         focus: "pineapple",
         filename: "square_mindmap.svg",
-        title: "?? 蝷箇?閫??銝 繚 ??曈單◢瘙?蝚砌?鞊⊿??曉之?嚗?,
+        title: "🍍 示範解析一 · 手作鳳梨汁（第一象限放大聚焦）",
         defaultRotation: 0,
-        teacherNote: "蝚砌?鞊⊿?嚗銝瑞???嚗??刻??佗??舫????寥◢?潭????嗾雿?皞?鞊??銝?銵函",
-        overview: "?隤脫?????雿陶璇冽????圾皞????ˊ雿郊撽??敺萎?憭扳活蝝??荔?撅內憒?撠?雿極摨??蝯?皜???箏?蝭暺????????璈?曈單◢????,
+        teacherNote: "第一象限（右上·琥珀金黃）局部聚焦，可點擊上方風格按鈕切換幾何標準/豐富插畫不同表現",
+        overview: "聚焦課文開篇『手作鳳梨汁』，拆解準備材料、製作步驟、成品特徵三大次級分支，展示如何將動作工序轉化為結構清晰的心智圖節點，插畫版旁配有果汁機與鳳梨切片。",
         defects: [
-          "<strong>????蝎暹?銋暹楊</strong>嚗???璈??賡陶璇具???瘞氬?暺?亙熒蝝硃???鞈迎?銝??瑟?餈啜?,
-          "<strong>甇仿??????唬?</strong>嚗??桀??准???臬?憛????亦?撓????瘙??芣???隞亙???閰?撠?蝔??箄摮貊?雿平銝?1~7 暺??萇′憌?璇???,
-          "<strong>???脣蔗擙格暑?</strong>嚗活蝝??舐移皞??滓暺??????寡???賣部瘝怒?閬死撠?頨蝝???
+          "<strong>材料抓取精準乾淨</strong>：提取『有機金鑽鳳梨』與『開水』，點出健康純粹手作的本質，不冗長敘述。",
+          "<strong>步驟動詞提煉到位</strong>：『削皮切頭』➔『去芯切塊』➔『裝入玻璃缸』➔『果汁機攪打』，以動態動詞引導流程，擺脫學生作業中 1~7 點的僵硬食譜條列。",
+          "<strong>感官色彩鮮活描摹</strong>：次級分支精準提取『淺黃色果汁』搭配『上方覆蓋雪白泡沫』，視覺對比躍然紙上。"
         ],
-        formatIssues: "蝚砌?鞊⊿??銝撱嗅?嚗?璇憫摨血像皛?塚??∠?蝭暺?雿?踝??Ｙ泵??園霈??嚗?蝬剜??蝺?靽??,
-        suggestions: "?飛閬?嚗?撠飛???抒洵1????4撘萎?璆哨?摮貊?憒?撠??瑞??暑???蝎曄??箇陛瞏?蝣箇?敹???菔?蝭暺?
+        formatIssues: "第一象限向右上方延展，線條弧度平滑自然，卡片節點高低錯落，既符合自然閱讀動線，又維持版面緊湊俐落。",
+        suggestions: "教學要點：引導學生對照第1、7、14張作業，學習如何將冗長的生活口語精煉為簡潔明確的心智圖關鍵詞節點。"
       },
       {
         id: 23,
@@ -2494,17 +2502,17 @@
         viewBox: "0 40 680 500",
         focus: "guava",
         filename: "square_mindmap.svg",
-        title: "?? 蝷箇?閫??鈭?繚 蝡亙僑?剜?瘙??塚?蝚砌?鞊⊿??曉之?嚗?,
+        title: "🍈 示範解析二 · 童年芭樂汁記憶（第二象限放大聚焦）",
         defaultRotation: 0,
-        teacherNote: "蝚砌?鞊⊿?嚗椰銝瑞?蝬??瘀?撅?刻??佗??舫????寥◢?潭????嗾雿?皞?鞊??銝?銵函",
-        overview: "?雿??嗥閬芾?蝡亙僑摰嗅滬瘞?嚗項??璈???璈靘??ˊ雿?蝔?撣?豢?????隞亙????寡嚗?瘞??蝢嚗???????貊?賜?璈?擐除?剜?????,
+        teacherNote: "第二象限（左上·翠綠薄荷）局部聚焦，可點擊上方風格按鈕切換幾何標準/豐富插畫不同表現",
+        overview: "聚焦作者回憶父親與童年家庭氛圍，涵蓋契機（果汁機由來）、製作過程（市場選材與處理）以及成品特色（香氣與美味），插畫版旁配有爸爸抽獎機與香氣芭樂切片。",
         defects: [
-          "<strong>??憟?蝎曄???</strong>嚗?豢?葆??瘙???銝?仿??菔??喲??箇咱撟游??嗥??垢嚗????澈擐函????暑?閎??,
-          "<strong>憌??孵噩蝎暹?閫撖?/strong>嚗????渲眺??蝬頠璅??????剜????脰?頠′?孵噩嚗?甇??飛?銵鋆??璅??玨?摰寧??航炊??,
-          "<strong>?死?閬粹??</strong>嚗??璅?瘞???????祇??憟賢?????撅??璈?頧?????蝢??擃???
+          "<strong>情感契機精煉提取</strong>：『爸爸抽獎帶回果汁機』，一句關鍵詞即點出童年回憶的開端，保留原文溫馨生動的生活情趣。",
+          "<strong>食材特徵精準觀察</strong>：提煉『市場買回黃綠色軟芭樂』，捕捉熟成芭樂的顏色與軟硬特徵，導正部分學生自行腦補『甘草芭樂』等非課文內容的錯誤。",
+          "<strong>嗅覺與味覺通感呈現</strong>：提煉『芭樂香氣濃郁』與『轉瞬間成為好喝果汁』，展現果汁機運轉後的驚喜與美味感官體驗。"
         ],
-        formatIssues: "蝚砌?鞊⊿??椰銝隡詨?嚗敶拇?函?蝬??瑁蝟鳴?閬死皜?嚗?曈單◢瘙??亦???敶Ｘ??咩??蝔梁???,
-        suggestions: "?飛閬?嚗撥隤踴??箏?閬??潭??砌?撖艾???摮貊?敺玨?葉撠蝺揣嚗???犖銝餉??暑?啗情隤斗??脰玨??瑽???
+        formatIssues: "第二象限向左上方伸展，色彩採用翠綠薄荷色系，視覺清新舒暢，與鳳梨汁的琥珀金黃形成和諧的對稱美感。",
+        suggestions: "教學要點：強調『心智圖要忠於文本事實』，提醒學生從課文中尋找線索，避免將個人主觀生活印象誤植進課文結構圖。"
       },
       {
         id: 24,
@@ -2512,17 +2520,17 @@
         viewBox: "0 530 680 530",
         focus: "plum",
         filename: "square_mindmap.svg",
-        title: "?? 蝷箇?閫??銝?繚 ?祉???嚗洵銝情?憭扯??佗?",
+        title: "🍒 示範解析三 · 熬煮李子果醬（第三象限放大聚焦）",
         defaultRotation: 0,
-        teacherNote: "蝚砌?鞊⊿?嚗椰銝瑞換蝝窄?喉?撅?刻??佗??舫????寥◢?潭????嗾雿?皞?鞊??銝?銵函",
-        overview: "?瘥扛?祉??????豢挾?踝?????寞扼?格?蝔誑?????扛摮??蝭嚗??怎????之?祉?蝟除瘜∟?撱箇??芯縑?冽僖??",
+        teacherNote: "第三象限（左下·紫紅寶石）局部聚焦，可點擊上方風格按鈕切換幾何標準/豐富插畫不同表現",
+        overview: "聚焦母親熬煮李子果醬的經典段落，包含李子特性、熬煮流程以及最重要的親子互動環節，插畫版旁配有大熬煮鍋、焦糖氣泡與建立自信木湯匙！",
         defects: [
-          "<strong>憭????撌格???/strong>嚗?蝝?暻??敺?鈭箇?耦?悅???改??摮拙?撠?摮?????伐??箏?蝥??祉?桅?喳?瘥撐??,
-          "<strong>?祉撌亙??餉摮?</strong>嚗?箸?憭折?摮??????????????暺?蝟???????瘛瑕??衣? ????瑕鋆嚗????啜?,
-          "<strong>潃??函?撣賊瞍敹漁暺??遣蝡?撠閬箄靽～?/strong>嚗玨?葉慦賢直霈酋摮撠僖???箏??喲?嚗蝙摮拙?敺??亙?脣??閬箄靽～??臬????瑟敹??冽迨摰?嚗?
+          "<strong>外觀與口感反差提煉</strong>：『暗紅美麗』與『酸得讓人皺眉』形成鮮明對照，呈現孩子對李子的最初排斥，為後續果醬熬煮鋪陳對比張力。",
+          "<strong>熬煮工序去蕪存菁</strong>：搬出最大鍋子開火 ➔ 切開取果核 ➔ 加入黃砂糖 ➔ 果肉融化混和焦糖 ➔ 熄火冷卻裝瓶，條理清晰。",
+          "<strong>⭐ 全班最常遺漏核心亮點：【建立小小味覺自信】</strong>！課文中媽媽讓孩子用小湯匙舀出嘗味道，使孩子從排斥到獲得『味覺自信』，是心靈成長核心，在此完整呈現！"
         ],
-        formatIssues: "蝚砌?鞊⊿??椰銝隡詨?嚗?函換蝝窄?唾隤選?撅斤???嚗敹漁暺誑??擃漁?寞?璅??璅內嚗?閬箄儘霅漲璆菟???,
-        suggestions: "?飛閬?嚗???剖?摮詻??箏?銝?芸????銵券嚗??嚗?敹???銝行??鈭辣????????敹??嚗?
+        formatIssues: "第三象限向左下方伸展，採用紫紅寶石色調，層級分明，核心亮點以星號高亮特殊樣式標示，視覺辨識度極高。",
+        suggestions: "教學要點：提醒全班同學『心智圖不能只停留在動作表面（做果醬）』，必須挖掘並提煉出事件背後的情感變化與心理成長！"
       },
       {
         id: 25,
@@ -2530,17 +2538,17 @@
         viewBox: "520 530 680 530",
         focus: "education",
         filename: "square_mindmap.svg",
-        title: "? 蝷箇?閫????繚 ???◎???脫?蝢抬?蝚砍?鞊⊿??曉之?嚗?,
+        title: "🌿 示範解析四 · 手作初衷與教育意義（第四象限放大聚焦）",
         defaultRotation: 0,
-        teacherNote: "蝚砍?鞊⊿?嚗銝瑟蝛箏予??撅?刻??佗??舫????寥◢?潭????嗾雿?皞?鞊??銝?銵函",
-        overview: "?隤脫???銝餅嚗項???曆誨?飛憌脣????之?芰璊?????隞亙????舀?憟賜旨?拍??詨??孵潘??????瘜亙?憳抵?云?賬?蝛箄?蝳桃??",
+        teacherNote: "第四象限（右下·晴空天藍）局部聚焦，可點擊上方風格按鈕切換幾何標準/豐富插畫不同表現",
+        overview: "聚焦課文昇華與思想主旨，涵蓋對現代化學飲品的擔憂、大自然植物生成的想像，以及手作是最好禮物的核心價值，插畫版旁配有泥土嫩芽、太陽、星空與禮物盒！",
         defects: [
-          "<strong>?曆誨?暑????/strong>嚗?閬??園ㄡ摨???摮貉蝝獄?箏閬箝?暺雿??扛?芸????撥??璈?,
-          "<strong>憭扯?嗥??瑕??鞊∴?隤脫??蝢?蝡?90%摮貊??箸?嚗?/strong>嚗???野?ㄐ???????曹?敺?????撠???????憭?蝛箄??撥??憭抒??賡?畾蛛?",
-          "<strong>?冽??詨?銝駁??</strong>嚗???憌?迤?喲????撌勗振鋆∠???祆?憟賬?????芸楛????憟賜??唾死蝳桃??擐偏?潭?隤脫?蝭?嚗?
+          "<strong>現代生活反思提煉</strong>：『隨處可見的茶飲店』與『化學色素麻痺味覺』，點出作者堅持親自動手做的強烈動機。",
+          "<strong>大自然生長哲思意象（課文最美篇章，90%學生遺漏）</strong>：提煉出『泥土裡生成』➔『開花之後結果』➔『陽光照射變甜蜜』➔『黑夜星空變堅強』四大生命階段！",
+          "<strong>全文核心主題昇華</strong>：提煉『嘗食物真正味道』➔『自己家裡熬的果醬最好』➔『🎁 自己動手做是最好的味覺禮物』，首尾呼應課文篇名！"
         ],
-        formatIssues: "蝚砍?鞊⊿??銝撅?嚗蝛箏予?蝟餅?鈭桅????怎垢蝳桃蝭暺?鈭桀憿荔??箏撟??箏???摰??仿???,
-        suggestions: "?飛閬?嚗?撠飛??閫???箏???擃????航撠????孵潸??犖?????????箏???????瑽?
+        formatIssues: "第四象限向右下方展開，晴空天藍色系明亮開闊，末端禮物節點高亮凸顯，為全幅心智圖劃下完美句點。",
+        suggestions: "教學要點：引導學生理解心智圖的最高境界，是能將作者的價值觀、人生哲思與情感昇華提煉為具備感染力的心靈架構。"
       }
     ];
 
@@ -2570,9 +2578,9 @@
     // Benchmark split toggle state (Cycle through standard, illustrated, notebook)
     let benchmarkTypeIndex = 0;
     const benchmarkTypes = [
-      { src: "square_mindmap.svg", label: "璅?撟曆?敹???孵耦嚗? },
-      { src: "illustrated_mindmap.svg", label: "隤脫?銝駁??鞊??? },
-      { src: "NotebookLM Mind Map (2).png", label: "NotebookLM ???瑟?" }
+      { src: "square_mindmap.svg", label: "標準幾何心智圖（方形）" },
+      { src: "illustrated_mindmap.svg", label: "課文主題插畫豐富版" },
+      { src: "NotebookLM Mind Map (2).png", label: "NotebookLM 原版長條" }
     ];
 
     // Show Toast
@@ -2609,18 +2617,18 @@
       if (downloadLink) {
         if (styleName === "illustrated") {
           downloadLink.href = "illustrated_mindmap.svg";
-          downloadLink.download = "蝚?隤淪?憟賜??唾死蝳桃_?鞊?敹??svg";
-          if (downloadText) downloadText.textContent = "銝????SVG";
+          downloadLink.download = "第5課_最好的味覺禮物_插畫豐富心智圖.svg";
+          if (downloadText) downloadText.textContent = "下載插畫版 SVG";
         } else {
           downloadLink.href = "square_mindmap.svg";
-          downloadLink.download = "蝚?隤淪?憟賜??唾死蝳桃_?孵耦撟曆?敹??svg";
-          if (downloadText) downloadText.textContent = "銝?璅???SVG";
+          downloadLink.download = "第5課_最好的味覺禮物_方形幾何心智圖.svg";
+          if (downloadText) downloadText.textContent = "下載標準版 SVG";
         }
       }
 
       if (showToastMsg) {
-        const names = { standard: "?? 撟曆?璅?蝯?", illustrated: "? 隤脫?銝駁??鞊??? };
-        showToast(`撌脣??◢?潘?${names[styleName] || styleName}`);
+        const names = { standard: "📐 幾何標準結構", illustrated: "🎨 課文主題插畫豐富版" };
+        showToast(`已切換風格：${names[styleName] || styleName}`);
       }
     }
 
@@ -2729,13 +2737,13 @@
           }
         });
 
-        let badgeTitle = "?? 璅∠?敹??;
-        if (slide.mindmapStyle === "standard") badgeTitle = "?? 撟曆?璅?蝯?";
-        else if (slide.mindmapStyle === "illustrated") badgeTitle = "? 隤脫?銝駁??鞊???;
-        else if (slide.focus && slide.focus !== "all") badgeTitle = "?? 鞊⊿?撅?刻???;
+        let badgeTitle = "🌟 模範心智圖";
+        if (slide.mindmapStyle === "standard") badgeTitle = "📐 幾何標準結構";
+        else if (slide.mindmapStyle === "illustrated") badgeTitle = "🎨 課文主題插畫豐富版";
+        else if (slide.focus && slide.focus !== "all") badgeTitle = "🔍 象限局部聚焦";
 
-        slideBadge.textContent = `蝚?${slide.id} / ${slidesData.length} 撘?繚 ${badgeTitle}`;
-        slideCounter.textContent = `蝚?${slide.id} / ${slidesData.length} 撘琛;
+        slideBadge.textContent = `第 ${slide.id} / ${slidesData.length} 張 · ${badgeTitle}`;
+        slideCounter.textContent = `第 ${slide.id} / ${slidesData.length} 張`;
         critiquePanelTitle.textContent = `${slide.title}`;
 
         let pointsHtml = slide.defects.map(d => `<li>${d}</li>`).join("");
@@ -2744,17 +2752,18 @@
           <div class="critique-card" style="border-left: 4px solid #6366f1; background: rgba(99, 102, 241, 0.08);">
             <div class="card-title" style="color: #a5b4fc;">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              ?嗆?摰??身閮牧??            </div>
+              架構定位與設計說明
+            </div>
             <div class="card-body">
-              <strong>撅內?憛?</strong>${slide.title}<br>
-              <strong>蝯?璁膩嚗?/strong>${slide.overview}
+              <strong>展示區塊：</strong>${slide.title}<br>
+              <strong>結構概述：</strong>${slide.overview}
             </div>
           </div>
 
           <div class="critique-card teacher-note">
             <div class="card-title teacher">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-              隤脣??飛撘???
+              課堂教學引導重點
             </div>
             <div class="card-body">
               ${slide.teacherNote}
@@ -2764,7 +2773,8 @@
           <div class="critique-card success">
             <div class="card-title success">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              璅∠?敹??Ｚ??閰內蝭?            </div>
+              模範心智圖優勢與關鍵詞示範
+            </div>
             <div class="card-body">
               <ul>${pointsHtml}</ul>
             </div>
@@ -2773,7 +2783,8 @@
           <div class="critique-card warning">
             <div class="card-title warning">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"></path></svg>
-              ???函撣貉??航炊銋?甇?遣霅?            </div>
+              針對全班常見錯誤之導正建議
+            </div>
             <div class="card-body">
               ${slide.formatIssues}
             </div>
@@ -2782,7 +2793,7 @@
           <div class="critique-card" style="border-left: 4px solid #38bdf8; background: rgba(56, 189, 248, 0.08);">
             <div class="card-title" style="color: #38bdf8;">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-              ?蔣?飛?內
+              投影教學提示
             </div>
             <div class="card-body">
               ${slide.suggestions}
@@ -2799,9 +2810,9 @@
         currentZoom = 1;
         applyImageTransform();
 
-        slideBadge.textContent = `蝚?${slide.id} / ${slidesData.length} 撘?繚 摮貊?雿?`;
-        slideCounter.textContent = `蝚?${slide.id} / ${slidesData.length} 撘琛;
-        critiquePanelTitle.textContent = `蝚?${slide.id} 撘?繚 ?蝻粹???`;
+        slideBadge.textContent = `第 ${slide.id} / ${slidesData.length} 張 · 學生作品`;
+        slideCounter.textContent = `第 ${slide.id} / ${slidesData.length} 張`;
+        critiquePanelTitle.textContent = `第 ${slide.id} 張 · 呈現缺點剖析`;
 
         let defectsHtml = slide.defects.map(d => `<li>${d}</li>`).join("");
 
@@ -2809,11 +2820,11 @@
           <div class="critique-card">
             <div class="card-title">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              雿?璁?
+              作品概況
             </div>
             <div class="card-body">
-              <strong>瑼??迂嚗?/strong>${slide.filename}<br>
-              <strong>蝯???嚗?/strong>${slide.overview}
+              <strong>檔案名稱：</strong>${slide.filename}<br>
+              <strong>結構摘要：</strong>${slide.overview}
             </div>
           </div>
 
@@ -2821,7 +2832,7 @@
           <div class="critique-card teacher-note">
             <div class="card-title teacher">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-              ?葦?曉蝝?閰?
+              老師現場紅筆評語
             </div>
             <div class="card-body">
               ${slide.teacherNote}
@@ -2831,7 +2842,8 @@
           <div class="critique-card danger">
             <div class="card-title danger">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-              ??皞??箏?撠銋蜓閬撩暺?            </div>
+              與標準心智圖對照之主要缺點
+            </div>
             <div class="card-body">
               <ul>${defectsHtml}</ul>
             </div>
@@ -2840,7 +2852,7 @@
           <div class="critique-card warning">
             <div class="card-title warning">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"></path></svg>
-              ?????箏?蝜芾ˊ敶Ｗ?蝻箏仃
+              排版與心智圖繪製形式缺失
             </div>
             <div class="card-body">
               ${slide.formatIssues}
@@ -2850,7 +2862,8 @@
           <div class="critique-card success">
             <div class="card-title success">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              ?琿??寥脫?撠遣霅?            </div>
+              具體改進指導建議
+            </div>
             <div class="card-body">
               ${slide.suggestions}
             </div>
@@ -2878,7 +2891,7 @@
       if (currentIndex < slidesData.length - 1) {
         renderSlide(currentIndex + 1);
       } else {
-        showToast("撌脣??敺?撘菜?敶梁?");
+        showToast("已到達最後一張投影片");
       }
     }
 
@@ -2886,23 +2899,23 @@
       if (currentIndex > 0) {
         renderSlide(currentIndex - 1);
       } else {
-        showToast("撌脫蝚砌?撘菜?敶梁?");
+        showToast("已是第一張投影片");
       }
     }
 
     function rotateImage() {
       if (slidesData[currentIndex].type === "mindmap") {
-        showToast("璅∠?敹?歇?舀?雿唾?閫??⊿???");
+        showToast("模範心智圖已是最佳視角，無需旋轉");
         return;
       }
       currentRotation = (currentRotation + 90) % 360;
       applyImageTransform();
-      showToast(`????${currentRotation}簞`);
+      showToast(`旋轉至 ${currentRotation}°`);
     }
 
     function zoomIn() {
       if (slidesData[currentIndex].type === "mindmap") {
-        showToast("隢????寡銝豢?蝐斗?鞊⊿??脰?撅?刻???);
+        showToast("請點擊上方藥丸標籤或象限進行局部聚焦");
         return;
       }
       currentZoom = Math.min(currentZoom + 0.25, 2.5);
@@ -2913,13 +2926,13 @@
       if (slidesData[currentIndex].type === "mindmap") {
         if (currentStyle === "illustrated") renderSlide(20);
         else renderSlide(19);
-        showToast("撌脣??唳芋蝭??箏??典?蝮質汗");
+        showToast("已回到模範心智圖全圖總覽");
         return;
       }
       currentZoom = 1;
       currentRotation = slidesData[currentIndex].defaultRotation || 0;
       applyImageTransform();
-      showToast("蝮格??頧歇??");
+      showToast("縮放與旋轉已還原");
     }
 
     // Toggle Split Mode
@@ -2930,12 +2943,12 @@
         studentViewport.classList.add("split-mode");
         benchmarkViewport.classList.add("active");
         btn.classList.add("active");
-        showToast("撌脤??蒂??皞?撠璅∪?");
+        showToast("已開啟並排標準圖對照模式");
       } else {
         studentViewport.classList.remove("split-mode");
         benchmarkViewport.classList.remove("active");
         btn.classList.remove("active");
-        showToast("撌脤??蒂?芋撘?);
+        showToast("已關閉並排模式");
       }
     }
 
@@ -2961,7 +2974,7 @@
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => {
-          showToast("?⊥??脣?刻撟芋撘? " + err.message);
+          showToast("無法進入全螢幕模式: " + err.message);
         });
       } else {
         if (document.exitFullscreen) {
@@ -2979,17 +2992,17 @@
 
         if (slide.type === "mindmap") {
           let badgeColor = "#4f46e5";
-          let icon = "??";
-          let label = "璅∠?蝮質汗";
-          if (slide.mindmapStyle === "standard") { badgeColor = "#4f46e5"; icon = "??"; label = "撟曆?璅?"; }
-          else if (slide.mindmapStyle === "illustrated") { badgeColor = "#d97706"; icon = "?"; label = "鞊??"; }
-          else if (slide.focus === "pineapple") { badgeColor = "#d97706"; icon = "??"; label = "??曈單◢"; }
-          else if (slide.focus === "guava") { badgeColor = "#059669"; icon = "??"; label = "蝡亙僑?剜?"; }
-          else if (slide.focus === "plum") { badgeColor = "#e11d48"; icon = "??"; label = "???"; }
-          else if (slide.focus === "education") { badgeColor = "#0284c7"; icon = "?"; label = "??◎"; }
+          let icon = "🌟";
+          let label = "模範總覽";
+          if (slide.mindmapStyle === "standard") { badgeColor = "#4f46e5"; icon = "📐"; label = "幾何標準"; }
+          else if (slide.mindmapStyle === "illustrated") { badgeColor = "#d97706"; icon = "🎨"; label = "豐富插畫"; }
+          else if (slide.focus === "pineapple") { badgeColor = "#d97706"; icon = "🍍"; label = "手作鳳梨"; }
+          else if (slide.focus === "guava") { badgeColor = "#059669"; icon = "🍈"; label = "童年芭樂"; }
+          else if (slide.focus === "plum") { badgeColor = "#e11d48"; icon = "🍒"; label = "李子果醬"; }
+          else if (slide.focus === "education") { badgeColor = "#0284c7"; icon = "🌿"; label = "教育初衷"; }
 
           item.classList.add("mindmap-thumb");
-          item.title = `蝚?${slide.id} 撘?繚 ${slide.title}`;
+          item.title = `第 ${slide.id} 張 · ${slide.title}`;
           item.innerHTML = `
             <div class="thumb-mindmap-card" style="background: linear-gradient(135deg, ${badgeColor}, #0f172a);">
               <span class="thumb-card-icon">${icon}</span>
@@ -2998,7 +3011,7 @@
             <span class="thumb-number" style="background: ${badgeColor}; color: #fff;">${slide.id}</span>
           `;
         } else {
-          item.title = `蝚?${slide.id} 撘?繚 ${slide.filename}`;
+          item.title = `第 ${slide.id} 張 · ${slide.filename}`;
           item.innerHTML = `
             <img src="${slide.filename}" alt="${slide.title}">
             <span class="thumb-number">${slide.id}</span>
@@ -3142,7 +3155,7 @@
         const cur = benchmarkTypes[benchmarkTypeIndex];
         benchmarkDisplayImg.src = cur.src;
         benchmarkTypeBadge.textContent = cur.label;
-        showToast(`撠???嚗?{cur.label}`);
+        showToast(`對照圖切換為：${cur.label}`);
       });
     }
 
